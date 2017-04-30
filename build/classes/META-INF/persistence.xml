@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PrototipoPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ConnectBD.Rol</class>
+    <class>ConnectBD.Rh</class>
+    <class>ConnectBD.Ficha</class>
+    <class>ConnectBD.Acceso</class>
+    <class>ConnectBD.Ciudad</class>
+    <class>ConnectBD.Centros</class>
+    <class>ConnectBD.Departamento</class>
+    <class>ConnectBD.Genero</class>
+    <class>ConnectBD.Equipos</class>
+    <class>ConnectBD.Persona</class>
+    <class>ConnectBD.Documento</class>
+    <class>ConnectBD.TipoPersona</class>
+    <class>ConnectBD.MarcaEquipo</class>
+    <class>ConnectBD.EntradaSalida</class>
+    <class>ConnectBD.TipoEquipo</class>
+    <class>ConnectBD.Sede</class>
+    <class>ConnectBD.TipoEntradaSalida</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://85.10.205.173:3306/scesstk?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="wagallardo1"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Sena2016"/>
+    </properties>
+  </persistence-unit>
+</persistence>
