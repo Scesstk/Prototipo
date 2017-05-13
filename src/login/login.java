@@ -38,13 +38,7 @@ public class login extends javax.swing.JFrame {
     private void acceso(){
         if(pass.equals(contra)){
             
-            if(activo.equals("NO")){
-                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
-                JOptionPane.ERROR_MESSAGE);
-                txtid.setText(null);
-                txtpass.setText(null);
-            }else if(rol.equals("USUARIO")){
+            if(rol.equals("USUARIO")){
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido "+nombre+"\n"
                 + "Has ingresado satisfactoriamente al Sistema para el Control "
@@ -101,41 +95,61 @@ public class login extends javax.swing.JFrame {
             adv3.setVisible(true);
             adv4.setVisible(true);
             btnok.setEnabled(false);
+            
+            Pconnection bloquea = new Pconnection();
+            
+            // Bloqueo de usuario en Base de datos
+            bloquea.setUpdate("Update acceso as a JOIN persona as p on a.ACCidPerFK=p.PERidPerPK "
+                    + "set ACCact = 'NO' WHERE PERnumDoc = '"+cedula+"'");
+            
+            bloquea.cerrarConexion();
         }
     }
-    
+    //METODO DE CONEXION A LA BASE DE DATOS
     public void conMySQL(){
         nombre= "";
-       
+        //Creacion del objeto de conexion
         Pconnection prueba = new Pconnection();
-
-        prueba.setSelectInt(("SELECT Num_documento FROM persona WHERE Num_documento='"+cedula+"'"),
-                "Num_documento");
+        
+        //Comparacion cedula digitada con base de datos
+        prueba.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc ='"+cedula+"'"),
+                "PERnumDoc");
+        //Almacenamiento en variable
         cc = prueba.getSelectInt();
         
-        prueba.setSelectStr(("SELECT Contrasena FROM acceso as a "
-                        + "JOIN persona as p on a.Id_persona=p.Id_persona WHERE Num_documento = '"+cedula+"'"),
-                "Contrasena");
+        //Extraccion de contraseña en base de datos
+        prueba.setSelectStr(("SELECT ACCcon FROM acceso as a "
+                        + "JOIN persona as p on a.ACCidPerFK=p.PERidPerPK WHERE PERnumDoc = '"+cedula+"'"),
+                "ACCcon");
+        //Almacenamiento en variable
         contra = prueba.getSelectStr();
-        prueba.setSelectStr(("SELECT Activo FROM acceso as a "
-                        + "JOIN persona as p on a.Id_persona=p.Id_persona WHERE Num_documento = '"+cedula+"'"),
-                "Activo");
+        
+        //Extraccion Base datos si usuario se encuentra activo
+        prueba.setSelectStr(("SELECT ACCact FROM acceso as a "
+                        + "JOIN persona as p on a.ACCidPerFK=p.PERidPerPK WHERE PERnumDoc = '"+cedula+"'"),
+                "ACCact");
+        //Almacenamiento en variable
         activo = prueba.getSelectStr();
         
+        //Conversion de pasword a MD5
         prueba.setSelectMd5(pass, pass);
+        //Almacenamiento en variable
         pass = prueba.getMd5();
         
-        
-        prueba.setSelectStr(("SELECT concat(Nombre_1,' ',Nombre_2,' ',Apellido_1,' ',Apellido_2) as Nombre FROM persona WHERE Num_documento='"+cedula+"'"),
+        //Concatenacion del nombre
+        prueba.setSelectStr(("SELECT concat(PERnom1,' ',PERnom2,' ',PERape1,' ',PERape2) as Nombre FROM persona WHERE PERnumDoc ='"+cedula+"'"),
                 "Nombre");
+        //Almacenamiento en variable 
         nombre = prueba.getSelectStr();
         
-        
-        prueba.setSelectStr(("SELECT Descripcion_rol FROM rol as r "
-                        + "JOIN persona as p on r.Id_rol=p.Id_rol WHERE Num_documento = '"+cedula+"'"), 
-                "Descripcion_rol");
+        //Extraccion descripcion del rol
+        prueba.setSelectStr(("SELECT ROLdesRol FROM rol as r "
+                        + "JOIN persona as p on r.ROLidRolPK=p.PERidRolFK WHERE PERnumDoc = '"+cedula+"'"), 
+                "ROLdesRol");
+        //Almacenamiento en variable
         rol = prueba.getSelectStr();
-
+        
+        //Cierre de conexion a la base de datos
         prueba.cerrarConexion();
     }
     
@@ -374,13 +388,34 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
-        contrasena();
-        conMySQL();
-        acceso();
+        int pr;
+        try{
+            pr = Integer.parseInt(txtid.getText());
+            //Inicia el metodo de verificacion de contraseña
+            contrasena();
+            //Ejecuta el metodo de conexion a la base de datos
+            conMySQL();
+            //Validacion de usuario Activo o no
+            if(activo.equals("NO")){
+                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
+                JOptionPane.ERROR_MESSAGE);
+                txtid.setText(null);
+                txtpass.setText(null);
+            }else {
+                //Ejecuta el metodo de acceso al Sistema    
+                acceso();
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
+        }
+        
+        
            
     }//GEN-LAST:event_btnokActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Cierre de la aplicacion
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -400,17 +435,53 @@ public class login extends javax.swing.JFrame {
 
     private void btnokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnokKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            contrasena();
-            conMySQL();
-            acceso();
+            int pr;
+            try{
+                pr = Integer.parseInt(txtid.getText());
+                //Inicia el metodo de verificacion de contraseña
+                contrasena();
+                //Ejecuta el metodo de conexion a la base de datos
+                conMySQL();
+                //Validacion de usuario Activo o no
+                if(activo.equals("NO")){
+                    JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                    + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
+                    JOptionPane.ERROR_MESSAGE);
+                    txtid.setText(null);
+                    txtpass.setText(null);
+                }else {
+                    //Ejecuta el metodo de acceso al Sistema    
+                    acceso();
+                }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
+            }
         }
     }//GEN-LAST:event_btnokKeyPressed
 
     private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            contrasena();
-            conMySQL();
-            acceso();
+            int pr;
+            try{
+                pr = Integer.parseInt(txtid.getText());
+                //Inicia el metodo de verificacion de contraseña
+                contrasena();
+                //Ejecuta el metodo de conexion a la base de datos
+                conMySQL();
+                //Validacion de usuario Activo o no
+                if(activo.equals("NO")){
+                    JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                    + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
+                    JOptionPane.ERROR_MESSAGE);
+                    txtid.setText(null);
+                    txtpass.setText(null);
+                }else {
+                    //Ejecuta el metodo de acceso al Sistema    
+                    acceso();
+                }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
+            }
         }
     }//GEN-LAST:event_txtpassKeyPressed
 
