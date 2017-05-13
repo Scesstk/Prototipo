@@ -95,13 +95,13 @@ public class login extends javax.swing.JFrame {
             adv3.setVisible(true);
             adv4.setVisible(true);
             btnok.setEnabled(false);
-            
+            //Creacion del objeto de conexion
             Pconnection bloquea = new Pconnection();
             
-            // Bloqueo de usuario en Base de datos
+            // Bloqueo de usuario en Base de datos con sentencia UPDATE
             bloquea.setUpdate("Update acceso as a JOIN persona as p on a.ACCidPerFK=p.PERidPerPK "
                     + "set ACCact = 'NO' WHERE PERnumDoc = '"+cedula+"'");
-            
+            //Cierre de conexion a la base de datos
             bloquea.cerrarConexion();
         }
     }
@@ -153,7 +153,30 @@ public class login extends javax.swing.JFrame {
         prueba.cerrarConexion();
     }
     
-    
+    public void accede(){
+        int pr;
+        try{
+            //Linea para validar ingreso de datos de usuario
+            pr = Integer.parseInt(txtid.getText());
+            //Inicia el metodo de verificacion de contraseña
+            contrasena();
+            //Ejecuta el metodo de conexion a la base de datos
+            conMySQL();
+            //Validacion de usuario Activo o no
+            if(activo.equals("NO")){
+                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
+                JOptionPane.ERROR_MESSAGE);
+                txtid.setText(null);
+                txtpass.setText(null);
+            }else {
+                //Ejecuta el metodo de acceso al Sistema    
+                acceso();
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
+        }
+    }  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -388,30 +411,8 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
-        int pr;
-        try{
-            pr = Integer.parseInt(txtid.getText());
-            //Inicia el metodo de verificacion de contraseña
-            contrasena();
-            //Ejecuta el metodo de conexion a la base de datos
-            conMySQL();
-            //Validacion de usuario Activo o no
-            if(activo.equals("NO")){
-                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
-                JOptionPane.ERROR_MESSAGE);
-                txtid.setText(null);
-                txtpass.setText(null);
-            }else {
-                //Ejecuta el metodo de acceso al Sistema    
-                acceso();
-            }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
-        }
-        
-        
-           
+        //Ejecutamos el metodo accede
+        accede();         
     }//GEN-LAST:event_btnokActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -435,53 +436,15 @@ public class login extends javax.swing.JFrame {
 
     private void btnokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnokKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            int pr;
-            try{
-                pr = Integer.parseInt(txtid.getText());
-                //Inicia el metodo de verificacion de contraseña
-                contrasena();
-                //Ejecuta el metodo de conexion a la base de datos
-                conMySQL();
-                //Validacion de usuario Activo o no
-                if(activo.equals("NO")){
-                    JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                    + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
-                    JOptionPane.ERROR_MESSAGE);
-                    txtid.setText(null);
-                    txtpass.setText(null);
-                }else {
-                    //Ejecuta el metodo de acceso al Sistema    
-                    acceso();
-                }
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
-            }
+            //Ejecutamos el metodo accede
+            accede();        
         }
     }//GEN-LAST:event_btnokKeyPressed
 
     private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            int pr;
-            try{
-                pr = Integer.parseInt(txtid.getText());
-                //Inicia el metodo de verificacion de contraseña
-                contrasena();
-                //Ejecuta el metodo de conexion a la base de datos
-                conMySQL();
-                //Validacion de usuario Activo o no
-                if(activo.equals("NO")){
-                    JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                    + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
-                    JOptionPane.ERROR_MESSAGE);
-                    txtid.setText(null);
-                    txtpass.setText(null);
-                }else {
-                    //Ejecuta el metodo de acceso al Sistema    
-                    acceso();
-                }
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
-            }
+            //Ejecutamos el metodo accede
+            accede();
         }
     }//GEN-LAST:event_txtpassKeyPressed
 
