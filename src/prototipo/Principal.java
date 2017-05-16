@@ -33,7 +33,7 @@ public class Principal extends javax.swing.JFrame {
         //private int cont=0;
         public void run(){
             while (true){
-                jLnombre.setText(login.login.nombre);
+                jLnombre.setText(login.loginf.nombre);
                 Thread.interrupted();
             }
         }
