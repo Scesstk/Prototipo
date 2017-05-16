@@ -22,8 +22,10 @@ public class loginf extends javax.swing.JFrame {
         adv();
         oportunidad();
     }
-    public int prueba, cedula, opor=0, cc;
-    public String pass,activo,rol,contra,nombre;
+    public int prueba, cedula, opor=0;
+    public String pass,activo,rol,contra;
+    public static String nombre="";
+    public static int cc;
     
     private void contrasena(){
         char clave[]=txtpass.getPassword();
@@ -274,6 +276,9 @@ public class loginf extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtidKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidKeyTyped(evt);
+            }
         });
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -437,6 +442,7 @@ public class loginf extends javax.swing.JFrame {
             //Ejecutamos el metodo accede
             accede();        
         }
+        
     }//GEN-LAST:event_txtpassKeyPressed
 
     private void btnokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnokKeyPressed
@@ -447,11 +453,20 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_btnokKeyPressed
 
     private void txtidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyPressed
+        if(evt.getKeyCode()== KeyEvent.VK_DELETE){
+            txtid.setText("");
+            txtpass.setText("");            
+        }
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             //Ejecutamos el metodo accede
             accede();        
         }
     }//GEN-LAST:event_txtidKeyPressed
+
+    private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtidKeyTyped
 
     /**
      * @param args the command line arguments
