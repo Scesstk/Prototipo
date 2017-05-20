@@ -6,6 +6,7 @@
 package ConnectBD;
 
 import RegistroPersona.RegistroCentro;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,7 +40,10 @@ public class Pconnection {
     private String password="";
     private String cbx = "";
     private String delete = "";
- 
+
+    private String campb="";
+    private Blob selBlob =null;
+    
     public Pconnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -247,6 +251,43 @@ public class Pconnection {
     public String getLlenaCombo(){
         return combox;
     }
+    
+    
+    
+        public Connection setSelectBlob(String Select, String campoBlob){
+        this.select = Select;
+        this.campb = campoBlob;
+        
+        try{
+        Statement stado = conexion.createStatement();
+        ResultSet res = stado.executeQuery(select);
+        while(res.next()){
+            selBlob = res.getBlob(campoBlob);
+        }
+       // System.out.println("prueba select "+sel);
+        }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
+                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return conexion;
+    }
+    
+
+    
+    public Blob getSelectBlob(){
+        return selBlob;
+    }
+
+
+
+
+    
+    
+    
+    
+    
+    
     
     
  

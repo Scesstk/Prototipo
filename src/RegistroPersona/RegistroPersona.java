@@ -1,4 +1,4 @@
-/*
+/*Q                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             q
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,6 +9,13 @@ import EquiposVehiculos.SelEquipoVehiculo;
 import RegistroPersona.Maven.jFrameCamera;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -20,14 +27,18 @@ import static prototipo.Principal.Escritorio;
  * @author SENA
  */
 public class RegistroPersona extends javax.swing.JInternalFrame {
-
+    
     /**
      * Creates new form RegistroPersona
      */
+    
+    // inicio de conexion a la base de datos
     Pconnection cargar = new Pconnection();
     
-    private String ruta;
     private int docu;
+    File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
+    
+    
     
     public RegistroPersona() {
         initComponents();
@@ -35,10 +46,10 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
        
         cargar.getConexion();
             
-        cargar.setLlenCombox("Select num_ficha from ficha", "num_ficha");
+        cargar.setLlenCombox("Select FICnumFic from ficha", "FICnumFic");
         cbxFicha.addItem(cargar.getLlenCombox());
                 
-        cargar.setLlenCombox("Select nom_centro from centros ", "nom_centro");
+        cargar.setLlenCombox("Select CENnomCen from centros ", "CENnomCen");
         cbxCentro.addItem(cargar.getLlenCombox());
         
     }
@@ -47,6 +58,12 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
         ImageIcon foto = new ImageIcon(rt);
         ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(jLFoto.getWidth(), jLFoto.getHeight(), Image.SCALE_DEFAULT));
         jLFoto.setIcon(ico);
+        
+        
+        
+        
+        //File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
+        
     }
 
     /**
@@ -184,6 +201,11 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
         jPimg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLFoto.setText("FOTO");
+        jLFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLFotoMouseClicked(evt);
+            }
+        });
         jPimg.add(jLFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 150, 170));
 
         jbtnImg.setText("Agregar Imagen");
@@ -427,8 +449,22 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         docu = 0;
-        cargar.setSelectInt("Select Num_documento from persona where Num_documento ='"+txtDocumento.getText()+"'","Num_documento");
+        int id=0;
+        cargar.setSelectInt("Select PERnumDoc from persona where PERnumDoc ='"+txtDocumento.getText()+"'","PERnumDoc");
         docu = cargar.getSelectInt();
+        
+        cargar.setSelectInt("Select PERidPerPK from persona","PERidPerPK");
+        id=cargar.getSelectInt();
+        
+        FileInputStream fi = null;
+        
+        JOptionPane.showMessageDialog(null, "Id persona actual"+id);
+        
+        id++;
+        
+        JOptionPane.showMessageDialog(null, "Id persona nuevo"+id);
+        
+        JOptionPane.showMessageDialog(null,(cbxCentro.getSelectedIndex()));
         
         if(docu>0){
             JOptionPane.showMessageDialog(null, "El documento "+txtDocumento.getText()+" ya se encuentra registrado");
@@ -441,18 +477,83 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
                 (txtTelefono.getText().equals(""))||(cbxRh.getSelectedIndex()==0)||
                 (cbxTipUser.getSelectedIndex()==0)||
                 ((cbxCentro.getSelectedIndex()-1)==0)||((cbxFicha.getSelectedIndex()-1)==0)){
-            JOptionPane.showMessageDialog(null, "Hay Campos marcados con * son obligatorios");
+            JOptionPane.showMessageDialog(null, "Hay Campos marcados con (*) vacios que son obligatorios");
             }else{
-                cargar.setInsert("INSERT INTO persona (Id_documento, "
-                + "Num_documento, Nombre_1, Nombre_2, Apellido_1, Apellido_2, "
-                + "Id_genero, Direccion, Telfono_fijo, celular, correo, "
-                + "Id_rh, Id_tipo_persona, Id_rol, Id_centros, Id_ficha) VALUES "
-                +"("+cbxTipoDoc.getSelectedIndex()+","+txtDocumento.getText()+",'"+txtNombre1.getText()+"','"
+                
+            
+            if(txtNombre2.getText().equals("")){
+                txtNombre2.setText(" ");
+            }
+            if(txtApellido2.getText().equals("")){
+                txtApellido2.setText(" ");
+            }
+            if(txtDireccion.getText().equals("")){
+                txtDireccion.setText(" ");
+            }
+            if(txtCelular.getText().equals("")){
+                txtCelular.setText("0");
+            }
+            if(txtEmail.getText().equals("")){
+                txtEmail.setText(" ");
+            }
+
+                
+            String insert = "INSERT INTO persona (PERidPerPK, PERidDocFK, PERnumDoc, PERnom1, PERnom2, PERape1, PERape2, PERidGenFK, PERdir, PERtelFij, PERcel, PERcor, PERidRhFK, PERidTiPeFK, PERidRolFK, PERidCenFK, PERidFicFK, PERfoto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = null;
+
+            try {
+
+                Pconnection grabar = new Pconnection();
+                String r=ruta+"/"+txtDocumento.getText()+".png";
+                File file = new File(r);
+                fi = new FileInputStream(file);
+
+                ps = grabar.getConexion().prepareStatement(insert);
+                ps.setInt(1,id);
+                ps.setInt(2,cbxTipoDoc.getSelectedIndex());
+                ps.setInt(3,Integer.parseInt(txtDocumento.getText()));
+                ps.setString(4,txtNombre1.getText());
+                ps.setString(5,txtNombre2.getText());
+                ps.setString(6,txtApellido1.getText());
+                ps.setString(7,txtApellido2.getText());
+                ps.setInt(8,cbxGenero.getSelectedIndex());
+                ps.setString(9,txtDireccion.getText());
+                ps.setInt(10,(Integer.parseInt(txtTelefono.getText())));
+                ps.setInt(11,(Integer.parseInt(txtCelular.getText())));
+                ps.setString(12,txtEmail.getText());
+                ps.setInt(13,cbxRh.getSelectedIndex());
+                ps.setInt(14,cbxTipUser.getSelectedIndex());
+                ps.setInt(15,cbxRol.getSelectedIndex());
+                ps.setInt(16,(cbxCentro.getSelectedIndex())-1);
+                ps.setInt(17,(cbxFicha.getSelectedIndex())-1);
+                ps.setBinaryStream(18,fi,(int)file.length());
+                ps.executeUpdate(); 
+                JOptionPane.showMessageDialog(null,"Registro almacenado con Exito.! ");
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+
+            }       catch (FileNotFoundException ex) {
+                        Logger.getLogger(RegistroPersona.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                
+                
+                
+                
+                
+                
+                /*
+                cargar.setInsert("INSERT INTO persona (PERidPerPK, PERidDocFK, "
+                + "PERnumDoc, PERnom1, PERnom2, PERape1, PERape2, "
+                + "PERidGenFK, PERdir, PERtelFij, PERcel, PERcor, "
+                + "PERidRhFK, PERidTiPeFK, PERidRolFK, PERidCenFK, PERidFicFK) VALUES "
+                +"("+id+","+cbxTipoDoc.getSelectedIndex()+","+txtDocumento.getText()+",'"+txtNombre1.getText()+"','"
                 +txtNombre2.getText()+"','"+txtApellido1.getText()+"','"+txtApellido2.getText()+"',"+cbxGenero.getSelectedIndex()+",'"
                 +txtDireccion.getText()+"',"+txtTelefono.getText()+","+txtCelular.getText()+",'"+txtEmail.getText()+"',"+cbxRh.getSelectedIndex()
                 +","+cbxTipUser.getSelectedIndex()+","+cbxRol.getSelectedIndex()+","
                 + (cbxCentro.getSelectedIndex()-1)+","+(cbxFicha.getSelectedIndex()-1)+")");
-        
+                */
+                
                 cargar.cerrarConexion();
                 dispose();
             }
@@ -490,7 +591,7 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxCentroActionPerformed
 
     private void jbtnImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImgActionPerformed
-        MyIcon icon = new MyIcon();
+       /* MyIcon icon = new MyIcon();
         String[] option ={"Cargar Imagen", "Fotografia"};
         int sel = JOptionPane.showOptionDialog(null, "Selecciona la opcion correcta", "Cargar Imagen", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, (Icon) icon, option, option[0]);
         
@@ -507,11 +608,11 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
                 jLFoto.setIcon(icono);
                 this.repaint();
             }
-        }else if(sel==1){
+        }else if(sel==1){*/
             jFrameCamera window = new jFrameCamera();
             Escritorio.add(window);
             window.show();
-        }
+        //}
     }//GEN-LAST:event_jbtnImgActionPerformed
 
     private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
@@ -552,6 +653,11 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_btnGuardarKeyPressed
+
+    private void jLFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLFotoMouseClicked
+        
+        
+    }//GEN-LAST:event_jLFotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

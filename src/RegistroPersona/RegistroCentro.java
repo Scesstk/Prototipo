@@ -126,8 +126,8 @@ public class RegistroCentro extends javax.swing.JInternalFrame {
 
         carga.getConexion();
         if(cbxDepartamento.getSelectedIndex()>0){
-            carga.setLlenaCombo(("Select Nom_ciudad from ciudad where id_departamento "
-                + "= '"+cbxDepartamento.getSelectedIndex()+"'"),"Nom_ciudad");
+            carga.setLlenaCombo(("Select CIUnomCiu from ciudad where id_departamento "
+                + "= '"+cbxDepartamento.getSelectedIndex()+"'"),"CIUidDepFK");
 
         }
         
@@ -136,10 +136,10 @@ public class RegistroCentro extends javax.swing.JInternalFrame {
     private void jbtnCentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCentroActionPerformed
         String ciudad = cbxCiudad.getSelectedItem().toString();
         
-        carga.setSelectInt("Select Id_ciudad from ciudad where Nom_ciudad = '"+ciudad+"'", "Id_ciudad");
+        carga.setSelectInt("Select CIUidCiuPK from ciudad where CIUnomCiu = '"+ciudad+"'", "CIUidCiuPK");
         int idCiudad = carga.getSelectInt();
                    
-        carga.setInsert("INSERT INTO centros (Nom_centro, Cod_sena_centro, Id_ciudad) VALUES"
+        carga.setInsert("INSERT INTO centros (CENnomCen, CENcodSenCen, CENidCiuFK) VALUES"
                 +"('"+jtxtNombreCentro.getText()+"','"+jtxtCodCentro.getText()+"',"+idCiudad+")");
         carga.cerrarConexion();
         dispose();
