@@ -134,14 +134,14 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "El campo Documento no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
                 //nombre y formato de la imagen de salida
-                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images/");
+                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
                 //ruta.mkdir();
-                ImageIO.write(image, "PNG", new File(ruta+txtDocumento.getText()+".png"));
+                ImageIO.write(image, "PNG", new File(ruta+"/"+txtDocumento.getText()+".png"));
                 //cerrar camara
                 webcam.close();
                 //actualiza foto
                 
-                String r=ruta+txtDocumento.getText()+".png";
+                String r=ruta+"/"+txtDocumento.getText()+".png";
                 actfoto(r);
                 //cierra ventana
                 dispose();

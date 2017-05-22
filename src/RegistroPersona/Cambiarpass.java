@@ -42,15 +42,15 @@ public class Cambiarpass extends javax.swing.JInternalFrame {
     private void conecMySQL(){
         Pconnection cambio = new Pconnection();
         
-        cambio.setSelectInt(("SELECT Num_documento FROM persona WHERE Num_documento='"+cedula+"'"), "Num_documento");
+        cambio.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc='"+cedula+"'"), "PERnumDoc");
         prueba=cambio.getSelectInt();
         
-        cambio.setSelectStr(("SELECT Contrasena FROM acceso as a "
-                        + "JOIN persona as p on a.Id_persona=p.Id_persona WHERE Num_documento = '"+cedula+"'"),
-                "Contrasena");
+        cambio.setSelectStr(("SELECT ACCcon FROM acceso as a "
+                        + "JOIN persona as p on a.ACCidPerFK=p.PERidPerPK WHERE PERnumDoc = '"+cedula+"'"),
+                "ACCcon");
         contra = cambio.getSelectStr();
         
-        cambio.setSelectInt(("SELECT id_persona FROM persona Where Num_documento = '"+cedula+"'"), "id_persona");
+        cambio.setSelectInt(("SELECT PERidPerPK FROM persona Where PERnumDoc = '"+cedula+"'"), "PERidPerPK");
         id = cambio.getSelectInt();
         
         cambio.setSelectMd5(passold, passold);
@@ -63,7 +63,7 @@ public class Cambiarpass extends javax.swing.JInternalFrame {
         pass = cambio.getMd5();
         
            
-        if(cedula==login.login.cc){
+        if(cedula==login.loginf.cc){
             
         
             if(cedula==prueba){
@@ -72,7 +72,7 @@ public class Cambiarpass extends javax.swing.JInternalFrame {
                 
                     if(pass1.equals(pass)){
                     
-                        cambio.setUpdate("UPDATE acceso SET Contrasena = '"+pass+"'"+" WHERE id_persona = "+id);
+                        cambio.setUpdate("UPDATE acceso SET ACCcon = '"+pass+"'"+" WHERE ACCidPerFK = "+id);
             
                         JOptionPane.showMessageDialog(null, "Su contraseña Fue cambiada Con Exito");
                         dispose();
