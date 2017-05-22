@@ -155,7 +155,7 @@ public class loginf extends javax.swing.JFrame {
     private void acceso(){
         if(pass.equals(contra)){
             
-            if(rol.equals("USUARIO")){
+            if(rol.equals("REGISTRADOR")){
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido "+nombre+"\n"
                 + "Has ingresado satisfactoriamente al Sistema para el Control "
@@ -270,6 +270,11 @@ public class loginf extends javax.swing.JFrame {
         txtid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtidMouseClicked(evt);
+            }
+        });
+        txtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidActionPerformed(evt);
             }
         });
         txtid.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -467,6 +472,10 @@ public class loginf extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtidKeyTyped
+
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidActionPerformed
 
     /**
      * @param args the command line arguments
