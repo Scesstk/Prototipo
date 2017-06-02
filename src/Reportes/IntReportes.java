@@ -67,7 +67,7 @@ private String consulta,prueba;
    
     public void validarCampos(){
         
-        consulta = "select Num_documento from persona where Num_documento = '"+campoDocumento.getText()+"';";
+        consulta = "select PERnumDoc from persona where PERnumDoc = '"+campoDocumento.getText()+"';";
         
         boolean v = ValidarCaracteres(campoDocumento.getText());
         if (v == false && radioDocumento.getModel()== grupoRadio.getSelection() ){

@@ -22,31 +22,29 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select concat_ws(' ',Nombre_1,Nombre_2,Apellido_1,Apellido_2) as Nombres, 
-Clase_equipo as Equipo,
-Descripcion_marca_equipo as Marca, 
-Serial,
-Fecha_hora as "Fecha de ingreso",
-Descripcion_tipo_entrada_salida as "Entrada/Salida",
-P.Num_documento as Documento
-from persona_equipos PE
-inner join persona P on (PE.Id_persona = P.Id_persona)
-inner join equipos E on(PE.Id_equipos = E.Id_equipos)
-inner join tipo_equipo TE on (E.Id_tipo_equipo = TE.Id_tipo_Equipo)
-inner join marca_equipo ME on (E.Id_marca_equipo = ME.Id_marca_equipo)
-inner join entrada_salida ES on (ES.Id_persona = P.Id_persona)
-inner join tipo_entrada_salida TES on (TES.Id_tipo_entrada_salida = ES.Id_tipo_entrada_salida)
-where P.Num_documento = $P{documento} and Fecha_hora>=$P{fechad} and Fecha_hora<=$P{fechah} and (ES.Id_tipo_entrada_salida =$P{tipoentrada} or ES.Id_tipo_entrada_salida =$P{tiposalida}) ;]]>
+		<![CDATA[select concat_ws(' ',PERnom1,PERnom1,PERape1,PERape2) as Nombres, 
+TEclaEqu as Equipo,
+MEdeMaEq as Marca, 
+EQUser as Serial,
+ESfecHor as "Fecha de ingreso",
+TESdeTiEnSa as "Entrada/Salida",
+PERnumDoc as Documento
+from perequ PE
+inner join persona P on (PE.PEidPerFK = P.PERidPerPK)
+inner join equipos E on (PE.PEidEquFK = E.EQUidEquPK)
+inner join tipequ TE on (E.EQUidTipFK = TE.TEidTiEqPK)
+inner join marequ ME on (E.EQUidMarPK = ME.MEidMaEqPK)
+inner join entsal ES on (ES.ESidPerFK = P.PERidPerPK)
+inner join tipentsal TES on (TES.TESidTiEnSaPK = ES.ESidTiEnSaFK)
+where P.PERnumDoc = $P{documento} and ESfecHor>=$P{fechad} and ESfecHor<=$P{fechah} and (ES.ESidTiEnSaFK =$P{tipoentrada} or ES.ESidTiEnSaFK =$P{tiposalida}) ;]]>
 	</queryString>
 	<field name="Nombres" class="java.lang.String"/>
 	<field name="Equipo" class="java.lang.String"/>
 	<field name="Marca" class="java.lang.String"/>
-	<field name="Serial" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="Serial" class="java.lang.String"/>
 	<field name="Fecha de ingreso" class="java.sql.Timestamp"/>
 	<field name="Entrada/Salida" class="java.lang.String"/>
-	<field name="Documento" class="java.lang.String"/>
+	<field name="Documento" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
