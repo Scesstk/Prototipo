@@ -6,7 +6,6 @@
 package RegistroPersona;
 
 import ConnectBD.Pconnection;
-import ConnectBD.Persona;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

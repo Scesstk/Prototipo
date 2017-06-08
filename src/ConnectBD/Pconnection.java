@@ -131,10 +131,10 @@ public class Pconnection {
         return sele;
     } 
     
-    public ArrayList<Persona> getLstPersona() throws SQLException, Exception{
+    /**public ArrayList<Persona> getLstPersona() throws SQLException, Exception{
             this.getConexion();
             ArrayList<Persona> lst = new ArrayList<>();
-     /**       ResultSet rs = this.("SELECT * FROM Persona");
+            ResultSet rs = this.("SELECT * FROM Persona");
 
             if (rs != null) {
                 while(rs.next()){
@@ -149,10 +149,10 @@ public class Pconnection {
                     cli.setDireccion(rs.getString("direccion"));
                     lst.add(cli);
                 }
-            }**/
+            }
             this.cerrarConexion();
             return lst;
-        }
+        }**/
     public Connection setUpdate(String Update){
         this.update=Update;
         try{
