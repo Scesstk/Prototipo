@@ -296,7 +296,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnhome.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnhome.setForeground(new java.awt.Color(255, 255, 255));
         btnhome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnhome.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\casa.png")); // NOI18N
+        btnhome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/casa.png"))); // NOI18N
         btnhome.setText("Inicio");
         btnhome.setToolTipText("");
         btnhome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -320,7 +320,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnminimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnminimizar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnminimizar.setForeground(new java.awt.Color(89, 181, 72));
-        btnminimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\minimizar.png")); // NOI18N
+        btnminimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/minimizar.png"))); // NOI18N
         btnminimizar.setToolTipText("Minimizar");
         btnminimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnminimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -332,7 +332,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         btncerrar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btncerrar.setForeground(new java.awt.Color(89, 181, 72));
-        btncerrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\borrar.png")); // NOI18N
+        btncerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         btncerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -389,7 +389,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnentradaysalida.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnentradaysalida.setForeground(new java.awt.Color(89, 181, 72));
         btnentradaysalida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnentradaysalida.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\puerta-abierta-esbozada.png")); // NOI18N
+        btnentradaysalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/puerta-abierta-esbozada.png"))); // NOI18N
         btnentradaysalida.setText("Entrada y Salida");
         btnentradaysalida.setToolTipText("");
         btnentradaysalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

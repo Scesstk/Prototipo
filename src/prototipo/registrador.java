@@ -29,16 +29,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         
         //inicio en false las vistas
         formulario.setVisible(false);
-        body2.setVisible(false);
+        
         body3.setVisible(false);
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
-        setLblColor(btnhome);
-        resetLblColor(btnpersonas);
-        resetLblColor(btnreportes);
-        resetLblColor(btnregistros);
-        
+        setLblColor(btnregistros);
+
         
         
         
@@ -185,59 +182,17 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         jFrame1 = new javax.swing.JFrame();
         barralateral = new javax.swing.JPanel();
-        btnpersonas = new javax.swing.JLabel();
-        btnreportes = new javax.swing.JLabel();
-        btnhome = new javax.swing.JLabel();
         btnregistros = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnminimizar = new javax.swing.JLabel();
         btncerrar = new javax.swing.JLabel();
         barra = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
-        head = new javax.swing.JPanel();
-        hhome = new javax.swing.JPanel();
-        etiquetanombre = new javax.swing.JLabel();
-        lblnombre = new javax.swing.JLabel();
-        etiquetatrol = new javax.swing.JLabel();
-        lblrol = new javax.swing.JLabel();
-        imagen = new javax.swing.JLabel();
-        etiquetanombre1 = new javax.swing.JLabel();
-        lblrol1 = new javax.swing.JLabel();
-        hbuscar = new javax.swing.JPanel();
-        iconbuscar = new javax.swing.JLabel();
-        separador = new javax.swing.JPanel();
-        txtconsulta = new javax.swing.JTextField();
-        nuevoregistro2 = new javax.swing.JLabel();
-        cambiarpass = new javax.swing.JLabel();
-        hequipo = new javax.swing.JPanel();
-        iconbuscar1 = new javax.swing.JLabel();
-        separador18 = new javax.swing.JPanel();
-        txtconsulta1 = new javax.swing.JTextField();
-        etiqueta28 = new javax.swing.JLabel();
-        tipobox = new javax.swing.JComboBox<>();
-        etiqueta30 = new javax.swing.JLabel();
-        etiqueta31 = new javax.swing.JLabel();
-        marcabox = new javax.swing.JComboBox<>();
-        etiqueta32 = new javax.swing.JLabel();
-        etiqueta33 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        separador20 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        desctxt = new javax.swing.JTextArea();
-        jTextField18 = new javax.swing.JTextField();
-        separador21 = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
-        bhome = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        btnpassac = new javax.swing.JLabel();
-        btnregistroac = new javax.swing.JLabel();
-        btnequipoac = new javax.swing.JLabel();
-        bbuscar = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
-        bequipo = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblListaEquipos = new javax.swing.JTable();
+        body3 = new javax.swing.JPanel();
+        btncentros = new javax.swing.JLabel();
+        btnfichas = new javax.swing.JLabel();
+        btnequipos = new javax.swing.JLabel();
         body2 = new javax.swing.JPanel();
         formulario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -290,10 +245,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnagregarEquipo = new javax.swing.JLabel();
         btncancelar = new javax.swing.JLabel();
         btnguardar = new javax.swing.JLabel();
-        body3 = new javax.swing.JPanel();
-        btncentros = new javax.swing.JLabel();
-        btnfichas = new javax.swing.JLabel();
-        btnequipos = new javax.swing.JLabel();
         body4 = new javax.swing.JPanel();
         etiqueta17 = new javax.swing.JLabel();
         btnguardarficha = new javax.swing.JLabel();
@@ -354,72 +305,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         barralateral.setToolTipText("");
         barralateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnpersonas.setBackground(new java.awt.Color(89, 181, 72));
-        btnpersonas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnpersonas.setForeground(new java.awt.Color(255, 255, 255));
-        btnpersonas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnpersonas.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\usuarios.png")); // NOI18N
-        btnpersonas.setText("Personas");
-        btnpersonas.setToolTipText("");
-        btnpersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnpersonas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnpersonas.setIconTextGap(1);
-        btnpersonas.setName(""); // NOI18N
-        btnpersonas.setOpaque(true);
-        btnpersonas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnpersonas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnpersonasMouseClicked(evt);
-            }
-        });
-        barralateral.add(btnpersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 70, 70));
-
-        btnreportes.setBackground(new java.awt.Color(89, 181, 72));
-        btnreportes.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnreportes.setForeground(new java.awt.Color(255, 255, 255));
-        btnreportes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnreportes.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\periodico.png")); // NOI18N
-        btnreportes.setText("Reportes");
-        btnreportes.setToolTipText("");
-        btnreportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnreportes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnreportes.setIconTextGap(1);
-        btnreportes.setName(""); // NOI18N
-        btnreportes.setOpaque(true);
-        btnreportes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnreportes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnreportesMouseClicked(evt);
-            }
-        });
-        barralateral.add(btnreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 70, 70));
-
-        btnhome.setBackground(new java.awt.Color(89, 181, 72));
-        btnhome.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnhome.setForeground(new java.awt.Color(255, 255, 255));
-        btnhome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnhome.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\casa.png")); // NOI18N
-        btnhome.setText("Inicio");
-        btnhome.setToolTipText("");
-        btnhome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnhome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnhome.setIconTextGap(1);
-        btnhome.setName(""); // NOI18N
-        btnhome.setOpaque(true);
-        btnhome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnhome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnhomeMouseClicked(evt);
-            }
-        });
-        barralateral.add(btnhome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 70, 70));
-
         btnregistros.setBackground(new java.awt.Color(89, 181, 72));
         btnregistros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnregistros.setForeground(new java.awt.Color(255, 255, 255));
         btnregistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnregistros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-documento-simbolo-delineado.png")); // NOI18N
-        btnregistros.setText("Registros");
+        btnregistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/casa.png"))); // NOI18N
+        btnregistros.setText("Inicio");
         btnregistros.setToolTipText("");
         btnregistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -432,7 +323,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                 btnregistrosMouseClicked(evt);
             }
         });
-        barralateral.add(btnregistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 70, 70));
+        barralateral.add(btnregistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 70, 70));
 
         getContentPane().add(barralateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 460));
 
@@ -485,465 +376,90 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 40));
 
-        head.setBackground(new java.awt.Color(255, 255, 255));
-        head.setLayout(new java.awt.CardLayout());
-
-        hhome.setBackground(new java.awt.Color(255, 255, 255));
-
-        etiquetanombre.setFont(new java.awt.Font("Calibri", 1, 26)); // NOI18N
-        etiquetanombre.setForeground(new java.awt.Color(89, 181, 72));
-        etiquetanombre.setText("Bienvenido(a):");
-
-        lblnombre.setFont(new java.awt.Font("Calibri", 1, 26)); // NOI18N
-        lblnombre.setForeground(new java.awt.Color(89, 181, 72));
-        lblnombre.setText("Gustavo Risueño");
-
-        etiquetatrol.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        etiquetatrol.setForeground(new java.awt.Color(89, 181, 72));
-        etiquetatrol.setText("Rol:");
-
-        lblrol.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        lblrol.setForeground(new java.awt.Color(89, 181, 72));
-        lblrol.setText("Administrador");
-
-        imagen.setOpaque(true);
-
-        etiquetanombre1.setBackground(new java.awt.Color(89, 181, 72));
-        etiquetanombre1.setFont(new java.awt.Font("Calibri", 1, 26)); // NOI18N
-        etiquetanombre1.setForeground(new java.awt.Color(255, 255, 255));
-        etiquetanombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetanombre1.setText("Accesos Rápidos");
-        etiquetanombre1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        etiquetanombre1.setOpaque(true);
-
-        lblrol1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        lblrol1.setForeground(new java.awt.Color(89, 181, 72));
-        lblrol1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblrol1.setText("Subir");
-
-        javax.swing.GroupLayout hhomeLayout = new javax.swing.GroupLayout(hhome);
-        hhome.setLayout(hhomeLayout);
-        hhomeLayout.setHorizontalGroup(
-            hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hhomeLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblrol1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hhomeLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(hhomeLayout.createSequentialGroup()
-                                .addComponent(etiquetanombre)
-                                .addGap(3, 3, 3)
-                                .addComponent(lblnombre))
-                            .addGroup(hhomeLayout.createSequentialGroup()
-                                .addComponent(etiquetatrol)
-                                .addGap(7, 7, 7)
-                                .addComponent(lblrol))))
-                    .addGroup(hhomeLayout.createSequentialGroup()
-                        .addGap(387, 387, 387)
-                        .addComponent(etiquetanombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        hhomeLayout.setVerticalGroup(
-            hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hhomeLayout.createSequentialGroup()
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hhomeLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetanombre)
-                            .addComponent(lblnombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetatrol)
-                            .addComponent(lblrol)))
-                    .addGroup(hhomeLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetanombre1)
-                    .addComponent(lblrol1)))
-        );
-
-        head.add(hhome, "card2");
-
-        hbuscar.setBackground(new java.awt.Color(255, 255, 255));
-        hbuscar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        iconbuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\buscar-con-herramienta-en-esquema.png")); // NOI18N
-        hbuscar.add(iconbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 70, -1));
-
-        separador.setBackground(new java.awt.Color(89, 181, 72));
-        separador.setForeground(new java.awt.Color(89, 181, 72));
-        separador.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separadorLayout = new javax.swing.GroupLayout(separador);
-        separador.setLayout(separadorLayout);
-        separadorLayout.setHorizontalGroup(
-            separadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separadorLayout.setVerticalGroup(
-            separadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        hbuscar.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 200, 2));
-
-        txtconsulta.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtconsulta.setForeground(new java.awt.Color(102, 102, 102));
-        txtconsulta.setText("A quien buscas?....");
-        txtconsulta.setBorder(null);
-        txtconsulta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtconsultaMouseClicked(evt);
-            }
-        });
-        txtconsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtconsultaActionPerformed(evt);
-            }
-        });
-        txtconsulta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtconsultaKeyReleased(evt);
-            }
-        });
-        hbuscar.add(txtconsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 190, 30));
-
-        nuevoregistro2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        nuevoregistro2.setForeground(new java.awt.Color(89, 181, 72));
-        nuevoregistro2.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-usuario.png")); // NOI18N
-        nuevoregistro2.setText(" Nuevo Registro");
-        nuevoregistro2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nuevoregistro2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        nuevoregistro2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoregistro22MouseClicked(evt);
-            }
-        });
-        hbuscar.add(nuevoregistro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        cambiarpass.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        cambiarpass.setForeground(new java.awt.Color(89, 181, 72));
-        cambiarpass.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\contrasena.png")); // NOI18N
-        cambiarpass.setText("Cambiar Contraseña");
-        cambiarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cambiarpass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        cambiarpass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cambiarpassMouseClicked(evt);
-            }
-        });
-        hbuscar.add(cambiarpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        head.add(hbuscar, "card3");
-
-        hequipo.setBackground(new java.awt.Color(255, 255, 255));
-        hequipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        iconbuscar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\buscar-con-herramienta-en-esquema.png")); // NOI18N
-        hequipo.add(iconbuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 70, -1));
-
-        separador18.setBackground(new java.awt.Color(89, 181, 72));
-        separador18.setForeground(new java.awt.Color(89, 181, 72));
-        separador18.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador18.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador18Layout = new javax.swing.GroupLayout(separador18);
-        separador18.setLayout(separador18Layout);
-        separador18Layout.setHorizontalGroup(
-            separador18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separador18Layout.setVerticalGroup(
-            separador18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        hequipo.add(separador18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 200, 2));
-
-        txtconsulta1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtconsulta1.setForeground(new java.awt.Color(102, 102, 102));
-        txtconsulta1.setText("Digita tu Cedula");
-        txtconsulta1.setBorder(null);
-        txtconsulta1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtconsulta1MouseClicked(evt);
-            }
-        });
-        txtconsulta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtconsulta1ActionPerformed(evt);
-            }
-        });
-        txtconsulta1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtconsulta1KeyReleased(evt);
-            }
-        });
-        hequipo.add(txtconsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 190, 30));
-
-        etiqueta28.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta28.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta28.setText("Serial:");
-        hequipo.add(etiqueta28, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 60, 30));
-
-        tipobox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        tipobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Portatil", "Tablet", "Celular", "Proyector", "Otros" }));
-        tipobox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tipoboxItemStateChanged(evt);
-            }
-        });
-        tipobox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tipoboxMouseClicked(evt);
-            }
-        });
-        tipobox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoboxActionPerformed(evt);
-            }
-        });
-        hequipo.add(tipobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 30));
-
-        etiqueta30.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta30.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta30.setText("Tipo:");
-        hequipo.add(etiqueta30, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 30));
-
-        etiqueta31.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta31.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta31.setText("Marca:");
-        hequipo.add(etiqueta31, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 60, 30));
-
-        marcabox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        marcabox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "ACER", "ASUS", "APPLE", "DELL", "GATEWAY", "HP", "LENOVO", "LG", "PC SMART", "THOSIBA", "SONY", "OTROS" }));
-        hequipo.add(marcabox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 140, 30));
-
-        etiqueta32.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta32.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta32.setText("Descripcion:");
-        hequipo.add(etiqueta32, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 100, 30));
-
-        etiqueta33.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta33.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta33.setText("Modelo:");
-        hequipo.add(etiqueta33, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 70, 30));
-
-        jTextField17.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField17.setBorder(null);
-        jTextField17.setOpaque(false);
-        hequipo.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 180, 30));
-
-        separador20.setBackground(new java.awt.Color(252, 115, 35));
-        separador20.setForeground(new java.awt.Color(252, 115, 35));
-        separador20.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador20.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador20Layout = new javax.swing.GroupLayout(separador20);
-        separador20.setLayout(separador20Layout);
-        separador20Layout.setHorizontalGroup(
-            separador20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
-        );
-        separador20Layout.setVerticalGroup(
-            separador20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        hequipo.add(separador20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 180, -1));
-
-        desctxt.setColumns(20);
-        desctxt.setRows(5);
-        desctxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
-        jScrollPane4.setViewportView(desctxt);
-
-        hequipo.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 300, 50));
-
-        jTextField18.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField18.setBorder(null);
-        jTextField18.setOpaque(false);
-        hequipo.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 170, 30));
-
-        separador21.setBackground(new java.awt.Color(252, 115, 35));
-        separador21.setForeground(new java.awt.Color(252, 115, 35));
-        separador21.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador21.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador21Layout = new javax.swing.GroupLayout(separador21);
-        separador21.setLayout(separador21Layout);
-        separador21Layout.setHorizontalGroup(
-            separador21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-        separador21Layout.setVerticalGroup(
-            separador21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        hequipo.add(separador21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 170, -1));
-
-        head.add(hequipo, "card3");
-
-        getContentPane().add(head, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 170));
-
         body.setBackground(new java.awt.Color(244, 242, 242));
         body.setLayout(new java.awt.CardLayout());
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(89, 181, 72));
-        jLabel9.setText("v 1.0.0");
+        body3.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnpassac.setBackground(new java.awt.Color(255, 255, 255));
-        btnpassac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnpassac.setForeground(new java.awt.Color(89, 181, 72));
-        btnpassac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnpassac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\contrasena (1).png")); // NOI18N
-        btnpassac.setText("Cambiar Contraseña");
-        btnpassac.setToolTipText("");
-        btnpassac.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnpassac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnpassac.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnpassac.setIconTextGap(1);
-        btnpassac.setName(""); // NOI18N
-        btnpassac.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnpassac.addMouseListener(new java.awt.event.MouseAdapter() {
+        btncentros.setBackground(new java.awt.Color(255, 255, 255));
+        btncentros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btncentros.setForeground(new java.awt.Color(89, 181, 72));
+        btncentros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btncentros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edificio-comercial.png"))); // NOI18N
+        btncentros.setText("Agregar Centros");
+        btncentros.setToolTipText("");
+        btncentros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncentros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncentros.setIconTextGap(1);
+        btncentros.setName(""); // NOI18N
+        btncentros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btncentros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnpassacMouseClicked(evt);
+                btncentrosMouseClicked(evt);
             }
         });
 
-        btnregistroac.setBackground(new java.awt.Color(255, 255, 255));
-        btnregistroac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnregistroac.setForeground(new java.awt.Color(89, 181, 72));
-        btnregistroac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnregistroac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-usuariox64.png")); // NOI18N
-        btnregistroac.setText("Agregar Registro");
-        btnregistroac.setToolTipText("");
-        btnregistroac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnregistroac.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnregistroac.setIconTextGap(1);
-        btnregistroac.setName(""); // NOI18N
-        btnregistroac.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnregistroac.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnfichas.setBackground(new java.awt.Color(255, 255, 255));
+        btnfichas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btnfichas.setForeground(new java.awt.Color(89, 181, 72));
+        btnfichas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnfichas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carpeta-rellena-con-pestanas.png"))); // NOI18N
+        btnfichas.setText("Agregar Fichas");
+        btnfichas.setToolTipText("");
+        btnfichas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnfichas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnfichas.setIconTextGap(1);
+        btnfichas.setName(""); // NOI18N
+        btnfichas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnfichas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnregistroacMouseClicked(evt);
+                btnfichasMouseClicked(evt);
             }
         });
 
-        btnequipoac.setBackground(new java.awt.Color(255, 255, 255));
-        btnequipoac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnequipoac.setForeground(new java.awt.Color(89, 181, 72));
-        btnequipoac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnequipoac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\pantalla-de-tv.png")); // NOI18N
-        btnequipoac.setText("Agregar Equipo");
-        btnequipoac.setToolTipText("");
-        btnequipoac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnequipoac.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnequipoac.setIconTextGap(1);
-        btnequipoac.setName(""); // NOI18N
-        btnequipoac.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnequipoac.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnequipos.setBackground(new java.awt.Color(255, 255, 255));
+        btnequipos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btnequipos.setForeground(new java.awt.Color(89, 181, 72));
+        btnequipos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnequipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuariox64.png"))); // NOI18N
+        btnequipos.setText("Agregar Usuarios");
+        btnequipos.setToolTipText("");
+        btnequipos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnequipos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnequipos.setIconTextGap(1);
+        btnequipos.setName(""); // NOI18N
+        btnequipos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnequipos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnequipoacMouseClicked(evt);
+                btnequiposMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout bhomeLayout = new javax.swing.GroupLayout(bhome);
-        bhome.setLayout(bhomeLayout);
-        bhomeLayout.setHorizontalGroup(
-            bhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bhomeLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(btnregistroac, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnequipoac, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(btnpassac, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bhomeLayout.createSequentialGroup()
-                .addGap(780, 780, 780)
-                .addComponent(jLabel9))
+        javax.swing.GroupLayout body3Layout = new javax.swing.GroupLayout(body3);
+        body3.setLayout(body3Layout);
+        body3Layout.setHorizontalGroup(
+            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body3Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btncentros)
+                .addGap(80, 80, 80)
+                .addComponent(btnequipos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(btnfichas)
+                .addGap(101, 101, 101))
         );
-        bhomeLayout.setVerticalGroup(
-            bhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bhomeLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(bhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bhomeLayout.createSequentialGroup()
-                        .addGroup(bhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnregistroac, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnequipoac, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel9))
-                    .addComponent(btnpassac)))
+        body3Layout.setVerticalGroup(
+            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body3Layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addGroup(body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnequipos)
+                    .addComponent(btnfichas)
+                    .addComponent(btncentros))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        body.add(bhome, "card3");
-
-        bbuscar.setBackground(new java.awt.Color(255, 255, 255));
-        bbuscar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
-        jScrollPane2.setOpaque(false);
-
-        tabla.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        tabla.setForeground(new java.awt.Color(89, 181, 72));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tabla.setGridColor(new java.awt.Color(153, 153, 153));
-        tabla.setRowHeight(22);
-        tabla.setSelectionBackground(new java.awt.Color(89, 181, 72));
-        jScrollPane2.setViewportView(tabla);
-
-        bbuscar.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 250));
-
-        body.add(bbuscar, "card2");
-
-        bequipo.setBackground(new java.awt.Color(255, 255, 255));
-        bequipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
-        jScrollPane3.setOpaque(false);
-
-        tblListaEquipos.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        tblListaEquipos.setForeground(new java.awt.Color(89, 181, 72));
-        tblListaEquipos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tblListaEquipos.setGridColor(new java.awt.Color(153, 153, 153));
-        tblListaEquipos.setRowHeight(22);
-        tblListaEquipos.setSelectionBackground(new java.awt.Color(89, 181, 72));
-        jScrollPane3.setViewportView(tblListaEquipos);
-
-        bequipo.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 250));
-
-        body.add(bequipo, "card2");
-
-        getContentPane().add(body, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 760, 250));
+        body.add(body3, "card3");
 
         body2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1338,89 +854,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             .addComponent(formulario, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getContentPane().add(body2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 760, 460));
-
-        body3.setBackground(new java.awt.Color(255, 255, 255));
-
-        btncentros.setBackground(new java.awt.Color(255, 255, 255));
-        btncentros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btncentros.setForeground(new java.awt.Color(89, 181, 72));
-        btncentros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btncentros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\edificio-comercial.png")); // NOI18N
-        btncentros.setText("Agregar Centros");
-        btncentros.setToolTipText("");
-        btncentros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btncentros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncentros.setIconTextGap(1);
-        btncentros.setName(""); // NOI18N
-        btncentros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btncentros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btncentrosMouseClicked(evt);
-            }
-        });
-
-        btnfichas.setBackground(new java.awt.Color(255, 255, 255));
-        btnfichas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnfichas.setForeground(new java.awt.Color(89, 181, 72));
-        btnfichas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnfichas.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\carpeta-rellena-con-pestanas.png")); // NOI18N
-        btnfichas.setText("Agregar Fichas");
-        btnfichas.setToolTipText("");
-        btnfichas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnfichas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnfichas.setIconTextGap(1);
-        btnfichas.setName(""); // NOI18N
-        btnfichas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnfichas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnfichasMouseClicked(evt);
-            }
-        });
-
-        btnequipos.setBackground(new java.awt.Color(255, 255, 255));
-        btnequipos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        btnequipos.setForeground(new java.awt.Color(89, 181, 72));
-        btnequipos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnequipos.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\pantalla-de-tv.png")); // NOI18N
-        btnequipos.setText("Agregar Equipos");
-        btnequipos.setToolTipText("");
-        btnequipos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnequipos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnequipos.setIconTextGap(1);
-        btnequipos.setName(""); // NOI18N
-        btnequipos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnequipos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnequiposMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout body3Layout = new javax.swing.GroupLayout(body3);
-        body3.setLayout(body3Layout);
-        body3Layout.setHorizontalGroup(
-            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body3Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(btncentros)
-                .addGap(80, 80, 80)
-                .addComponent(btnequipos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(btnfichas)
-                .addGap(101, 101, 101))
-        );
-        body3Layout.setVerticalGroup(
-            body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(body3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnequipos)
-                    .addComponent(btnfichas)
-                    .addComponent(btncentros))
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(body3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+        body.add(body2, "card2");
 
         body4.setBackground(new java.awt.Color(255, 255, 255));
         body4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1512,7 +946,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         });
         body4.add(btncancelarficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 100, -1));
 
-        getContentPane().add(body4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+        body.add(body4, "card5");
 
         body5.setBackground(new java.awt.Color(255, 255, 255));
         body5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1617,7 +1051,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         });
         body5.add(btncancelarcentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 100, -1));
 
-        getContentPane().add(body5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+        body.add(body5, "card6");
 
         body6.setBackground(new java.awt.Color(255, 255, 255));
         body6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1765,7 +1199,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         txtpass4.setBorder(null);
         body6.add(txtpass4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 220, 30));
 
-        getContentPane().add(body6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+        body.add(body6, "card7");
+
+        getContentPane().add(body, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1795,164 +1231,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         y = evt.getY(); 
     }//GEN-LAST:event_barraMousePressed
 
-    private void txtconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtconsultaActionPerformed
-
-    private void txtconsultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtconsultaKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-                   CargarTablaUsuarios();
-                }
-                if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
-                    System.exit(0);
-                }
-    }//GEN-LAST:event_txtconsultaKeyReleased
-
-    private void txtconsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtconsultaMouseClicked
-        txtconsulta.setText("");
-    }//GEN-LAST:event_txtconsultaMouseClicked
-
-    private void btnpersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpersonasMouseClicked
-        setLblColor(btnpersonas);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
-        resetLblColor(btnregistros);
-        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(true);
-        bbuscar.setVisible(true);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(true);
-        head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-        
-    }//GEN-LAST:event_btnpersonasMouseClicked
-
-    private void btnreportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnreportesMouseClicked
-        setLblColor(btnreportes);
-        resetLblColor(btnpersonas);
-        resetLblColor(btnhome);
-        resetLblColor(btnregistros);
-        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(true);
-        body2.setVisible(false);
-        body.setVisible(true);
-        head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-        
-    }//GEN-LAST:event_btnreportesMouseClicked
-
-    private void btnhomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhomeMouseClicked
-        setLblColor(btnhome);
-        resetLblColor(btnpersonas);
-        resetLblColor(btnreportes);
-        resetLblColor(btnregistros);
-        //switch bettween Jpanels
-        hhome.setVisible(true);
-        bhome.setVisible(true);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(true);
-        head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-        
-    }//GEN-LAST:event_btnhomeMouseClicked
-
-    private void nuevoregistro22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoregistro22MouseClicked
-        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(true);
-        body2.setVisible(true);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-    }//GEN-LAST:event_nuevoregistro22MouseClicked
-
-    private void btnpassacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpassacMouseClicked
-        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(true);
-    }//GEN-LAST:event_btnpassacMouseClicked
-
-    private void btnregistroacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroacMouseClicked
-        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(true);
-        body2.setVisible(true);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-    }//GEN-LAST:event_btnregistroacMouseClicked
-
-    private void btnequipoacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequipoacMouseClicked
-       //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(true);
-        bequipo.setVisible(true);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(true);
-        head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-    }//GEN-LAST:event_btnequipoacMouseClicked
-
     private void btnagregarEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarEquipoMouseClicked
         //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
-        hequipo.setVisible(true);
+        
         bequipo.setVisible(true);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -1965,15 +1250,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btncancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseClicked
         setLblColor(btnpersonas);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        
         resetLblColor(btnregistros);
         //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(true);
         bbuscar.setVisible(true);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -1992,14 +1277,14 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private void btnregistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistrosMouseClicked
         setLblColor(btnregistros);
         resetLblColor(btnpersonas);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        
         //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -2013,11 +1298,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btncentrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncentrosMouseClicked
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
         formulario.setVisible(false);
-        hequipo.setVisible(false);
+       
         bequipo.setVisible(false);
         body2.setVisible(false);
         body.setVisible(false);
@@ -2030,11 +1315,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btnfichasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnfichasMouseClicked
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
         formulario.setVisible(false);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         body2.setVisible(false);
         body.setVisible(false);
@@ -2060,15 +1345,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btncancelarcentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarcentroMouseClicked
         setLblColor(btnregistros);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        
         resetLblColor(btnpersonas);
         //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -2082,15 +1367,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btncancelarfichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarfichaMouseClicked
         setLblColor(btnregistros);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        
         resetLblColor(btnpersonas);
         //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -2102,38 +1387,21 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body6.setVisible(false);
     }//GEN-LAST:event_btncancelarfichaMouseClicked
 
-    private void cambiarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarpassMouseClicked
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body3.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(true);
-    }//GEN-LAST:event_cambiarpassMouseClicked
-
     private void btnguardarcentro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnguardarcentro1MouseClicked
 
     private void btncancelarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarpassMouseClicked
         setLblColor(btnpersonas);
-        resetLblColor(btnhome);
-        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        
         resetLblColor(btnregistros);
         //cambio entre Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+        
         hbuscar.setVisible(true);
         bbuscar.setVisible(true);
-        hequipo.setVisible(false);
+        
         bequipo.setVisible(false);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -2146,12 +1414,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btncancelarpassMouseClicked
 
     private void btnequiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequiposMouseClicked
-       //switch bettween Jpanels
+        //switch bettween Jpanels
         hhome.setVisible(false);
-        bhome.setVisible(false);
+
         hbuscar.setVisible(false);
         bbuscar.setVisible(false);
-        hequipo.setVisible(true);
+
         bequipo.setVisible(true);
         formulario.setVisible(false);
         body2.setVisible(false);
@@ -2161,30 +1429,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body5.setVisible(false);
         body6.setVisible(false);
     }//GEN-LAST:event_btnequiposMouseClicked
-
-    private void txtconsulta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtconsulta1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtconsulta1MouseClicked
-
-    private void txtconsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsulta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtconsulta1ActionPerformed
-
-    private void txtconsulta1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtconsulta1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtconsulta1KeyReleased
-
-    private void tipoboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoboxItemStateChanged
-        
-    }//GEN-LAST:event_tipoboxItemStateChanged
-
-    private void tipoboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipoboxMouseClicked
-        
-    }//GEN-LAST:event_tipoboxMouseClicked
-
-    private void tipoboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoboxActionPerformed
-        
-    }//GEN-LAST:event_tipoboxActionPerformed
 
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
@@ -2238,9 +1482,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel barra;
     private javax.swing.JPanel barralateral;
-    private javax.swing.JPanel bbuscar;
-    private javax.swing.JPanel bequipo;
-    private javax.swing.JPanel bhome;
     private javax.swing.JPanel body;
     private javax.swing.JPanel body2;
     private javax.swing.JPanel body3;
@@ -2254,25 +1495,17 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btncancelarpass;
     private javax.swing.JLabel btncentros;
     private javax.swing.JLabel btncerrar;
-    private javax.swing.JLabel btnequipoac;
     private javax.swing.JLabel btnequipos;
     private javax.swing.JLabel btnfichas;
     private javax.swing.JLabel btnguardar;
     private javax.swing.JLabel btnguardarcentro;
     private javax.swing.JLabel btnguardarcentro1;
     private javax.swing.JLabel btnguardarficha;
-    private javax.swing.JLabel btnhome;
     private javax.swing.JLabel btnminimizar;
-    private javax.swing.JLabel btnpassac;
-    private javax.swing.JLabel btnpersonas;
-    private javax.swing.JLabel btnregistroac;
     private javax.swing.JLabel btnregistros;
-    private javax.swing.JLabel btnreportes;
-    private javax.swing.JLabel cambiarpass;
     public static javax.swing.JComboBox<String> cbxCiudad;
     public static javax.swing.JComboBox<String> cbxDepartamento;
     private java.awt.Choice centrobox;
-    private javax.swing.JTextArea desctxt;
     private java.awt.Choice estadobox;
     private javax.swing.JLabel etiqueta;
     private javax.swing.JLabel etiqueta1;
@@ -2295,48 +1528,27 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel etiqueta25;
     private javax.swing.JLabel etiqueta26;
     private javax.swing.JLabel etiqueta27;
-    private javax.swing.JLabel etiqueta28;
     private javax.swing.JLabel etiqueta3;
-    private javax.swing.JLabel etiqueta30;
-    private javax.swing.JLabel etiqueta31;
-    private javax.swing.JLabel etiqueta32;
-    private javax.swing.JLabel etiqueta33;
     private javax.swing.JLabel etiqueta4;
     private javax.swing.JLabel etiqueta5;
     private javax.swing.JLabel etiqueta6;
     private javax.swing.JLabel etiqueta7;
     private javax.swing.JLabel etiqueta8;
     private javax.swing.JLabel etiqueta9;
-    private javax.swing.JLabel etiquetanombre;
-    private javax.swing.JLabel etiquetanombre1;
-    private javax.swing.JLabel etiquetatrol;
     private java.awt.Choice fichabox;
     private javax.swing.JPanel formulario;
     private java.awt.Choice generobox;
-    private javax.swing.JPanel hbuscar;
-    private javax.swing.JPanel head;
     private javax.swing.JPanel header;
-    private javax.swing.JPanel hequipo;
-    private javax.swing.JPanel hhome;
-    private javax.swing.JLabel iconbuscar;
-    private javax.swing.JLabel iconbuscar1;
-    private javax.swing.JLabel imagen;
     private javax.swing.JLabel imagen1;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -2345,15 +1557,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JLabel lblnombre;
-    private javax.swing.JLabel lblrol;
-    private javax.swing.JLabel lblrol1;
     private javax.swing.JLabel lblrol2;
-    private javax.swing.JComboBox<String> marcabox;
-    private javax.swing.JLabel nuevoregistro2;
     private java.awt.Choice rhbox;
     private java.awt.Choice rolbox;
-    private javax.swing.JPanel separador;
     private javax.swing.JPanel separador1;
     private javax.swing.JPanel separador10;
     private javax.swing.JPanel separador11;
@@ -2363,10 +1569,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel separador15;
     private javax.swing.JPanel separador16;
     private javax.swing.JPanel separador17;
-    private javax.swing.JPanel separador18;
     private javax.swing.JPanel separador2;
-    private javax.swing.JPanel separador20;
-    private javax.swing.JPanel separador21;
     private javax.swing.JPanel separador3;
     private javax.swing.JPanel separador4;
     private javax.swing.JPanel separador5;
@@ -2374,14 +1577,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel separador7;
     private javax.swing.JPanel separador8;
     private javax.swing.JPanel separador9;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTable tblListaEquipos;
-    private javax.swing.JComboBox<String> tipobox;
     private java.awt.Choice tipodocumentobox;
     private java.awt.Choice tipousuariobox;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtconsulta;
-    private javax.swing.JTextField txtconsulta1;
     private javax.swing.JPasswordField txtpass1;
     private javax.swing.JPasswordField txtpass3;
     private javax.swing.JPasswordField txtpass4;
