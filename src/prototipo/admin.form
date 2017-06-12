@@ -79,7 +79,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\usuarios.png"/>
+              <Image iconType="3" name="/Imagenes/usuarios.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Personas"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -114,7 +114,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\periodico.png"/>
+              <Image iconType="3" name="/Imagenes/periodico.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Reportes"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -149,7 +149,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\casa.png"/>
+              <Image iconType="3" name="/Imagenes/casa.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Inicio"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -184,7 +184,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\agregar-documento-simbolo-delineado.png"/>
+              <Image iconType="3" name="/Imagenes/agregar-documento-simbolo-delineado.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registros"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -236,7 +236,7 @@
               <Color blue="48" green="b5" red="59" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\minimizar.png"/>
+              <Image iconType="3" name="/Imagenes/minimizar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Minimizar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -261,7 +261,7 @@
               <Color blue="48" green="b5" red="59" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\borrar.png"/>
+              <Image iconType="3" name="/Imagenes/borrar.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -506,7 +506,7 @@
             <Component class="javax.swing.JLabel" name="iconbuscar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\buscar-con-herramienta-en-esquema.png"/>
+                  <Image iconType="3" name="/Imagenes/buscar-con-herramienta-en-esquema.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -580,7 +580,7 @@
                   <Color blue="48" green="b5" red="59" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\agregar-usuario.png"/>
+                  <Image iconType="3" name="/Imagenes/agregar-usuario.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" Nuevo Registro"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -606,7 +606,7 @@
                   <Color blue="48" green="b5" red="59" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\contrasena.png"/>
+                  <Image iconType="3" name="/Imagenes/contrasena.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cambiar Contrase&#xf1;a"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -644,7 +644,7 @@
             <Component class="javax.swing.JLabel" name="iconbuscar1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\buscar-con-herramienta-en-esquema.png"/>
+                  <Image iconType="3" name="/Imagenes/buscar-con-herramienta-en-esquema.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -1060,7 +1060,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\contrasena (1).png"/>
+                  <Image iconType="3" name="/Imagenes/contrasena (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cambiar Contrase&#xf1;a"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1090,7 +1090,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\agregar-usuariox64.png"/>
+                  <Image iconType="3" name="/Imagenes/agregar-usuariox64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar Registro"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1119,7 +1119,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\pantalla-de-tv.png"/>
+                  <Image iconType="3" name="/Imagenes/pantalla-de-tv.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar Equipo"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -2313,7 +2313,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\edificio-comercial.png"/>
+              <Image iconType="3" name="/Imagenes/edificio-comercial.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Centros"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -2342,7 +2342,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\carpeta-rellena-con-pestanas.png"/>
+              <Image iconType="3" name="/Imagenes/carpeta-rellena-con-pestanas.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Fichas"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -2371,7 +2371,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\pantalla-de-tv.png"/>
+              <Image iconType="3" name="/Imagenes/pantalla-de-tv.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Equipos"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>

@@ -357,7 +357,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnpersonas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnpersonas.setForeground(new java.awt.Color(255, 255, 255));
         btnpersonas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnpersonas.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\usuarios.png")); // NOI18N
+        btnpersonas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuarios.png"))); // NOI18N
         btnpersonas.setText("Personas");
         btnpersonas.setToolTipText("");
         btnpersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -377,7 +377,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnreportes.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnreportes.setForeground(new java.awt.Color(255, 255, 255));
         btnreportes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnreportes.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\periodico.png")); // NOI18N
+        btnreportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/periodico.png"))); // NOI18N
         btnreportes.setText("Reportes");
         btnreportes.setToolTipText("");
         btnreportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -397,7 +397,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnhome.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnhome.setForeground(new java.awt.Color(255, 255, 255));
         btnhome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnhome.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\casa.png")); // NOI18N
+        btnhome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/casa.png"))); // NOI18N
         btnhome.setText("Inicio");
         btnhome.setToolTipText("");
         btnhome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -417,7 +417,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnregistros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnregistros.setForeground(new java.awt.Color(255, 255, 255));
         btnregistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnregistros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-documento-simbolo-delineado.png")); // NOI18N
+        btnregistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-documento-simbolo-delineado.png"))); // NOI18N
         btnregistros.setText("Registros");
         btnregistros.setToolTipText("");
         btnregistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -441,7 +441,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnminimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnminimizar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnminimizar.setForeground(new java.awt.Color(89, 181, 72));
-        btnminimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\minimizar.png")); // NOI18N
+        btnminimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/minimizar.png"))); // NOI18N
         btnminimizar.setToolTipText("Minimizar");
         btnminimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnminimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -453,7 +453,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         btncerrar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btncerrar.setForeground(new java.awt.Color(89, 181, 72));
-        btncerrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\borrar.png")); // NOI18N
+        btncerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         btncerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -573,7 +573,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         hbuscar.setBackground(new java.awt.Color(255, 255, 255));
         hbuscar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iconbuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\buscar-con-herramienta-en-esquema.png")); // NOI18N
+        iconbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar-con-herramienta-en-esquema.png"))); // NOI18N
         hbuscar.add(iconbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 70, -1));
 
         separador.setBackground(new java.awt.Color(89, 181, 72));
@@ -617,7 +617,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         nuevoregistro2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         nuevoregistro2.setForeground(new java.awt.Color(89, 181, 72));
-        nuevoregistro2.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-usuario.png")); // NOI18N
+        nuevoregistro2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuario.png"))); // NOI18N
         nuevoregistro2.setText(" Nuevo Registro");
         nuevoregistro2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevoregistro2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -630,7 +630,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         cambiarpass.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         cambiarpass.setForeground(new java.awt.Color(89, 181, 72));
-        cambiarpass.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\contrasena.png")); // NOI18N
+        cambiarpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena.png"))); // NOI18N
         cambiarpass.setText("Cambiar Contraseña");
         cambiarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cambiarpass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -646,7 +646,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         hequipo.setBackground(new java.awt.Color(255, 255, 255));
         hequipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iconbuscar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\buscar-con-herramienta-en-esquema.png")); // NOI18N
+        iconbuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar-con-herramienta-en-esquema.png"))); // NOI18N
         hequipo.add(iconbuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 70, -1));
 
         separador18.setBackground(new java.awt.Color(89, 181, 72));
@@ -804,7 +804,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnpassac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnpassac.setForeground(new java.awt.Color(89, 181, 72));
         btnpassac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnpassac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\contrasena (1).png")); // NOI18N
+        btnpassac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena (1).png"))); // NOI18N
         btnpassac.setText("Cambiar Contraseña");
         btnpassac.setToolTipText("");
         btnpassac.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -823,7 +823,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnregistroac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnregistroac.setForeground(new java.awt.Color(89, 181, 72));
         btnregistroac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnregistroac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-usuariox64.png")); // NOI18N
+        btnregistroac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuariox64.png"))); // NOI18N
         btnregistroac.setText("Agregar Registro");
         btnregistroac.setToolTipText("");
         btnregistroac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -841,7 +841,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnequipoac.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnequipoac.setForeground(new java.awt.Color(89, 181, 72));
         btnequipoac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnequipoac.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\pantalla-de-tv.png")); // NOI18N
+        btnequipoac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pantalla-de-tv.png"))); // NOI18N
         btnequipoac.setText("Agregar Equipo");
         btnequipoac.setToolTipText("");
         btnequipoac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1345,7 +1345,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btncentros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btncentros.setForeground(new java.awt.Color(89, 181, 72));
         btncentros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btncentros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\edificio-comercial.png")); // NOI18N
+        btncentros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edificio-comercial.png"))); // NOI18N
         btncentros.setText("Agregar Centros");
         btncentros.setToolTipText("");
         btncentros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1363,7 +1363,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnfichas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnfichas.setForeground(new java.awt.Color(89, 181, 72));
         btnfichas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnfichas.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\carpeta-rellena-con-pestanas.png")); // NOI18N
+        btnfichas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carpeta-rellena-con-pestanas.png"))); // NOI18N
         btnfichas.setText("Agregar Fichas");
         btnfichas.setToolTipText("");
         btnfichas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1381,7 +1381,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnequipos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnequipos.setForeground(new java.awt.Color(89, 181, 72));
         btnequipos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnequipos.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\pantalla-de-tv.png")); // NOI18N
+        btnequipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pantalla-de-tv.png"))); // NOI18N
         btnequipos.setText("Agregar Equipos");
         btnequipos.setToolTipText("");
         btnequipos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

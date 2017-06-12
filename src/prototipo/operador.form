@@ -79,7 +79,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\casa.png"/>
+              <Image iconType="3" name="/Imagenes/casa.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Inicio"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -131,7 +131,7 @@
               <Color blue="48" green="b5" red="59" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\minimizar.png"/>
+              <Image iconType="3" name="/Imagenes/minimizar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Minimizar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -156,7 +156,7 @@
               <Color blue="48" green="b5" red="59" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\borrar.png"/>
+              <Image iconType="3" name="/Imagenes/borrar.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
@@ -351,7 +351,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\TavoRZ\Desktop\java\puerta-abierta-esbozada.png"/>
+                  <Image iconType="3" name="/Imagenes/puerta-abierta-esbozada.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Entrada y Salida"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
