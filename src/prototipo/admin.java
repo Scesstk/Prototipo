@@ -222,7 +222,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         lblrol = new javax.swing.JLabel();
         imagen = new javax.swing.JLabel();
         etiquetanombre1 = new javax.swing.JLabel();
-        lblrol1 = new javax.swing.JLabel();
         hbuscar = new javax.swing.JPanel();
         iconbuscar = new javax.swing.JLabel();
         separador = new javax.swing.JPanel();
@@ -536,20 +535,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         etiquetanombre1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         etiquetanombre1.setOpaque(true);
 
-        lblrol1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        lblrol1.setForeground(new java.awt.Color(89, 181, 72));
-        lblrol1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblrol1.setText("Subir");
-
         javax.swing.GroupLayout hhomeLayout = new javax.swing.GroupLayout(hhome);
         hhome.setLayout(hhomeLayout);
         hhomeLayout.setHorizontalGroup(
             hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hhomeLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblrol1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(hhomeLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -584,9 +576,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                         .addGap(19, 19, 19)
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(hhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetanombre1)
-                    .addComponent(lblrol1)))
+                .addComponent(etiquetanombre1))
         );
 
         head.add(hhome, "card2");
@@ -2366,7 +2356,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrol;
-    private javax.swing.JLabel lblrol1;
     private javax.swing.JLabel lblrol2;
     private javax.swing.JComboBox<String> marcabox;
     private javax.swing.JLabel nuevoregistro2;
