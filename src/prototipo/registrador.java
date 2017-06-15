@@ -23,9 +23,23 @@ import javax.swing.border.LineBorder;
 
 public class registrador extends javax.swing.JFrame {
 
+    public class NombreBD extends Thread{
+        
+        public void run(){
+            while (true){
+                lblnombre.setText(login.loginf.nombre);
+                lblrol.setText(login.loginf.rol);
+                Thread.interrupted();
+            }
+        }
+   }
+    
 ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     public registrador() {
         initComponents();
+        
+        NombreBD nmb = new NombreBD();
+        nmb.start();
         
         //inicio en false las vistas
         formulario.setVisible(false);
@@ -110,6 +124,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
        return retvalue;
     }
     
+    public static void actfoto(String rt){
+        ImageIcon foto = new ImageIcon(rt);
+        ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(ico);
+                       
+    }
     /*public void obtener(){
         
      busquedasrt = txtconsulta.getText();
@@ -339,7 +359,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnregistros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnregistros.setForeground(new java.awt.Color(255, 255, 255));
         btnregistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnregistros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\casa.png")); // NOI18N
+        btnregistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/casa.png"))); // NOI18N
         btnregistros.setText("Inicio");
         btnregistros.setToolTipText("");
         btnregistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -363,7 +383,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btncentros.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btncentros.setForeground(new java.awt.Color(89, 181, 72));
         btncentros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btncentros.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\edificio-comercial.png")); // NOI18N
+        btncentros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edificio-comercial.png"))); // NOI18N
         btncentros.setText("Agregar Centros");
         btncentros.setToolTipText("");
         btncentros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -381,7 +401,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnfichas.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnfichas.setForeground(new java.awt.Color(89, 181, 72));
         btnfichas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnfichas.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\carpeta-rellena-con-pestanas.png")); // NOI18N
+        btnfichas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carpeta-rellena-con-pestanas.png"))); // NOI18N
         btnfichas.setText("Agregar Fichas");
         btnfichas.setToolTipText("");
         btnfichas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -399,7 +419,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnusuarios.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnusuarios.setForeground(new java.awt.Color(89, 181, 72));
         btnusuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnusuarios.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\agregar-usuariox64.png")); // NOI18N
+        btnusuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar-usuariox64.png"))); // NOI18N
         btnusuarios.setText("Agregar Usuarios");
         btnusuarios.setToolTipText("");
         btnusuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -478,7 +498,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                     .addComponent(btnusuarios)
                     .addComponent(btnfichas)
                     .addComponent(btncentros))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         getContentPane().add(body3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
@@ -489,7 +509,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnminimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnminimizar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnminimizar.setForeground(new java.awt.Color(89, 181, 72));
-        btnminimizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\minimizar.png")); // NOI18N
+        btnminimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/minimizar.png"))); // NOI18N
         btnminimizar.setToolTipText("Minimizar");
         btnminimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnminimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -501,7 +521,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         btncerrar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btncerrar.setForeground(new java.awt.Color(89, 181, 72));
-        btncerrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\TavoRZ\\Desktop\\java\\borrar.png")); // NOI18N
+        btncerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         btncerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1452,7 +1472,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         
                 int codigo=JOptionPane.showConfirmDialog(null, "¿Desea Salir del Programa?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if (codigo==JOptionPane.YES_OPTION){
-			dispose();
+			System.exit(0);
                         con.cerrarConexion();
 		}else if(codigo==JOptionPane.NO_OPTION){
 			
@@ -1760,7 +1780,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel header;
     private javax.swing.JPanel hequipo;
     private javax.swing.JLabel iconbuscar1;
-    private javax.swing.JLabel imagen;
+    public static javax.swing.JLabel imagen;
     private javax.swing.JLabel imagen1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JPanel jPanel1;

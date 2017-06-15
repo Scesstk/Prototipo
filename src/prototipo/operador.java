@@ -33,6 +33,17 @@ import prototipo.Principal;
 import static prototipo.Principal.Escritorio;
 
 public class operador extends javax.swing.JFrame {
+    
+    public class NombreBD extends Thread{
+        
+        public void run(){
+            while (true){
+                lblnombre.setText(login.loginf.nombre);
+                lblrol.setText(login.loginf.rol);
+                Thread.interrupted();
+            }
+        }
+   }
 
         Getset medio=new Getset();
         ConnectBD.Pconnection objc= new ConnectBD.Pconnection();
@@ -48,6 +59,9 @@ public class operador extends javax.swing.JFrame {
 ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     public operador() {
         initComponents();
+        
+        NombreBD nmb = new NombreBD();
+        nmb.start();
         
         //inicio en false las vistas
         setLblColor(btnhome);
@@ -65,6 +79,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
       
     }
     
+    public static void actfoto(String rt){
+        ImageIcon foto = new ImageIcon(rt);
+        ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+        imagen.setIcon(ico);
+                       
+    }
+    
     public int x=0,y=0;
     public String id_documento, nombre_1, ape_1, id_ficha, txt, busquedasrt;
     public int id;
@@ -77,12 +98,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
        return retvalue;
     }
     
-    
-    public static void actfoto(String rt){
-        ImageIcon foto = new ImageIcon(rt);
-        ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(jLFotor.getWidth(), jLFotor.getHeight(), Image.SCALE_DEFAULT));
-        jLFotor.setIcon(ico);
-    }
     //obtener el id de la persona
     private void Datos(){
       
@@ -682,7 +697,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         
         int codigo=JOptionPane.showConfirmDialog(null, "¿Desea Salir del Programa?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 	if (codigo==JOptionPane.YES_OPTION){
-		dispose();
+		System.exit(0);
                 con.cerrarConexion();
 	}else if(codigo==JOptionPane.NO_OPTION){
 			
@@ -1027,7 +1042,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel formentrada;
     private javax.swing.JPanel header;
     private javax.swing.JPanel hhome;
-    private javax.swing.JLabel imagen;
+    public static javax.swing.JLabel imagen;
     private javax.swing.JFrame jFrame1;
     public static javax.swing.JLabel jLFotor;
     private javax.swing.JLabel jLabel1;
