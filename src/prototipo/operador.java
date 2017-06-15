@@ -707,6 +707,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         //switch bettween Jpanels
         hhome.setVisible(false);
         formentrada.setVisible(true);
+        entradaysalida.setVisible(false);
         
         
     }//GEN-LAST:event_btnentradaysalidaMouseClicked
@@ -714,6 +715,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private void btnhomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhomeMouseClicked
             hhome.setVisible(true);
             formentrada.setVisible(false);
+            entradaysalida.setVisible(false);
             
             
     }//GEN-LAST:event_btnhomeMouseClicked
