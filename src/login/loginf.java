@@ -33,7 +33,7 @@ public class loginf extends javax.swing.JFrame {
         oportunidad();
     }
     
-    public int prueba, cedula, opor=0;
+    public int prueba, cedula, opor=0, cont=0;;
     public static String rol="";
     public String pass,activo,contra;
     public static String nombre="";
@@ -291,17 +291,20 @@ public class loginf extends javax.swing.JFrame {
         txtid.setBorder(null);
         txtid.setCaretPosition(0);
         txtid.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtid.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                txtidMouseMoved(evt);
+            }
+        });
         txtid.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtidFocusLost(evt);
             }
         });
-        txtid.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtidMouseClicked(evt);
-            }
-        });
         txtid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtidKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtidKeyReleased(evt);
             }
@@ -318,6 +321,11 @@ public class loginf extends javax.swing.JFrame {
         txtpass.setText("0000000");
         txtpass.setBorder(null);
         txtpass.setCaretPosition(0);
+        txtpass.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                txtpassMouseMoved(evt);
+            }
+        });
         txtpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtpassMouseClicked(evt);
@@ -433,10 +441,6 @@ public class loginf extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnexitMouseClicked
 
-    private void txtidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidMouseClicked
-        txtid.setText("");
-    }//GEN-LAST:event_txtidMouseClicked
-
     private void btnokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnokMouseClicked
         //Ejecutamos el metodo accede
         accede();
@@ -452,33 +456,44 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassActionPerformed
 
     private void txtidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyReleased
-        
-        
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            //Ejecutamos el metodo accede
-            accede();
+        if(cont==0){
+            txtid.setText("");
+            cont++;
         }
-                
     }//GEN-LAST:event_txtidKeyReleased
 
     private void txtpassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyReleased
-        
-        
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             //Ejecutamos el metodo accede
             accede();
         }
-        
-        
-               
-                
-               
     }//GEN-LAST:event_txtpassKeyReleased
 
     private void txtidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtidFocusLost
-
-                txtpass.setText("");      
+        txtpass.setText("");      
     }//GEN-LAST:event_txtidFocusLost
+
+    private void txtidMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidMouseMoved
+        
+        if (cont<=0){
+            txtid.setText("");
+            cont++;
+        }
+    }//GEN-LAST:event_txtidMouseMoved
+
+    private void txtidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            //Ejecutamos el metodo accede
+            accede();
+        }
+    }//GEN-LAST:event_txtidKeyPressed
+
+    private void txtpassMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassMouseMoved
+        if (cont<=1){
+            txtpass.setText("");
+            cont++;
+        }
+    }//GEN-LAST:event_txtpassMouseMoved
 
     /**
      * @param args the command line arguments
