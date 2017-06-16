@@ -1,7 +1,8 @@
 
 package prototipo;
 
-import prototipo.*;
+import ConnectBD.Pconnection;
+/*import prototipo.*;*/
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
@@ -34,7 +35,7 @@ public class registrador extends javax.swing.JFrame {
         }
    }
     
-ConnectBD.Pconnection con= new ConnectBD.Pconnection();
+    Pconnection con= new Pconnection();
     public registrador() {
         initComponents();
         
@@ -314,10 +315,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body5 = new javax.swing.JPanel();
         etiqueta20 = new javax.swing.JLabel();
         btnguardarcentro = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        jtxtCodCentro = new javax.swing.JTextField();
         separador12 = new javax.swing.JPanel();
         etiqueta21 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        jtxtNombreCentro = new javax.swing.JTextField();
         separador13 = new javax.swing.JPanel();
         etiqueta22 = new javax.swing.JLabel();
         cbxDepartamento = new javax.swing.JComboBox<>();
@@ -1289,10 +1290,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         });
         body5.add(btnguardarcentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 110, -1));
 
-        jTextField13.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField13.setBorder(null);
-        jTextField13.setOpaque(false);
-        body5.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 220, 30));
+        jtxtCodCentro.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jtxtCodCentro.setBorder(null);
+        jtxtCodCentro.setOpaque(false);
+        body5.add(jtxtCodCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 220, 30));
 
         separador12.setBackground(new java.awt.Color(252, 115, 35));
         separador12.setForeground(new java.awt.Color(252, 115, 35));
@@ -1317,10 +1318,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         etiqueta21.setText("Nombre de Centro:");
         body5.add(etiqueta21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, 30));
 
-        jTextField14.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField14.setBorder(null);
-        jTextField14.setOpaque(false);
-        body5.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 220, 30));
+        jtxtNombreCentro.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jtxtNombreCentro.setBorder(null);
+        jtxtNombreCentro.setOpaque(false);
+        body5.add(jtxtNombreCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 220, 30));
 
         separador13.setBackground(new java.awt.Color(252, 115, 35));
         separador13.setForeground(new java.awt.Color(252, 115, 35));
@@ -1544,12 +1545,49 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btnguardarfichaMouseClicked
 
     private void btnguardarcentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentroMouseClicked
-        // TODO add your handling code here:
+        
+        String ciudad = cbxCiudad.getSelectedItem().toString();
+        
+        con.setSelectInt("Select CIUidCiuPK from ciudad where CIUnomCiu = '"+ciudad+"'", "CIUidCiuPK");
+        int idCiudad = con.getSelectInt();
+                   
+        con.setInsert("INSERT INTO centros (CENnomCen, CENcodSenCen, CENidCiuFK) VALUES"
+                +"('"+jtxtNombreCentro.getText()+"','"+jtxtCodCentro.getText()+"',"+idCiudad+")");
+        
+        JOptionPane.showMessageDialog(null, "Se ha guardado el centro correctamente");
+        
+        jtxtNombreCentro.setText("");
+        jtxtCodCentro.setText("");
+        cbxDepartamento.setSelectedIndex(0);
+        
+        
+        setLblColor(btnregistros);
+
+        resetLblColor(btnregistros);
+        
+        //switch bettween Jpanels
+        
+        formulario.setVisible(false);
+        body.setVisible(false);
+        head.setVisible(false);
+        hequipo.setVisible(false);
+        bequipo.setVisible(false);
+        body3.setVisible(true);        
+        body4.setVisible(false);
+        body5.setVisible(false);
+        body6.setVisible(false);
+        
     }//GEN-LAST:event_btnguardarcentroMouseClicked
 
     private void cbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDepartamentoActionPerformed
-        
+        cbxCiudad.removeAllItems();
 
+        con.getConexion();
+        if(cbxDepartamento.getSelectedIndex()>0){
+            con.setLlenaCombo(("Select CIUnomCiu from ciudad where CIUidDepFK "
+                + "= "+cbxDepartamento.getSelectedIndex()),"CIUnomCiu");
+
+        }
     }//GEN-LAST:event_cbxDepartamentoActionPerformed
 
     private void btncancelarcentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarcentroMouseClicked
@@ -1790,8 +1828,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
@@ -1803,6 +1839,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtxtCodCentro;
+    private javax.swing.JTextField jtxtNombreCentro;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrol;
     private javax.swing.JLabel lblrol2;

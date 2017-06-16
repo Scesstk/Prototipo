@@ -33,7 +33,7 @@ public class loginf extends javax.swing.JFrame {
         oportunidad();
     }
     
-    public int prueba, cedula, opor=0, cont=0;;
+    public int prueba, cedula, opor=0, conti=0, contp=0, cont=0;
     public static String rol="";
     public String pass,activo,contra;
     public static String nombre="";
@@ -475,9 +475,9 @@ public class loginf extends javax.swing.JFrame {
 
     private void txtidMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidMouseMoved
         
-        if (cont<=0){
+        if (conti<=0){
             txtid.setText("");
-            cont++;
+            conti++;
         }
     }//GEN-LAST:event_txtidMouseMoved
 
@@ -489,9 +489,9 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtidKeyPressed
 
     private void txtpassMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassMouseMoved
-        if (cont<=1){
+        if (contp<=0){
             txtpass.setText("");
-            cont++;
+            contp++;
         }
     }//GEN-LAST:event_txtpassMouseMoved
 

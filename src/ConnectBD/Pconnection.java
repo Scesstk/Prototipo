@@ -6,6 +6,7 @@
 package ConnectBD;
 
 import RegistroPersona.RegistroCentro;
+import prototipo.registrador;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -236,7 +237,7 @@ public class Pconnection {
         while(res.next()){
             
             combox = res.getString(CampoN);
-            RegistroCentro.cbxCiudad.addItem(combox);
+            registrador.cbxCiudad.addItem(combox);
            // i++;
         }
         //System.out.println("combo \n "+combox);
