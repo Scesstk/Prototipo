@@ -33,6 +33,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
         setLblColor(btnhome);
         resetLblColor(btnpersonas);
         resetLblColor(btnreportes);
@@ -331,6 +332,24 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         txtpass1 = new javax.swing.JPasswordField();
         txtpass3 = new javax.swing.JPasswordField();
         txtpass4 = new javax.swing.JPasswordField();
+        body7 = new javax.swing.JPanel();
+        etiqueta29 = new javax.swing.JLabel();
+        btnguardarcentro2 = new javax.swing.JLabel();
+        jTextField16 = new javax.swing.JTextField();
+        separador19 = new javax.swing.JPanel();
+        btncancelarreportes = new javax.swing.JLabel();
+        separador23 = new javax.swing.JPanel();
+        txtpass6 = new javax.swing.JPasswordField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        btnlimpiar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        lblrol3 = new javax.swing.JLabel();
+        lblrol4 = new javax.swing.JLabel();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        btnlimpiar1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -1766,6 +1785,174 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         getContentPane().add(body6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
+        body7.setBackground(new java.awt.Color(255, 255, 255));
+        body7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        etiqueta29.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        etiqueta29.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta29.setText("Crontol De Reportes");
+        body7.add(etiqueta29, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 50));
+
+        btnguardarcentro2.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btnguardarcentro2.setForeground(new java.awt.Color(89, 181, 72));
+        btnguardarcentro2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnguardarcentro2.setText("Generar Reporte");
+        btnguardarcentro2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btnguardarcentro2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguardarcentro2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnguardarcentro2MouseClicked(evt);
+            }
+        });
+        body7.add(btnguardarcentro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 150, -1));
+
+        jTextField16.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jTextField16.setBorder(null);
+        jTextField16.setOpaque(false);
+        body7.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 220, 30));
+
+        separador19.setBackground(new java.awt.Color(252, 115, 35));
+        separador19.setForeground(new java.awt.Color(252, 115, 35));
+        separador19.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador19.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador19Layout = new javax.swing.GroupLayout(separador19);
+        separador19.setLayout(separador19Layout);
+        separador19Layout.setHorizontalGroup(
+            separador19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        separador19Layout.setVerticalGroup(
+            separador19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        body7.add(separador19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 220, -1));
+
+        btncancelarreportes.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btncancelarreportes.setForeground(new java.awt.Color(89, 181, 72));
+        btncancelarreportes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btncancelarreportes.setText("Cancelar");
+        btncancelarreportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btncancelarreportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncancelarreportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncancelarreportesMouseClicked(evt);
+            }
+        });
+        body7.add(btncancelarreportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 100, -1));
+
+        separador23.setBackground(new java.awt.Color(252, 115, 35));
+        separador23.setForeground(new java.awt.Color(252, 115, 35));
+        separador23.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador23.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador23Layout = new javax.swing.GroupLayout(separador23);
+        separador23.setLayout(separador23Layout);
+        separador23Layout.setHorizontalGroup(
+            separador23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        separador23Layout.setVerticalGroup(
+            separador23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        body7.add(separador23, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 220, -1));
+
+        txtpass6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtpass6.setForeground(new java.awt.Color(153, 153, 153));
+        txtpass6.setBorder(null);
+        body7.add(txtpass6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 220, 30));
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(89, 181, 72));
+        jRadioButton1.setText("N° de Documento");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        body7.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jRadioButton4.setForeground(new java.awt.Color(89, 181, 72));
+        jRadioButton4.setText("N° de Ficha");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+        body7.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+
+        btnlimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        btnlimpiar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnlimpiar.setForeground(new java.awt.Color(89, 181, 72));
+        btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/escoba-de-limpieza-para-suelos.png"))); // NOI18N
+        btnlimpiar.setToolTipText("Minimizar");
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnlimpiarMouseClicked(evt);
+            }
+        });
+        body7.add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 30, 30));
+
+        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 115, 35)), "Reporte Detallado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 18), new java.awt.Color(89, 181, 72))); // NOI18N
+        body7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 440, 150));
+
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(89, 181, 72));
+        jCheckBox1.setText("Salida");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        body7.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+
+        lblrol3.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lblrol3.setForeground(new java.awt.Color(89, 181, 72));
+        lblrol3.setText("Hasta");
+        body7.add(lblrol3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+
+        lblrol4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lblrol4.setForeground(new java.awt.Color(89, 181, 72));
+        lblrol4.setText("Desde");
+        body7.add(lblrol4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+
+        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(89, 181, 72));
+        jCheckBox2.setText("Entrada");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+        body7.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+
+        btnlimpiar1.setBackground(new java.awt.Color(255, 255, 255));
+        btnlimpiar1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnlimpiar1.setForeground(new java.awt.Color(89, 181, 72));
+        btnlimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/escoba-de-limpieza-para-suelos.png"))); // NOI18N
+        btnlimpiar1.setToolTipText("Minimizar");
+        btnlimpiar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlimpiar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnlimpiar1MouseClicked(evt);
+            }
+        });
+        body7.add(btnlimpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 30, 30));
+
+        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(252, 115, 35)), "Reporte General", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 18), new java.awt.Color(89, 181, 72))); // NOI18N
+        body7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 440, 140));
+
+        getContentPane().add(body7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1830,6 +2017,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
         
     }//GEN-LAST:event_btnpersonasMouseClicked
 
@@ -1845,13 +2033,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         bbuscar.setVisible(false);
         hequipo.setVisible(false);
         bequipo.setVisible(false);
-        formulario.setVisible(true);
+        formulario.setVisible(false);
         body2.setVisible(false);
-        body.setVisible(true);
-        head.setVisible(true);
+        body.setVisible(false);
+        head.setVisible(false);
+        body3.setVisible(false);
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(true);
         
     }//GEN-LAST:event_btnreportesMouseClicked
 
@@ -1874,6 +2064,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
         
     }//GEN-LAST:event_btnhomeMouseClicked
 
@@ -1892,6 +2083,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_nuevoregistro22MouseClicked
 
     private void btnpassacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpassacMouseClicked
@@ -1909,6 +2101,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(true);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnpassacMouseClicked
 
     private void btnregistroacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroacMouseClicked
@@ -1923,9 +2116,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body2.setVisible(true);
         body.setVisible(false);
         head.setVisible(false);
+        body3.setVisible(false);
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnregistroacMouseClicked
 
     private void btnequipoacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequipoacMouseClicked
@@ -1943,6 +2138,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnequipoacMouseClicked
 
     private void btnagregarEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarEquipoMouseClicked
@@ -1960,6 +2156,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnagregarEquipoMouseClicked
 
     private void btncancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseClicked
@@ -1982,6 +2179,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btncancelarMouseClicked
 
     private void btnguardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseClicked
@@ -2008,6 +2206,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnregistrosMouseClicked
 
     private void btncentrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncentrosMouseClicked
@@ -2025,6 +2224,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(true);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btncentrosMouseClicked
 
     private void btnfichasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnfichasMouseClicked
@@ -2042,6 +2242,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(true);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnfichasMouseClicked
 
     private void btnguardarfichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarfichaMouseClicked
@@ -2077,6 +2278,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btncancelarcentroMouseClicked
 
     private void btncancelarfichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarfichaMouseClicked
@@ -2099,6 +2301,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btncancelarfichaMouseClicked
 
     private void cambiarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarpassMouseClicked
@@ -2116,6 +2319,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(true);
+        body7.setVisible(false);
     }//GEN-LAST:event_cambiarpassMouseClicked
 
     private void btnguardarcentro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro1MouseClicked
@@ -2142,6 +2346,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btncancelarpassMouseClicked
 
     private void btnequiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequiposMouseClicked
@@ -2159,6 +2364,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body4.setVisible(false);
         body5.setVisible(false);
         body6.setVisible(false);
+        body7.setVisible(false);
     }//GEN-LAST:event_btnequiposMouseClicked
 
     private void txtconsulta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtconsulta1MouseClicked
@@ -2184,6 +2390,57 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private void tipoboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoboxActionPerformed
         
     }//GEN-LAST:event_tipoboxActionPerformed
+
+    private void btnguardarcentro2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguardarcentro2MouseClicked
+
+    private void btncancelarreportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarreportesMouseClicked
+        setLblColor(btnhome);
+        resetLblColor(btnpersonas);
+        resetLblColor(btnreportes);
+        resetLblColor(btnregistros);
+        //cambio entre Jpanels
+        hhome.setVisible(true);
+        bhome.setVisible(true);
+        hbuscar.setVisible(false);
+        bbuscar.setVisible(false);
+        hequipo.setVisible(false);
+        bequipo.setVisible(false);
+        formulario.setVisible(false);
+        body2.setVisible(false);
+        body.setVisible(true);
+        head.setVisible(true);
+        body3.setVisible(false);
+        body4.setVisible(false);
+        body5.setVisible(false);
+        body6.setVisible(false);
+        body7.setVisible(false);
+    }//GEN-LAST:event_btncancelarreportesMouseClicked
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void btnlimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimpiarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnlimpiarMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void btnlimpiar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimpiar1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnlimpiar1MouseClicked
 
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
@@ -2245,11 +2502,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel body4;
     private javax.swing.JPanel body5;
     private javax.swing.JPanel body6;
+    private javax.swing.JPanel body7;
     private javax.swing.JLabel btnagregarEquipo;
     private javax.swing.JLabel btncancelar;
     private javax.swing.JLabel btncancelarcentro;
     private javax.swing.JLabel btncancelarficha;
     private javax.swing.JLabel btncancelarpass;
+    private javax.swing.JLabel btncancelarreportes;
     private javax.swing.JLabel btncentros;
     private javax.swing.JLabel btncerrar;
     private javax.swing.JLabel btnequipoac;
@@ -2258,8 +2517,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btnguardar;
     private javax.swing.JLabel btnguardarcentro;
     private javax.swing.JLabel btnguardarcentro1;
+    private javax.swing.JLabel btnguardarcentro2;
     private javax.swing.JLabel btnguardarficha;
     private javax.swing.JLabel btnhome;
+    private javax.swing.JLabel btnlimpiar;
+    private javax.swing.JLabel btnlimpiar1;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JLabel btnpassac;
     private javax.swing.JLabel btnpersonas;
@@ -2294,6 +2556,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel etiqueta26;
     private javax.swing.JLabel etiqueta27;
     private javax.swing.JLabel etiqueta28;
+    private javax.swing.JLabel etiqueta29;
     private javax.swing.JLabel etiqueta3;
     private javax.swing.JLabel etiqueta30;
     private javax.swing.JLabel etiqueta31;
@@ -2320,9 +2583,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel iconbuscar1;
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel imagen1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2333,6 +2602,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField2;
@@ -2347,6 +2617,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel lblrol;
     private javax.swing.JLabel lblrol1;
     private javax.swing.JLabel lblrol2;
+    private javax.swing.JLabel lblrol3;
+    private javax.swing.JLabel lblrol4;
     private javax.swing.JComboBox<String> marcabox;
     private javax.swing.JLabel nuevoregistro2;
     private java.awt.Choice rhbox;
@@ -2362,9 +2634,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel separador16;
     private javax.swing.JPanel separador17;
     private javax.swing.JPanel separador18;
+    private javax.swing.JPanel separador19;
     private javax.swing.JPanel separador2;
     private javax.swing.JPanel separador20;
     private javax.swing.JPanel separador21;
+    private javax.swing.JPanel separador23;
     private javax.swing.JPanel separador3;
     private javax.swing.JPanel separador4;
     private javax.swing.JPanel separador5;
@@ -2383,5 +2657,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPasswordField txtpass1;
     private javax.swing.JPasswordField txtpass3;
     private javax.swing.JPasswordField txtpass4;
+    private javax.swing.JPasswordField txtpass6;
     // End of variables declaration//GEN-END:variables
 }
