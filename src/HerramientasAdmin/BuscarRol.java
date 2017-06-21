@@ -22,7 +22,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import login.login;
 import prototipo.Principal;
 import RegistroPersona.RegistroPersona;
 import static RegistroPersona.RegistroPersona.txtDocumento;

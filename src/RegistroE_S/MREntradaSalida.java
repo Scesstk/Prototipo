@@ -5,8 +5,20 @@
  */
 package RegistroE_S;
 
+import static RegistroE_S.MEntrada.jLFotor;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import prototipo.Principal;
 
@@ -17,6 +29,9 @@ import prototipo.Principal;
 public class MREntradaSalida extends javax.swing.JInternalFrame {
 
     private int prueba, cedula;
+    public Blob foto;
+    ImageIcon icono = null;
+    
     
     public MREntradaSalida() {
         initComponents();
@@ -128,61 +143,82 @@ public class MREntradaSalida extends javax.swing.JInternalFrame {
         //Getset medio= new Getset();
         
         int id;
+        
         String nombre,Ficha,centro,cargo,rh;
         cedula=Integer.parseInt(txtid.getText());
-        objc.setSelectInt(("SELECT Num_documento FROM persona WHERE Num_documento='"+cedula+"'"),"Num_documento");
-                
-             id=objc.getSelectInt();
+        objc.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc='"+cedula+"'"),"PERnumDoc");
+        id=objc.getSelectInt();
             
              
         
         if (id==cedula){
             
-            objc.setSelectStr(("SELECT concat(`Nombre_1`,' ', `Nombre_2`,' ', `Apellido_1`,' ', `Apellido_2`) AS Nombre FROM persona WHERE Num_documento='"+cedula+"'"),"Nombre");
-            nombre = objc.getSelectStr();
-            
-            objc.setSelectStr(("SELECT Descripcion_ficha \n" +
-                              "FROM ficha as f JOIN persona as p on f.Id_ficha=p.Id_ficha\n" +
-                              "WHERE Num_documento='"+cedula+"'"),"Descripcion_ficha");
-            Ficha = objc.getSelectStr();
-            
-            objc.setSelectStr(("SELECT Nom_centro \n" +
-                              "FROM centros as c JOIN persona as p on c.Id_centros=p.Id_centros\n" +
-                              "WHERE Num_documento='"+cedula+"'"),"Nom_centro");
-            centro = objc.getSelectStr();
-            
-            objc.setSelectStr(("SELECT Descripcion_tipo_persona \n" +
-                              "FROM tipo_persona as t JOIN persona as p on t.Id_tipo_persona=p.Id_tipo_persona\n" +
-                              "WHERE Num_documento='"+cedula+"'"),"Descripcion_tipo_persona");
-            cargo = objc.getSelectStr();
-            
-            objc.setSelectStr(("SELECT Descripcion_rh \n" +
-                              "FROM rh as r JOIN persona as p on r.Id_rh=p.Id_rh\n" +
-                              "WHERE Num_documento='"+cedula+"'"),"Descripcion_rh");
-            rh = objc.getSelectStr();
-            
-            
-           
-            
-            
-            MEntrada obj= new MEntrada();
-            Principal.Escritorio.add(obj);
-            
-            Dimension desktopSize = Principal.Escritorio.getSize();
-            Dimension FrameSize = obj.getSize();
-            obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-            obj.show();
-            
-            MEntrada.txtdoc.setText(String.valueOf(id));
-            MEntrada.txtnom.setText(nombre);
-            MEntrada.txtficha.setText(Ficha);
-            MEntrada.txtcentro.setText(centro);
-            MEntrada.txtcargo.setText(cargo);
-            MEntrada.txtrh.setText(rh);
-            txtid.setText(null);
-            String ruta="C:/Program Files/SCESS/Images/"+txtid.getText()+".png";
-            MEntrada.actfoto(ruta);
-            dispose();
+            try {
+                objc.setSelectStr(("SELECT concat(`PERnom1`,' ', `PERnom2`,' ', `PERape1`,' ', `PERape2`) AS Nombre FROM persona WHERE PERnumDoc='"+cedula+"'"),"Nombre");
+                nombre = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT FICdesFic \n" +
+                        "FROM ficha as f JOIN persona as p on f.FICidFicPK=p.PERidFicFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"FICdesFic");
+                Ficha = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT CENnomCen \n" +
+                        "FROM centros as c JOIN persona as p on c.CENidCenPK=p.PERidCenFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"CENnomCen");
+                centro = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT TPdeTiPe \n" +
+                        "FROM tipper as t JOIN persona as p on t.TPidTiPePK=p.PERidTiPeFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"TPdeTiPe");
+                cargo = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT RHdesRh \n" +
+                        "FROM rh as r JOIN persona as p on r.RHidRhPK=p.PERidRhFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"RHdesRh");
+                rh = objc.getSelectStr();
+                
+                
+                objc.setSelectBlob(("SELECT PERfoto \n" +
+                        "FROM persona \n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"PERfoto");
+                foto = objc.getSelectBlob();
+                byte[] datofoto = foto.getBytes(1, (int)foto.length());
+                BufferedImage imagen = null;
+                
+                try {
+                    imagen = ImageIO.read(new ByteArrayInputStream(datofoto));
+                } catch (IOException ex) {
+                    Logger.getLogger(MREntradaSalida.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ImageIcon ico = new ImageIcon(imagen);
+                
+                
+                
+                MEntrada obj= new MEntrada();
+                Principal.Escritorio.add(obj);
+                
+                Dimension desktopSize = Principal.Escritorio.getSize();
+                Dimension FrameSize = obj.getSize();
+                obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+                
+                Icon icono = new ImageIcon(
+                        ico.getImage().getScaledInstance(
+                                obj.jLFotor.getWidth(),obj.jLFotor.getHeight(),Image.SCALE_DEFAULT)
+                );
+                obj.jLFotor.setIcon(ico);
+                obj.show();
+                
+                MEntrada.txtdoc.setText(String.valueOf(id));
+                MEntrada.txtnom.setText(nombre);
+                MEntrada.txtficha.setText(Ficha);
+                MEntrada.txtcentro.setText(centro);
+                MEntrada.txtcargo.setText(cargo);
+                MEntrada.txtrh.setText(rh);
+                txtid.setText(null);
+                dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(MREntradaSalida.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             mensajes.Nousuario obj= new mensajes.Nousuario();
             Principal.Escritorio.add(obj);

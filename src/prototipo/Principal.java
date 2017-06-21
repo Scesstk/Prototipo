@@ -18,6 +18,7 @@ import static RegistroPersona.RegistroPersona.actfoto;
 import Reportes.IntReportes;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -33,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
         //private int cont=0;
         public void run(){
             while (true){
-                jLnombre.setText(login.login.nombre);
+                jLnombre.setText(login.loginf.nombre);
                 Thread.interrupted();
             }
         }
@@ -44,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         ConnexBD con = new ConnexBD();
-        con.start();;
+        con.start();
     }
 
     public void selev(){
@@ -217,7 +218,8 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         RegistroPersona obj = new RegistroPersona();
         Escritorio.add(obj);
-        String r="C:/temp/i.png";
+        File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
+        String r=ruta+"/i.png";
         actfoto(r);
         obj.show();
         

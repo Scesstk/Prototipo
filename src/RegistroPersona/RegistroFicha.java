@@ -90,7 +90,7 @@ public class RegistroFicha extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFichaActionPerformed
-        carga1.setInsert("INSERT INTO ficha (Num_ficha, Descripcion_ficha)VALUES "
+        carga1.setInsert("INSERT INTO ficha (FICnumFic, FICdesFic)VALUES "
                 + "("+jtxtCod.getText()+",'"+jtxtNom.getText()+"')");
         
         carga1.cerrarConexion();

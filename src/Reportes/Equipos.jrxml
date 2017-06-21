@@ -16,23 +16,21 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select concat_ws(' ',Nombre_1,Nombre_2,Apellido_1,Apellido_2) as Nombres, 
-Clase_equipo as Equipo,
-Descripcion_marca_equipo as Marca, 
-Serial
-from persona_equipos A
-inner join persona B on (A.Id_persona = B.Id_persona)
-inner join equipos E on(A.Id_equipos = E.Id_equipos)
-inner join tipo_equipo TE on (E.Id_tipo_equipo = TE.Id_tipo_Equipo)
-inner join marca_equipo ME on (E.Id_marca_equipo = ME.Id_marca_equipo)
-where Num_documento =$P{Doc};]]>
+		<![CDATA[select concat_ws(' ',PERnom1,PERnom1,PERape1,PERape2) as Nombres, 
+EQUidMarPK as Equipo,
+MEdeMaEq as Marca, 
+EQUser as Serial
+from perequ PE
+inner join persona P on (PE.PEidPerFK = P.PERidPerPK)
+inner join equipos E on(PE.PEidEquFK = E.EQUidEquPK)
+inner join tipequ TE on (EQUidTipFK = TE.TEidTiEqPK)
+inner join marequ ME on (E.EQUidMarPK = ME.MEidMaEqPK)
+where PERnumDoc =$P{Doc};]]>
 	</queryString>
 	<field name="Nombres" class="java.lang.String"/>
-	<field name="Equipo" class="java.lang.String"/>
+	<field name="Equipo" class="java.lang.Long"/>
 	<field name="Marca" class="java.lang.String"/>
-	<field name="Serial" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="Serial" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

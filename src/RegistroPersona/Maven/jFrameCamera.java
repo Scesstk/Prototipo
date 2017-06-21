@@ -63,13 +63,7 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
             });
         }
     }
-    /**
-    public void image(){
-        Graphics g = null;
-        ImageIcon img = new ImageIcon(getClass().getResource("C:/temp/"+txtDocumento.getText()+".png"));
-        g.drawImage(img.getImage(),0,0,getWidth(),getHeight(),this);
-    }
-**/
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +76,15 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
         jPanelCamera = new javax.swing.JPanel();
         jbtnCaptura = new javax.swing.JButton();
 
-        setTitle("Fotografía");
+        setBorder(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setVisible(false);
+
+        jPanelCamera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelCameraMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCameraLayout = new javax.swing.GroupLayout(jPanelCamera);
         jPanelCamera.setLayout(jPanelCameraLayout);
@@ -110,7 +111,7 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(jbtnCaptura)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
             .addComponent(jPanelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -134,14 +135,14 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "El campo Documento no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
                 //nombre y formato de la imagen de salida
-                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images/");
+                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
                 //ruta.mkdir();
-                ImageIO.write(image, "PNG", new File(ruta+txtDocumento.getText()+".png"));
+                ImageIO.write(image, "PNG", new File(ruta+"/"+txtDocumento.getText()+".png"));
                 //cerrar camara
                 webcam.close();
                 //actualiza foto
                 
-                String r=ruta+txtDocumento.getText()+".png";
+                String r=ruta+"/"+txtDocumento.getText()+".png";
                 actfoto(r);
                 //cierra ventana
                 dispose();
@@ -150,6 +151,33 @@ public class jFrameCamera extends javax.swing.JInternalFrame {
             Logger.getLogger(jFrameCamera.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtnCapturaActionPerformed
+
+    private void jPanelCameraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCameraMouseClicked
+        try {
+            BufferedImage image = webcam.getImage();
+            
+            if(txtDocumento.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "El campo Documento no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                //nombre y formato de la imagen de salida
+                //File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
+                File ruta = new File("//localhost/fotos");
+                //ruta.mkdir();
+                ImageIO.write(image, "PNG", new File(ruta+"/"+txtDocumento.getText()+".png"));
+                //cerrar camara
+                webcam.close();
+                //actualiza foto
+                
+                String r=ruta+"/"+txtDocumento.getText()+".png";
+                System.out.println(r);
+                actfoto(r);
+                //cierra ventana
+                dispose();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(jFrameCamera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanelCameraMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
