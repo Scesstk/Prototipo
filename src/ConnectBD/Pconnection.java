@@ -6,6 +6,8 @@
 package ConnectBD;
 
 import RegistroPersona.RegistroCentro;
+import prototipo.registrador;
+import prototipo.admin;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -131,10 +133,10 @@ public class Pconnection {
         return sele;
     } 
     
-    public ArrayList<Persona> getLstPersona() throws SQLException, Exception{
+    /**public ArrayList<Persona> getLstPersona() throws SQLException, Exception{
             this.getConexion();
             ArrayList<Persona> lst = new ArrayList<>();
-     /**       ResultSet rs = this.("SELECT * FROM Persona");
+            ResultSet rs = this.("SELECT * FROM Persona");
 
             if (rs != null) {
                 while(rs.next()){
@@ -149,10 +151,10 @@ public class Pconnection {
                     cli.setDireccion(rs.getString("direccion"));
                     lst.add(cli);
                 }
-            }**/
+            }
             this.cerrarConexion();
             return lst;
-        }
+        }**/
     public Connection setUpdate(String Update){
         this.update=Update;
         try{
@@ -202,7 +204,7 @@ public class Pconnection {
     public String getMd5(){
         return campmd5;
     }
-    
+    /*
     public Connection setLlenCombox(String Select, String Camp){
         this.combo=Select;
         try{
@@ -224,9 +226,9 @@ public class Pconnection {
     
     public String getLlenCombox(){
         return cbx;
-    }
+    }*/
     
-    public Connection setLlenaCombo(String Select, String CampoN){
+    public Connection setLlenaCombo(String Select, String CampoN, int id){
         this.combo=Select;
         try{
         Statement stado = conexion.createStatement();
@@ -236,10 +238,37 @@ public class Pconnection {
         while(res.next()){
             
             combox = res.getString(CampoN);
-            RegistroCentro.cbxCiudad.addItem(combox);
+            if(CampoN.equals("CIUnomCiu")){
+                if (id==1){
+                    admin.cbxCiudad.addItem(combox);
+                }else if(id==2){
+                    registrador.cbxCiudad.addItem(combox);
+                }
+                
+                //;
+            }else if(CampoN.equals("FICnumFic")){
+                if (id==1){
+                    admin.cbxFicha.addItem(combox);
+                }else if(id==2){
+                    registrador.cbxFicha.addItem(combox);
+                }
+                
+                //;
+            }else if(CampoN.equals("CENnomCen")){
+                if (id==1){
+                    admin.cbxCentro.addItem(combox);
+                }else if(id==2){
+                    registrador.cbxCentro.addItem(combox);
+                }
+                
+                //;
+            }
+            
+        
+         //   System.out.println("Prueba\n "+combox);
            // i++;
         }
-        //System.out.println("combo \n "+combox);
+        
         }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
                         "Error MySql",JOptionPane.ERROR_MESSAGE);

@@ -46,12 +46,12 @@ public class RegistroPersona extends javax.swing.JInternalFrame {
        
         cargar.getConexion();
             
-        cargar.setLlenCombox("Select FICnumFic from ficha", "FICnumFic");
-        cbxFicha.addItem(cargar.getLlenCombox());
+      /*  cargar.setLlenaCombo("Select FICnumFic from ficha", "FICnumFic");
+        cbxFicha.addItem(cargar.getLlenaCombo());
                 
-        cargar.setLlenCombox("Select CENnomCen from centros ", "CENnomCen");
-        cbxCentro.addItem(cargar.getLlenCombox());
-        
+        cargar.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen");
+        cbxCentro.addItem(cargar.getLlenaCombo());
+        */
     }
     
     public static void actfoto(String rt){

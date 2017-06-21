@@ -18,7 +18,7 @@ public class reporte_docfecha {
     
     
     JasperReport jr = null;
-  //  private final String path = "E:/ADSI 113/5 Trimestre/Proyecto Ultima Version/Prototipo 1.1/src/Reportes/reporte_docfecha.jasper";
+    //private final String path = "E:/ADSI 113/5 Trimestre/Proyecto Ultima Version/Prototipo 1.1/src/Reportes/reporte_docfecha.jasper";
     URL in = this.getClass().getResource("/Reportes/reporte_docfecha.jasper");
     private final String logotipo = "/Imagenes/logo.jpg";
     
@@ -56,23 +56,10 @@ public class reporte_docfecha {
             
             visor.setVisible(true);
             
-            visor.setTitle("SCEES 1.0");
+            visor.setTitle("SCEES");
             
         } catch (JRException ex) {
             Logger.getLogger(IntReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     }
+    }
 }
