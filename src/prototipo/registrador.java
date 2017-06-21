@@ -1824,10 +1824,13 @@ public class registrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlogoutMouseClicked
 
     private void lbsubirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbsubirMouseClicked
-        Camara window = new Camara();
-        window.show();
-        window.setLocationRelativeTo(null);
-        
+        try{
+            Camara window = new Camara();
+            window.show();
+            window.setLocationRelativeTo(null);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "La camara ya esta en uso \n"+e);
+        }       
     }//GEN-LAST:event_lbsubirMouseClicked
 
     // ------------switch between colors for Active/Inactive color
