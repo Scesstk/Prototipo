@@ -130,12 +130,26 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     
     public void obtener(){
         
-     busquedasrt = txtconsulta.getText();
-     busq = txtconsulta.getText();
-     
-   
- 
-        }
+        busquedasrt = txtconsulta.getText();
+        busq = txtconsulta.getText();
+    }
+    
+    public void oculta(){
+        hhome.setVisible(false);
+        bhome.setVisible(false);
+        hbuscar.setVisible(false);
+        bbuscar.setVisible(false);
+        hequipo.setVisible(false);
+        bequipo.setVisible(false);
+        formulario.setVisible(false);
+        body2.setVisible(false);
+        body.setVisible(false);
+        head.setVisible(false);
+        body3.setVisible(false);
+        body4.setVisible(false);
+        body5.setVisible(false);
+        body6.setVisible(false);       
+    }
    
 
     public void CargarTablaUsuarios(){        
@@ -326,10 +340,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body5 = new javax.swing.JPanel();
         etiqueta20 = new javax.swing.JLabel();
         btnguardarcentro = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        jtxtCodCentro = new javax.swing.JTextField();
         separador12 = new javax.swing.JPanel();
         etiqueta21 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        jtxtNombreCentro = new javax.swing.JTextField();
         separador13 = new javax.swing.JPanel();
         etiqueta22 = new javax.swing.JLabel();
         cbxDepartamento = new javax.swing.JComboBox<>();
@@ -1545,10 +1559,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         });
         body5.add(btnguardarcentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 110, -1));
 
-        jTextField13.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField13.setBorder(null);
-        jTextField13.setOpaque(false);
-        body5.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 220, 30));
+        jtxtCodCentro.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jtxtCodCentro.setBorder(null);
+        jtxtCodCentro.setOpaque(false);
+        body5.add(jtxtCodCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 220, 30));
 
         separador12.setBackground(new java.awt.Color(252, 115, 35));
         separador12.setForeground(new java.awt.Color(252, 115, 35));
@@ -1573,10 +1587,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         etiqueta21.setText("Nombre de Centro:");
         body5.add(etiqueta21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, 30));
 
-        jTextField14.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField14.setBorder(null);
-        jTextField14.setOpaque(false);
-        body5.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 220, 30));
+        jtxtNombreCentro.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jtxtNombreCentro.setBorder(null);
+        jtxtNombreCentro.setOpaque(false);
+        body5.add(jtxtNombreCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 220, 30));
 
         separador13.setBackground(new java.awt.Color(252, 115, 35));
         separador13.setForeground(new java.awt.Color(252, 115, 35));
@@ -1827,20 +1841,14 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         resetLblColor(btnhome);
         resetLblColor(btnreportes);
         resetLblColor(btnregistros);
+        
+        
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
+        oculta();
         hbuscar.setVisible(true);
         bbuscar.setVisible(true);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
         
     }//GEN-LAST:event_btnpersonasMouseClicked
 
@@ -1850,20 +1858,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         resetLblColor(btnhome);
         resetLblColor(btnregistros);
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
+        oculta();
         formulario.setVisible(true);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
-        
+                
     }//GEN-LAST:event_btnreportesMouseClicked
 
     private void btnhomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnhomeMouseClicked
@@ -1872,105 +1871,51 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         resetLblColor(btnreportes);
         resetLblColor(btnregistros);
         //switch bettween Jpanels
+        oculta();
         hhome.setVisible(true);
         bhome.setVisible(true);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
         
     }//GEN-LAST:event_btnhomeMouseClicked
 
     private void nuevoregistro22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoregistro22MouseClicked
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
+        oculta();
         formulario.setVisible(true);
         body2.setVisible(true);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
+        
     }//GEN-LAST:event_nuevoregistro22MouseClicked
 
     private void btnpassacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpassacMouseClicked
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
+        oculta();
         body6.setVisible(true);
     }//GEN-LAST:event_btnpassacMouseClicked
 
     private void btnregistroacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroacMouseClicked
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
+        oculta();
         formulario.setVisible(true);
-        body2.setVisible(true);
-        body.setVisible(false);
-        head.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
+        body2.setVisible(true); 
     }//GEN-LAST:event_btnregistroacMouseClicked
 
     private void btnequipoacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequipoacMouseClicked
        //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
+        oculta();
         hequipo.setVisible(true);
         bequipo.setVisible(true);
-        formulario.setVisible(false);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
     }//GEN-LAST:event_btnequipoacMouseClicked
 
     private void btnagregarEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarEquipoMouseClicked
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
+        oculta();
         hequipo.setVisible(true);
         bequipo.setVisible(true);
-        formulario.setVisible(false);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
     }//GEN-LAST:event_btnagregarEquipoMouseClicked
 
     private void btncancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseClicked
@@ -1979,20 +1924,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         resetLblColor(btnreportes);
         resetLblColor(btnregistros);
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
+        oculta();
         hbuscar.setVisible(true);
         bbuscar.setVisible(true);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
         body.setVisible(true);
         head.setVisible(true);
-        body3.setVisible(false);
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
     }//GEN-LAST:event_btncancelarMouseClicked
 
     private void btnguardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseClicked
@@ -2005,54 +1941,18 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         resetLblColor(btnhome);
         resetLblColor(btnreportes);
         //switch bettween Jpanels
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        formulario.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body3.setVisible(true);        
-        body4.setVisible(false);
-        body5.setVisible(false);
-        body6.setVisible(false);
+        oculta();
+        body3.setVisible(true);
     }//GEN-LAST:event_btnregistrosMouseClicked
 
     private void btncentrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncentrosMouseClicked
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        formulario.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body3.setVisible(false);
-        body4.setVisible(false);
+        oculta();
         body5.setVisible(true);
-        body6.setVisible(false);
     }//GEN-LAST:event_btncentrosMouseClicked
 
     private void btnfichasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnfichasMouseClicked
-        hhome.setVisible(false);
-        bhome.setVisible(false);
-        hbuscar.setVisible(false);
-        bbuscar.setVisible(false);
-        formulario.setVisible(false);
-        hequipo.setVisible(false);
-        bequipo.setVisible(false);
-        body2.setVisible(false);
-        body.setVisible(false);
-        head.setVisible(false);
-        body3.setVisible(false);
+        oculta();
         body4.setVisible(true);
-        body5.setVisible(false);
-        body6.setVisible(false);
     }//GEN-LAST:event_btnfichasMouseClicked
 
     private void btnguardarfichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarfichaMouseClicked
@@ -2060,11 +1960,35 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btnguardarfichaMouseClicked
 
     private void btnguardarcentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentroMouseClicked
-        // TODO add your handling code here:
+        String ciudad = cbxCiudad.getSelectedItem().toString();
+        
+        con.setSelectInt("Select CIUidCiuPK from ciudad where CIUnomCiu = '"+ciudad+"'", "CIUidCiuPK");
+        int idCiudad = con.getSelectInt();
+                   
+        con.setInsert("INSERT INTO centros (CENnomCen, CENcodSenCen, CENidCiuFK) VALUES"
+                +"('"+jtxtNombreCentro.getText()+"','"+jtxtCodCentro.getText()+"',"+idCiudad+")");
+        
+        JOptionPane.showMessageDialog(null, "Se ha guardado el centro correctamente");
+        
+        jtxtNombreCentro.setText("");
+        jtxtCodCentro.setText("");
+        cbxDepartamento.setSelectedIndex(0);
+        
+        
+        setLblColor(btnregistros);
+
+        resetLblColor(btnregistros);
     }//GEN-LAST:event_btnguardarcentroMouseClicked
 
     private void cbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDepartamentoActionPerformed
-        
+        cbxCiudad.removeAllItems();
+
+        con.getConexion();
+        if(cbxDepartamento.getSelectedIndex()>0){
+            con.setLlenaCombo(("Select CIUnomCiu from ciudad where CIUidDepFK "
+                + "= "+cbxDepartamento.getSelectedIndex()),"CIUnomCiu", 1);
+
+        }
 
     }//GEN-LAST:event_cbxDepartamentoActionPerformed
 
@@ -2341,8 +2265,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
@@ -2354,6 +2276,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jtxtCodCentro;
+    private javax.swing.JTextField jtxtNombreCentro;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrol;
     private javax.swing.JLabel lblrol2;

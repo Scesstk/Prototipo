@@ -126,8 +126,8 @@ public class RegistroCentro extends javax.swing.JInternalFrame {
 
         carga.getConexion();
         if(cbxDepartamento.getSelectedIndex()>0){
-            carga.setLlenaCombo(("Select CIUnomCiu from ciudad where CIUidDepFK "
-                + "= '"+cbxDepartamento.getSelectedIndex()+"'"),"CIUnomCiu");
+         //   carga.setLlenaCombo(("Select CIUnomCiu from ciudad where CIUidDepFK "
+           //     + "= '"+cbxDepartamento.getSelectedIndex()+"'"),"CIUnomCiu");
 
         }
         

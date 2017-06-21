@@ -498,14 +498,7 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassMouseMoved
 
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
-        int pr=0;
-        
-        try{
-            //Linea para validar ingreso de datos de usuario
-            pr = Integer.parseInt(txtid.getText());
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "EL usuario no puede contener\n Caracteres Alfabeticos y/o Especiales");
-        }
+      
     }//GEN-LAST:event_txtidKeyTyped
 
     /**
