@@ -21,10 +21,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
 import login.loginf;
+import static login.loginf.nombre;
 
 public class registrador extends javax.swing.JFrame {
 
@@ -117,8 +120,15 @@ public class registrador extends javax.swing.JFrame {
     public String busq = "";
     private int cedula;
     private int docu;
-    File ruta = new File("//localhost/fotos/");
+    File ruta = new File("//192.168.1.17/fotos/");
     DefaultTableModel modeloe;
+    
+    private void Jpaint(){
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+    }
+    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
 
     public Image getIconImage(){
        Image retvalue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo3.png"));
@@ -169,77 +179,6 @@ public class registrador extends javax.swing.JFrame {
         cbxCentro.select(0);
         cbxFicha.select(0);
     }
-    
-    /*public void obtener(){
-        
-     busquedasrt = txtconsulta.getText();
-     busq = txtconsulta.getText();
-     
-   
- 
-        }
-   
-
-    public void CargarTablaUsuarios(){        
- 
-    
-        try{
-            obtener();
-        
-   
-          String tipo_documento, num_documento, nombre_1, ape_1, rol, ape_2, nombre_2; 
-            Statement buscar = con.getConexion().createStatement();
-                
-
-                
-                con.setSelectStr("SELECT Id_persona FROM persona WHERE nombre_1 like '%"+busquedasrt+"%' or  apellido_1 like '%"+busquedasrt+"%' or Num_documento like '%"+busq+"%' ","Id_persona");
-                txt = con.getSelectStr();
-                id = Integer.parseInt(txt);
-                
-                
-                ResultSet mostrar=buscar.executeQuery("select descripcion_tip_documento, num_documento, nombre_1, nombre_2, apellido_1, apellido_2, descripcion_rol "
-                    + "from persona per "
-                    + "inner join rol ro on per.id_rol =ro.id_rol "
-                    + "inner join documento doc on per.id_documento = doc.id_documento "
-                    + "where nombre_1 like'%"+busquedasrt+"%'or apellido_1 like '%"+busquedasrt+"%' or id_persona like '%"+id+"%';");
-                
-                String[] titulos = {"Identificación","Numero de documento","Nombres","Apellidos","Rol","Editar"};
-        DefaultTableModel modeloe=new DefaultTableModel();
-        modeloe.setColumnIdentifiers(titulos);
-        
-        
-       
-        
-        
-     
-        while(mostrar.next()){
-            tipo_documento=mostrar.getString("descripcion_tip_documento");
-                   num_documento=mostrar.getString("Num_documento");
-                   nombre_1=mostrar.getString("nombre_1");
-                   nombre_2=mostrar.getString("nombre_2");
-                   ape_1=mostrar.getString("apellido_1");
-                   ape_2=mostrar.getString("apellido_2");
-                   rol=mostrar.getString("descripcion_rol");
-                
-                   
-                   modeloe.addRow(new Object[]{tipo_documento,num_documento,nombre_1+" "+nombre_2,ape_1+" "+ape_2,rol});
-                   int variable = tabla.getSelectedRow();
-                   tabla.setModel(modeloe);  
-                   
-        }
-       
-        }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de MySql");
-            }catch(Exception err){
-                
-        }
-       
-    
-    }*/
-    
-    
-                                      
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -890,13 +829,16 @@ public class registrador extends javax.swing.JFrame {
         jPanel1.add(etiqueta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 620, -1, 30));
 
         txtEmail.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        txtEmail.setText("mail");
         txtEmail.setBorder(null);
         txtEmail.setOpaque(false);
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 650, 170, 30));
 
         txtDocumento.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        txtDocumento.setText("que es?");
         txtDocumento.setBorder(null);
         txtDocumento.setOpaque(false);
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 170, 30));
@@ -1105,7 +1047,7 @@ public class registrador extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        formulario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 800));
+        formulario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 1140));
 
         getContentPane().add(formulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
@@ -1540,7 +1482,9 @@ public class registrador extends javax.swing.JFrame {
 
     private void btncerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncerrarMouseClicked
         
-        int codigo=JOptionPane.showConfirmDialog(null, "¿Desea Salir del Programa?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        Jpaint();
+        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Salir del Programa?</b></body> </html>";
+        int codigo=JOptionPane.showConfirmDialog(null,jok, "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
         if (codigo==JOptionPane.YES_OPTION){
             System.exit(0);
             con.cerrarConexion();
@@ -1588,17 +1532,13 @@ public class registrador extends javax.swing.JFrame {
         id=con.getSelectInt();
         
         FileInputStream fi = null;
-        
-        JOptionPane.showMessageDialog(null, "Id persona actual"+id);
-        
+
         id++;
         
-        JOptionPane.showMessageDialog(null, "Id persona nuevo"+id);
-        
-        //JOptionPane.showMessageDialog(null,(cbxCentro.getSelectedIndex()));
-        
         if(docu>0){
-            JOptionPane.showMessageDialog(null, "El documento "+txtDocumento.getText()+" ya se encuentra registrado");
+            Jpaint();
+            String jokio = "<html><body> <b style =\"font-size: 20; color: white;\">ya se encuentra registrado </b></body> </html>";
+            JOptionPane.showMessageDialog(null,jokio, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
             
         }else{
             
@@ -1608,7 +1548,10 @@ public class registrador extends javax.swing.JFrame {
                 (txtTelefono.getText().equals(""))||(cbxRh.getSelectedIndex()==0)||
                 (cbxTipUser.getSelectedIndex()==0)||
                 ((cbxCentro.getSelectedIndex())==0)||((cbxFicha.getSelectedIndex())==0)){
-                    JOptionPane.showMessageDialog(null, "Hay Campos marcados con (*) vacios que son obligatorios");
+                
+                Jpaint();
+                String jokte = "<html><body> <b style =\"font-size: 20; color: white;\"> Hay Campos marcados con (*) vacios que son obligatorios </b></body> </html>";
+                JOptionPane.showMessageDialog(null,jokte, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                     
             }else{
                 if(txtNombre2.getText().equals("")){
@@ -1659,7 +1602,10 @@ public class registrador extends javax.swing.JFrame {
                 //ps.setBinaryStream(18,fi,(int)file.length());
                     ps.setString(18,r);
                     ps.executeUpdate(); 
-                    JOptionPane.showMessageDialog(null,"Registro almacenado con Exito.! ");
+   
+                    Jpaint();
+                    String jokd = "<html><body> <b style =\"font-size: 20; color: white;\"> Registro almacenado con Exito.! </b></body> </html>";
+                    JOptionPane.showMessageDialog(null,jokd, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                     ps.close();
                 }catch(SQLException e){
                     System.out.println(e.getMessage());
@@ -1676,7 +1622,9 @@ public class registrador extends javax.swing.JFrame {
         con.setInsert("INSERT INTO ficha (FICnumFic, FICdesFic)VALUES "
                 + "("+jtxtCod.getText()+",'"+jtxtNom.getText()+"')");
         
-        JOptionPane.showMessageDialog(null, "Se ha guardado la ficha correctamente");
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Se ha guardado la ficha correctamente</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
         
         jtxtCod.setText("");
         jtxtNom.setText("");
@@ -1698,8 +1646,9 @@ public class registrador extends javax.swing.JFrame {
                    
         con.setInsert("INSERT INTO centros (CENnomCen, CENcodSenCen, CENidCiuFK) VALUES"
                 +"('"+jtxtNombreCentro.getText()+"','"+jtxtCodCentro.getText()+"',"+idCiudad+")");
-        
-        JOptionPane.showMessageDialog(null, "Se ha guardado el centro correctamente");
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Se ha guardado el centro correctamente</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
         
         jtxtNombreCentro.setText("");
         jtxtCodCentro.setText("");
@@ -1814,7 +1763,11 @@ public class registrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnregistrosMouseClicked
 
     private void btnlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMouseClicked
-        int codigo=JOptionPane.showConfirmDialog(null, "¿Desea Cerrar Sesión?", "Cerrar Sesion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        Jpaint();
+        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Cerrar Sesión?</b> </body> </html>";
+               
+        int codigo=JOptionPane.showConfirmDialog(null, jok, "Cerrar Sesion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
         if (codigo==JOptionPane.YES_OPTION){
             dispose();
             con.cerrarConexion();
@@ -1829,9 +1782,15 @@ public class registrador extends javax.swing.JFrame {
             window.show();
             window.setLocationRelativeTo(null);
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "La camara ya esta en uso \n"+e);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> La camara ya esta en uso</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
         }       
     }//GEN-LAST:event_lbsubirMouseClicked
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)

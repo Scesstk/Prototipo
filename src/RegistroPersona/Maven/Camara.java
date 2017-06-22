@@ -116,7 +116,7 @@ public class Camara extends javax.swing.JFrame {
             }else{
                 //nombre y formato de la imagen de salida
                 //File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
-                File ruta = new File("//localhost/fotos");
+                File ruta = new File("//192.168.1.17/fotos");
                 //ruta.mkdir();
                 ImageIO.write(image, "PNG", new File(ruta+"/"+registrador.txtDocumento.getText()+".png"));
                 //cerrar camara

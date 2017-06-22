@@ -14,10 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import prototipo.Principal;
 import ConnectBD.*;
+import java.awt.Color;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.DefaultFocusManager;
+import javax.swing.Icon;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import prototipo.admin;
 import prototipo.operador;
 import prototipo.registrador;
@@ -38,7 +42,14 @@ public class loginf extends javax.swing.JFrame {
     public String pass,activo,contra;
     public static String nombre="";
     public static int cc;
-    
+    String jo = "<html><body> <b style =\"font-size: 20; color: white;\"> ";
+    private void Jpaint(){
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+    }
+    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
+
     private void contrasena(){
         char clave[]=txtpass.getPassword();
         String clavedef = new String(clave);
@@ -56,23 +67,20 @@ public class loginf extends javax.swing.JFrame {
     
     public void oportunidad(){
         if(opor==2){
+            adv();
             adv2.setVisible(true);
-            adv1.setVisible(false);
         }
         if(opor==3){
+            adv();
             adv3.setVisible(true);
-            adv2.setVisible(false);
-            adv1.setVisible(false);
         }
         if(opor==4){
+            adv();
             adv4.setVisible(true);
-            adv3.setVisible(false);
-            adv1.setVisible(false);
         }
         if(opor==5){
+            adv();
             adv5.setVisible(true);
-            adv4.setVisible(false);
-            adv1.setVisible(false);
             btnok.setEnabled(false);
             
             //Creacion del objeto de conexion
@@ -140,7 +148,7 @@ public class loginf extends javax.swing.JFrame {
     }
     
     public void accede(){
-        int pr;
+        int pr=0;
         try{
             //Linea para validar ingreso de datos de usuario
             pr = Integer.parseInt(txtid.getText());
@@ -150,9 +158,10 @@ public class loginf extends javax.swing.JFrame {
             conMySQL();
             //Validacion de usuario Activo o no
             if(activo.equals("NO")){
-                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-                + "Su USUARIO "+nombre+" no se encuentra ACTIVADO", "Acceso denegado",
-                JOptionPane.ERROR_MESSAGE);
+
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Acceso denegado: <br> Su USUARIO \"+nombre+\" no se encuentra ACTIVADO </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                 txtid.setText(null);
                 txtpass.setText(null);
             }else {
@@ -160,51 +169,59 @@ public class loginf extends javax.swing.JFrame {
                 acceso();
             }
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "EL usuario no puede contener Caracteres Especiales");
+            pr=txtid.getText().length();
+            
+            if (pr!=0){
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Acceso denegado: <br> EL usuario no puede contener Caracteres Albabeticos y/o Especiales </b> </body> </html>"+ex;
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+            }else {
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Acceso denegado: <br> EL usuario no puede estar vacío </b> </body> </html>"+ex;
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+            }
+            
         }
     }
-    
+    File ruta = new File("//192.168.1.17/fotos");
     private void acceso(){
         if(pass.equals(contra)){
             
             if(rol.equals("REGISTRADOR")){
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Bienvenido "+nombre+"\n"
-                + "Has ingresado satisfactoriamente al Sistema para el Control "
-                        + "de Entrada y Salida SENA (S.C.E.S.S.) ",   "Mensaje de Ingreso",
-                JOptionPane.INFORMATION_MESSAGE);
+
+                Jpaint();
+                String jok = " Has ingresado satisfactoriamente al Sistema para el Control <br> de Entrada y Salida SENA (S.C.E.S.S.) </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jo+"Bienvenido(a) "+nombre+jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                 registrador formulario2 = new registrador();
                 formulario2.setVisible(true);
-                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
                 String r=ruta+"/"+txtid.getText()+".png";
                 formulario2.actfoto(r);
             }else if (rol.equals("ADMINISTRADOR")){
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Bienvenido "+nombre+"\n"
-                + "Has ingresado satisfactoriamente al Sistema para el Control "
-                        + "de Entrada y Salida SENA (S.C.E.S.S.) ",   "Mensaje de Ingreso",
-                JOptionPane.INFORMATION_MESSAGE);
+                
+                Jpaint();
+                String jok = " Has ingresado satisfactoriamente al Sistema para el Control <br> de Entrada y Salida SENA (S.C.E.S.S.) </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jo+"Bienvenido(a) "+nombre+jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                 admin formformulario1 = new admin();
                 formformulario1.setVisible(true);
-                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
                 String r=ruta+"/"+txtid.getText()+".png";
                 formformulario1.actfoto(r);
             }else if (rol.equals("OPERADOR")){
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Bienvenido "+nombre+"\n"
-                + "Has ingresado satisfactoriamente al Sistema para el Control "
-                        + "de Entrada y Salida SENA (S.C.E.S.S.) ",   "Mensaje de Ingreso",
-                JOptionPane.INFORMATION_MESSAGE);
+    
+                Jpaint();
+                String jok = " Has ingresado satisfactoriamente al Sistema para el Control <br> de Entrada y Salida SENA (S.C.E.S.S.) </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jo+"Bienvenido(a) "+nombre+jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
                 operador formformulario = new operador();
                 formformulario.setVisible(true);
-                File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
                 String r=ruta+"/"+txtid.getText()+".png";
                 formformulario.actfoto(r);
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
-            + "Por favor ingrese un usuario y/o contraseña correctos", "Acceso denegado",
-            JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String joker ="<html><body> <b style =\"font-size: 20; color: white;\"> Acceso denegado: <br> Por favor ingrese un usuario y/o contraseña correctos </b> </body> </html>";
+            JOptionPane.showMessageDialog(null,joker, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
             adv5.setVisible(true);
             opor=opor+1;
             oportunidad();
@@ -222,6 +239,8 @@ public class loginf extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Mensaje = new javax.swing.JPopupMenu();
+        Alerta = new javax.swing.JMenuItem();
         barra = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
@@ -241,6 +260,8 @@ public class loginf extends javax.swing.JFrame {
         separador = new javax.swing.JPanel();
         separador2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+
+        Alerta.setText("\"No se pueden digitar Carateres Especiales y/o Alfabeticos\"");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -470,10 +491,14 @@ public class loginf extends javax.swing.JFrame {
             //Ejecutamos el metodo accede
             accede();
         }
+        
     }//GEN-LAST:event_txtpassKeyReleased
 
     private void txtidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtidFocusLost
-        txtpass.setText("");      
+        if (contp<=0){
+            txtpass.setText("");
+            contp++;
+        }     
     }//GEN-LAST:event_txtidFocusLost
 
     private void txtidMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidMouseMoved
@@ -498,7 +523,25 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassMouseMoved
 
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
-      
+        int pr=0;
+        pr=txtid.getText().length();
+        if(pr==0){
+            try{
+            //Linea para validar ingreso de datos de usuario
+                pr = Integer.parseInt(txtid.getText());
+            //Inicia el metodo de verificacion de contraseña
+            
+            }catch(Exception ex){
+
+                Mensaje.add(Alerta);
+                Mensaje.setLocation(300, 300);
+                Mensaje.setVisible(true);
+                Alerta.setVisible(true);
+                Mensaje.setOpaque(true);
+            
+            }
+        }
+        
     }//GEN-LAST:event_txtidKeyTyped
 
     /**
@@ -537,6 +580,8 @@ public class loginf extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alerta;
+    private javax.swing.JPopupMenu Mensaje;
     private javax.swing.JLabel adv1;
     private javax.swing.JLabel adv2;
     private javax.swing.JLabel adv3;

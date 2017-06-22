@@ -24,9 +24,13 @@ import mensajes.EntradaNovedad;
 import mensajes.EntradaNovedadEq;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.Icon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
+import login.loginf;
 import prototipo.Getset;
 import prototipo.Principal;
 import prototipo.Principal;
@@ -92,6 +96,13 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     public String busq = "";
     private int cedula;
     DefaultTableModel modeloe;
+    
+    private void Jpaint(){
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+    }
+    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
 
     public Image getIconImage(){
        Image retvalue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo3.png"));
@@ -247,6 +258,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         jFrame1 = new javax.swing.JFrame();
         barralateral = new javax.swing.JPanel();
         btnhome = new javax.swing.JLabel();
+        btnlogout = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnminimizar = new javax.swing.JLabel();
         btncerrar = new javax.swing.JLabel();
@@ -326,6 +338,28 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             }
         });
         barralateral.add(btnhome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 70, 70));
+
+        btnlogout.setBackground(new java.awt.Color(89, 181, 72));
+        btnlogout.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btnlogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnlogout.setText("LogOut");
+        btnlogout.setToolTipText("");
+        btnlogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnlogout.setIconTextGap(1);
+        btnlogout.setMaximumSize(new java.awt.Dimension(41, 56));
+        btnlogout.setMinimumSize(new java.awt.Dimension(41, 56));
+        btnlogout.setName(""); // NOI18N
+        btnlogout.setOpaque(true);
+        btnlogout.setPreferredSize(new java.awt.Dimension(41, 56));
+        btnlogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnlogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnlogoutMouseClicked(evt);
+            }
+        });
+        barralateral.add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 70, 70));
 
         getContentPane().add(barralateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 460));
 
@@ -695,12 +729,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void btncerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncerrarMouseClicked
         
-        int codigo=JOptionPane.showConfirmDialog(null, "¿Desea Salir del Programa?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-	if (codigo==JOptionPane.YES_OPTION){
-		System.exit(0);
-                con.cerrarConexion();
-	}else if(codigo==JOptionPane.NO_OPTION){
-			
+        Jpaint();
+        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Salir del Programa?</b></body> </html>";
+        int codigo=JOptionPane.showConfirmDialog(null,jok, "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
+        if (codigo==JOptionPane.YES_OPTION){
+            System.exit(0);
+            con.cerrarConexion();
 	}
     }//GEN-LAST:event_btncerrarMouseClicked
 
@@ -975,6 +1009,19 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         }
     }//GEN-LAST:event_btningresarMouseClicked
 
+    private void btnlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMouseClicked
+
+        Jpaint();
+        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Cerrar Sesión?</b> </body> </html>";
+        int codigo=JOptionPane.showConfirmDialog(null, jok, "Cerrar Sesion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
+        if (codigo==JOptionPane.YES_OPTION){
+            dispose();
+            con.cerrarConexion();
+            loginf log = new loginf();
+            log.setVisible(true);
+        }
+    }//GEN-LAST:event_btnlogoutMouseClicked
+
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
     {
@@ -1034,6 +1081,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btnguardar;
     private javax.swing.JLabel btnhome;
     private javax.swing.JLabel btningresar;
+    private javax.swing.JLabel btnlogout;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JPanel entradaysalida;
     private javax.swing.JLabel etiquetanombre;

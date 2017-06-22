@@ -16,9 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
+import login.loginf;
 
 public class admin extends javax.swing.JFrame {
 
@@ -223,6 +226,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         btnreportes = new javax.swing.JLabel();
         btnhome = new javax.swing.JLabel();
         btnregistros = new javax.swing.JLabel();
+        btnlogout = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnminimizar = new javax.swing.JLabel();
         btncerrar = new javax.swing.JLabel();
@@ -466,6 +470,28 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             }
         });
         barralateral.add(btnregistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 70, 70));
+
+        btnlogout.setBackground(new java.awt.Color(89, 181, 72));
+        btnlogout.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        btnlogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnlogout.setText("LogOut");
+        btnlogout.setToolTipText("");
+        btnlogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnlogout.setIconTextGap(1);
+        btnlogout.setMaximumSize(new java.awt.Dimension(41, 56));
+        btnlogout.setMinimumSize(new java.awt.Dimension(41, 56));
+        btnlogout.setName(""); // NOI18N
+        btnlogout.setOpaque(true);
+        btnlogout.setPreferredSize(new java.awt.Dimension(41, 56));
+        btnlogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnlogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnlogoutMouseClicked(evt);
+            }
+        });
+        barralateral.add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 70, 50));
 
         getContentPane().add(barralateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 460));
 
@@ -2120,6 +2146,23 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         
     }//GEN-LAST:event_tipoboxActionPerformed
 
+    private void btnlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMouseClicked
+
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Cerrar Sesión?</b> </body> </html>";
+        Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
+
+        int codigo=JOptionPane.showConfirmDialog(null, jok, "Cerrar Sesion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
+        if (codigo==JOptionPane.YES_OPTION){
+            dispose();
+            con.cerrarConexion();
+            loginf log = new loginf();
+            log.setVisible(true);
+        }
+    }//GEN-LAST:event_btnlogoutMouseClicked
+
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
     {
@@ -2195,6 +2238,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btnguardarcentro1;
     private javax.swing.JLabel btnguardarficha;
     private javax.swing.JLabel btnhome;
+    private javax.swing.JLabel btnlogout;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JLabel btnpassac;
     private javax.swing.JLabel btnpersonas;
