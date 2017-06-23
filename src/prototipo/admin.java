@@ -2600,6 +2600,20 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btnhomeMouseClicked
 
     private void nuevoregistro22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoregistro22MouseClicked
+        cbxFicha.removeAll();
+        cbxFicha.addItem("Seleccione");
+        con.setLlenaCombo("Select FICnumFic from ficha", "FICnumFic", 1);
+        cbxFicha.addItem(con.getLlenaCombo());
+        //cbxFicha.remove(3);
+        
+        cbxCentro.removeAll();
+        cbxCentro.addItem("Seleccione");
+        con.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen", 1);
+        cbxCentro.addItem(con.getLlenaCombo());
+        //cbxCentro.remove(3);
+        
+        estadobox.setEnabled(false);
+        
         //switch bettween Jpanels
         oculta();
         formulario.setVisible(true);
@@ -2613,10 +2627,26 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btnpassacMouseClicked
 
     private void btnregistroacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroacMouseClicked
-        //switch bettween Jpanels
+        cbxFicha.removeAll();
+        cbxFicha.addItem("Seleccione");
+        con.setLlenaCombo("Select FICnumFic from ficha", "FICnumFic", 1);
+        cbxFicha.addItem(con.getLlenaCombo());
+        //cbxFicha.remove(3);
+        
+        cbxCentro.removeAll();
+        cbxCentro.addItem("Seleccione");
+        con.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen", 1);
+        cbxCentro.addItem(con.getLlenaCombo());
+        //cbxCentro.remove(3);
+        
+        estadobox.setEnabled(false);
+        
+    //switch bettween Jpanels
         oculta();
-        formulario.setVisible(true);
         body2.setVisible(true);
+        formulario.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnregistroacMouseClicked
 
     private void btnequipoacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequipoacMouseClicked
