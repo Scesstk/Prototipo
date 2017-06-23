@@ -16,15 +16,15 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select concat_ws(' ',PERnom1,PERnom1,PERape1,PERape2) as Nombres, 
-EQUidMarPK as Equipo,
+		<![CDATA[select concat_ws(' ',PERnom1,PERnom2,PERape1,PERape2) as Nombres, 
+EQUidMarFK as Equipo,
 MEdeMaEq as Marca, 
 EQUser as Serial
 from perequ PE
 inner join persona P on (PE.PEidPerFK = P.PERidPerPK)
 inner join equipos E on(PE.PEidEquFK = E.EQUidEquPK)
 inner join tipequ TE on (EQUidTipFK = TE.TEidTiEqPK)
-inner join marequ ME on (E.EQUidMarPK = ME.MEidMaEqPK)
+inner join marequ ME on (E.EQUidMarFK = ME.MEidMaEqPK)
 where PERnumDoc =$P{Doc};]]>
 	</queryString>
 	<field name="Nombres" class="java.lang.String"/>

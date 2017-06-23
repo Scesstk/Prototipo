@@ -265,7 +265,6 @@ public class registrador extends javax.swing.JFrame {
         etiqueta14 = new javax.swing.JLabel();
         etiqueta15 = new javax.swing.JLabel();
         etiqueta16 = new javax.swing.JLabel();
-        btnagregarEquipo = new javax.swing.JLabel();
         btncancelar = new javax.swing.JLabel();
         btnguardar = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
@@ -829,16 +828,13 @@ public class registrador extends javax.swing.JFrame {
         jPanel1.add(etiqueta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 620, -1, 30));
 
         txtEmail.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        txtEmail.setText("mail");
         txtEmail.setBorder(null);
         txtEmail.setOpaque(false);
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 650, 170, 30));
 
         txtDocumento.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        txtDocumento.setText("que es?");
         txtDocumento.setBorder(null);
         txtDocumento.setOpaque(false);
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 170, 30));
@@ -1006,19 +1002,6 @@ public class registrador extends javax.swing.JFrame {
         etiqueta16.setText("Centro");
         jPanel1.add(etiqueta16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 920, -1, 20));
 
-        btnagregarEquipo.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
-        btnagregarEquipo.setForeground(new java.awt.Color(89, 181, 72));
-        btnagregarEquipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnagregarEquipo.setText("Agregar Equipo");
-        btnagregarEquipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
-        btnagregarEquipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnagregarEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnagregarEquipoMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnagregarEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 1070, 180, -1));
-
         btncancelar.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         btncancelar.setForeground(new java.awt.Color(89, 181, 72));
         btncancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1047,7 +1030,7 @@ public class registrador extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel1);
 
-        formulario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 1140));
+        formulario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 800));
 
         getContentPane().add(formulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
@@ -1505,16 +1488,6 @@ public class registrador extends javax.swing.JFrame {
         y = evt.getY(); 
     }//GEN-LAST:event_barraMousePressed
 
-    private void btnagregarEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarEquipoMouseClicked
-        //switch bettween Jpanels
-        oculta();
-        body.setVisible(true);
-        head.setVisible(true);
-        hequipo.setVisible(true);
-        bequipo.setVisible(true);
-        resetLblColor(btnregistros);
-    }//GEN-LAST:event_btnagregarEquipoMouseClicked
-
     private void btncancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseClicked
         setLblColor(btnregistros);
         oculta();
@@ -1614,6 +1587,23 @@ public class registrador extends javax.swing.JFrame {
                         Logger.getLogger(RegistroPersona.class.getName()).log(Level.SEVERE, null, ex);*/
             }
         }
+        
+        String insert2 = "INSERT INTO entsal (ESidPerFK, ESidTiEnSaFK) VALUES (?,?)";
+        PreparedStatement ps = null;
+
+                try {
+                    Pconnection grabar = new Pconnection();
+                    ps = grabar.getConexion().prepareStatement(insert2);
+                    ps.setInt(1,id);
+                    ps.setInt(2,3);
+                    ps.executeUpdate();
+                }catch(SQLException e){
+                    System.out.println(e.getMessage());
+
+                }
+
+                    
+                
         
         resetPersona();
     }//GEN-LAST:event_btnguardarMouseClicked
@@ -1846,7 +1836,6 @@ public class registrador extends javax.swing.JFrame {
     private javax.swing.JPanel barralateral;
     private javax.swing.JPanel bequipo;
     private javax.swing.JPanel body;
-    private javax.swing.JLabel btnagregarEquipo;
     private javax.swing.JLabel btncancelar;
     private javax.swing.JLabel btncancelarcentro;
     private javax.swing.JLabel btncancelarficha;

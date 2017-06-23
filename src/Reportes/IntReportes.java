@@ -79,7 +79,7 @@ private String consulta,prueba;
                 ResultSet rs = consul.getResultado();
                 if(rs.next()){//recorre el resultset al siguiente registro si es que existen
                     rs.beforeFirst();//regresa el puntero al primer registro
-                   new reporte_equipo().reporteDocumento(campoDocumento.getText(),campoSerie.getText());
+                   new reporte_equipo().reporteDocumento(campoDocumento.getText());
                    
                 //   new reporte_ficha().reporteFicha(Integer.parseInt(campoFicha.getText()));
                 }else{

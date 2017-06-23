@@ -523,7 +523,7 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassMouseMoved
 
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
-        int pr=0;
+        /*int pr=0;
         pr=txtid.getText().length();
         if(pr==0){
             try{
@@ -540,8 +540,7 @@ public class loginf extends javax.swing.JFrame {
                 Mensaje.setOpaque(true);
             
             }
-        }
-        
+        }*/
     }//GEN-LAST:event_txtidKeyTyped
 
     /**

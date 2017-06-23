@@ -1,10 +1,6 @@
 
 package prototipo;
 
-
-
-
-
 import static RegistroE_S.MEntrada.tablaequipos;
 import RegistroE_S.MREntradaSalida;
 import java.awt.Color;
@@ -115,7 +111,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         
         String cedula;
         cedula=txtdoc.getText();
-        objc.setSelectInt(("SELECT id_persona FROM persona WHERE Num_documento='"+cedula+"'"),"id_persona"); 
+        objc.setSelectInt(("SELECT PERidPerPK FROM persona WHERE PERnumDoc='"+cedula+"'"),"PERidPerPK"); 
         idp=objc.getSelectInt();
         System.out.println("datos...ok... "+idp);    
         }
@@ -124,9 +120,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         medio.listacat.clear();
          try{
         Statement stado = objc.getConexion().createStatement();
-        ResultSet res = stado.executeQuery("SELECT id_equipos FROM persona_equipos WHERE id_persona='"+idp+"'");
+        ResultSet res = stado.executeQuery("SELECT PEidEquFK FROM perequ WHERE PEidPerFK='"+idp+"'");
         while(res.next()){
-            ideq = res.getInt("id_equipos");
+            ideq = res.getInt("PEidEquFK");
             medio.agregardatos(ideq);
             System.out.println("id equipo.... "+ideq);
         }
@@ -150,22 +146,22 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         int cont=0;
        
         for(Getset obj: medio.listacat ){
-            objc.setSelectInt(("SELECT tipo_ent_sal_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+obj.getId()+"'\n"+
-                              "ORDER BY Id_equipos DESC LIMIT 1"),"tipo_ent_sal_equ");
+            objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+obj.getId()+"'\n"+
+                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
             int TE = objc.getSelectInt();
             
             if(TE!=1){
-                objc.setSelectStr(("SELECT Descripcion_marca_equipo \n" +
-                                  "FROM marca_equipo as m JOIN equipos as e on m.Id_marca_equipo=e.Id_marca_equipo\n" +
-                                  "WHERE Id_equipos='"+obj.getId()+"'"),"Descripcion_marca_equipo");
+                objc.setSelectStr(("SELECT MEdeMaEq \n" +
+                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidMarFK\n" +
+                                  "WHERE EQUidEquPK='"+obj.getId()+"'"),"MEdeMaEq");
                 marcaeq = objc.getSelectStr();
 
-                objc.setSelectStr(("SELECT Modelo FROM equipos WHERE Id_equipos='"+obj.getId()+"'"),"Modelo");
+                objc.setSelectStr(("SELECT EQUmod FROM equipos WHERE EQUidEquPK='"+obj.getId()+"'"),"EQUmod");
                 modeloeq = objc.getSelectStr();
 
-                objc.setSelectStr(("SELECT Serial FROM equipos WHERE Id_equipos='"+obj.getId()+"'"),"Serial");
+                objc.setSelectStr(("SELECT EQUser FROM equipos WHERE EQUidEquPK='"+obj.getId()+"'"),"EQUser");
                 serialeq = objc.getSelectStr();
 
                 cont=cont+1;
@@ -200,24 +196,24 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         int cont=0;
        
         for(Getset obj: medio.listacat ){
-            objc.setSelectInt(("SELECT tipo_ent_sal_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+obj.getId()+"'\n"+
-                              "ORDER BY Id_equipos DESC LIMIT 1"),"tipo_ent_sal_equ");
+            objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+obj.getId()+"'\n"+
+                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
             int TE = objc.getSelectInt();
             
             if(TE==1){
-                objc.setSelectStr(("SELECT Descripcion_marca_equipo \n" +
-                                  "FROM marca_equipo as m JOIN equipos as e on m.Id_marca_equipo=e.Id_marca_equipo\n" +
-                                  "WHERE Id_equipos='"+obj.getId()+"'"),"Descripcion_marca_equipo");
+                objc.setSelectStr(("SELECT MEdeMaEq \n" +
+                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidMarFK\n" +
+                                  "WHERE EQUidEquPK='"+obj.getId()+"'"),"MEdeMaEq");
                 marcaeq = objc.getSelectStr();
 
-                objc.setSelectStr(("SELECT Modelo FROM equipos WHERE Id_equipos='"+obj.getId()+"'"),"Modelo");
+                objc.setSelectStr(("SELECT EQUmod FROM equipos WHERE EQUidEquPK='"+obj.getId()+"'"),"EQUmod");
                 modeloeq = objc.getSelectStr();
 
-                objc.setSelectStr(("SELECT Serial FROM equipos WHERE Id_equipos='"+obj.getId()+"'"),"Serial");
+                objc.setSelectStr(("SELECT EQUser FROM equipos WHERE EQUidEquPK='"+obj.getId()+"'"),"EQUser");
                 serialeq = objc.getSelectStr();
-
+                
                 cont=cont+1;
 
                    String marca=marcaeq;
@@ -839,10 +835,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     }//GEN-LAST:event_btncancelarMouseClicked
 
     private void btningresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btningresarMouseClicked
-        objc.setSelectInt(("SELECT Id_tipo_entrada_salida\n" +
-                              "FROM entrada_salida\n" +
-                              "WHERE Id_persona='"+idp+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"Id_tipo_entrada_salida");
+        objc.setSelectInt(("SELECT ESidTiEnSaFK\n" +
+                              "FROM entsal\n" +
+                              "WHERE ESidPerFK='"+idp+"'\n"+
+                              "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESidTiEnSaFK");
             int UE = objc.getSelectInt();
             
             System.out.println("ultima entrada--"+UE);
@@ -858,22 +854,22 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                    if(tablaequipos.getValueAt(i,5).equals("Portado")){
                        int ideq=Integer.parseInt(tablaequipos.getValueAt(i,1).toString());
                        
-                       objc.setSelectInt(("SELECT tipo_ent_sal_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+ideq+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"tipo_ent_sal_equ");
+                       objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+ideq+"'\n"+
+                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
                         int UEQ = objc.getSelectInt();
                         System.out.println("ultima entrada Equipo--"+UEQ);
                         
                         if(UEQ != 1){
                         
-                            objc.setInsert("INSERT INTO entrada_salida_equipo(`Id_equipos`, `tipo_ent_sal_equ`, `Id_pers`)\n"+ 
+                            objc.setInsert("INSERT INTO entsalequ(`ESQidEquFK`, `ESQtiEnSaEq`, `ESQidPerFK`)\n"+ 
                                       "VALUES ("+ideq+",1,"+idp+")");
                         }else{
-                            objc.setSelectStr(("SELECT fech_ent_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+ideq+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"fech_ent_equ");
+                            objc.setSelectStr(("SELECT ESQfeEnEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+ideq+"'\n"+
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
                             mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
@@ -892,7 +888,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                         }
                    }
                }
-                objc.setInsert("INSERT INTO entrada_salida(`Id_persona`, `Id_tipo_entrada_salida`) VALUES ("+idp+",1)");
+                objc.setInsert("INSERT INTO entsal(`ESidPerFK`, `ESidTiEnSaFK`) VALUES ("+idp+",1)");
                 
                 
                 
@@ -906,10 +902,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             }else if(UE==1){
                 
                 
-                objc.setSelectStr(("SELECT Fecha_Hora\n" +
-                              "FROM entrada_salida\n" +
-                              "WHERE Id_persona='"+idp+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"Fecha_Hora");
+                objc.setSelectStr(("SELECT ESfecHor\n" +
+                              "FROM entsal\n" +
+                              "WHERE ESidPerFK='"+idp+"'\n"+
+                              "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaE = objc.getSelectStr();
             
                 mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();
@@ -938,22 +934,23 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                    if(tablaequipos.getValueAt(i,5).equals("Portado")){
                        int ideq=Integer.parseInt(tablaequipos.getValueAt(i,1).toString());
                        
-                       objc.setSelectInt(("SELECT tipo_ent_sal_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+ideq+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"tipo_ent_sal_equ");
-                        int UEQ = objc.getSelectInt();
+                       objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+ideq+"'\n"+
+                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
+                       
+                       int UEQ = objc.getSelectInt();
                         System.out.println("ultima entrada Equipo--"+UEQ);
                         
                         if(UEQ != 2){
                         
-                            objc.setInsert("INSERT INTO entrada_salida_equipo(`Id_equipos`, `tipo_ent_sal_equ`, `Id_pers`)\n"+ 
+                            objc.setInsert("INSERT INTO entsalequ(`ESQidEquFK`, `ESQtiEnSaEq`, `ESQidPerFK`)\n"+ 
                                       "VALUES ("+ideq+",2,"+idp+")");
                         }else if(UEQ==2){
-                            objc.setSelectStr(("SELECT fech_ent_equ\n" +
-                              "FROM entrada_salida_equipo\n" +
-                              "WHERE Id_equipos='"+ideq+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"fech_ent_equ");
+                            objc.setSelectStr(("SELECT ESQfeEnEq\n" +
+                              "FROM entsalequ\n" +
+                              "WHERE ESQidEquFK='"+ideq+"'\n"+
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
                             mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
@@ -972,7 +969,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                         }
                    }
                }
-                objc.setInsert("INSERT INTO entrada_salida(`Id_persona`, `Id_tipo_entrada_salida`) VALUES ("+idp+",2)");
+                objc.setInsert("INSERT INTO entsal(`ESidPerFK`, `ESidTiEnSaFK`) VALUES ("+idp+",2)");
                 
                 mensajes.MensajeSalida obj= new mensajes.MensajeSalida();
                 Principal.Escritorio.add(obj);
@@ -984,10 +981,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                 dispose();
             }else if(UE==2){
                 
-                objc.setSelectStr(("SELECT Fecha_Hora\n" +
-                              "FROM entrada_salida\n" +
-                              "WHERE Id_persona='"+idp+"'\n"+
-                              "ORDER BY Id_entrada_salida DESC LIMIT 1"),"Fecha_Hora");
+                objc.setSelectStr(("SELECT ESfecHor\n" +
+                              "FROM entsal\n" +
+                              "WHERE ESidPerFK='"+idp+"'\n"+
+                              "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaS = objc.getSelectStr();
             
                 mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();

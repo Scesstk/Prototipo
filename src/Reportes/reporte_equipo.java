@@ -1,6 +1,8 @@
 
 package Reportes;
 
+import Reportes.Conexion;
+import Reportes.IntReportes;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,12 +33,12 @@ public class reporte_equipo{
   
     
             
-    public void reporteDocumento (String campodocumento, String camposerie){
+    public void reporteDocumento (String campodocumento){
         JasperReport jr = null;
         try {
             Map parametro = new HashMap();
             parametro.put("Doc",campodocumento);
-            parametro.put("Serial", camposerie);
+            
             parametro.put("logot",this.getClass().getResourceAsStream(logotipo));
             //jr = (JasperReport) JRLoader.loadObjectFromFile(path);
             jr = (JasperReport) JRLoader.loadObject(in);
@@ -50,38 +52,7 @@ public class reporte_equipo{
                
     }
     
-    /*public void reporteFecha (Date desde,Date hasta){
-        //int TipoRegistro = 0;    
-        fechad = formato.format(desde);
-        fechah = formato.format(hasta);
-        
-        /*if(Entrada.isSelected()){
-            TipoRegistro = 1;
-        }else if (Salida.isSelected()){
-            TipoRegistro = 2;
-        }
-        
-        JasperReport jr = null;
-        try {
-            
-            Map parametro = new HashMap();
-            parametro.put("fechadesde",fechad);
-            parametro.put("fechahasta",fechah);
-            parametro.put("logo",this.getClass().getResourceAsStream(logotipo));
-            //parametro.put("Entrada_Salida",TipoRegistro);            
-            jr = (JasperReport) JRLoader.loadObjectFromFile(path2);
-            JOptionPane.showMessageDialog(null,parametro);
-            JasperPrint informe = JasperFillManager.fillReport(jr,parametro,new Conexion().getConexion());
-             
-            JasperViewer visor = new JasperViewer(informe,false); //para mostrar reportes;
-            visor.setVisible(true);
-            visor.setTitle("SENA MEJOR SABER");
-            } catch (JRException ex) {
-            Logger.getLogger(IntReportes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }*/
+   
 }
     
     

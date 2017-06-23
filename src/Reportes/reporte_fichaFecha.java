@@ -1,6 +1,7 @@
 package Reportes;
 
 
+import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,8 @@ public class reporte_fichaFecha  {
     
     
     JasperReport jr = null;
-    private final String path = "E:/ADSI 113/5 Trimestre/Proyecto Ultima Version/Prototipo 1.1/src/Reportes/reporte_fichafecha.jasper";
+     URL in = this.getClass().getResource("/Reportes/reporte_fichafecha.jasper");
+   // private final String path = "E:/ADSI 113/5 Trimestre/Proyecto Ultima Version/Prototipo 1.1/src/Reportes/reporte_fichafecha.jasper";
     private final String logotipo = "/Imagenes/logo.jpg";
     
     java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat ("yyyy-MM-dd");
@@ -47,7 +49,7 @@ public class reporte_fichaFecha  {
            
             formulario.put("logo",this.getClass().getResourceAsStream(logotipo));
             
-            jr = (JasperReport) JRLoader.loadObjectFromFile(path);
+            jr = (JasperReport) JRLoader.loadObject(in);
             
             JasperPrint informe = JasperFillManager.fillReport(jr,formulario,new Conexion().getConexion());
             

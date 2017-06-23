@@ -33,7 +33,7 @@ from perequ PE
 inner join persona P on (PE.PEidPerFK = P.PERidPerPK)
 inner join equipos E on (PE.PEidEquFK = E.EQUidEquPK)
 inner join tipequ TE on (E.EQUidTipFK = TE.TEidTiEqPK)
-inner join marequ ME on (E.EQUidMarPK = ME.MEidMaEqPK)
+inner join marequ ME on (E.EQUidMarFK = ME.MEidMaEqPK)
 inner join entsal ES on (ES.ESidPerFK = P.PERidPerPK)
 inner join tipentsal TES on (TES.TESidTiEnSaPK = ES.ESidTiEnSaFK)
 where P.PERnumDoc = $P{documento} and ESfecHor>=$P{fechad} and ESfecHor<=$P{fechah} and (ES.ESidTiEnSaFK =$P{tipoentrada} or ES.ESidTiEnSaFK =$P{tiposalida}) ;]]>

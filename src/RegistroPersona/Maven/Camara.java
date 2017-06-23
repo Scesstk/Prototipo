@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import prototipo.admin;
+import static prototipo.admin.*;
 import prototipo.registrador;
 import static prototipo.registrador.*;
 
@@ -31,6 +33,7 @@ public class Camara extends javax.swing.JFrame {
     private AtomicBoolean initialized = new AtomicBoolean(false);
     private Webcam webcam = null;
     private WebcamPanel panel = null;
+    public int id=0;
     
     public Camara() {
         initComponents();
@@ -123,9 +126,14 @@ public class Camara extends javax.swing.JFrame {
                 webcam.close();
                 //actualiza foto
                 
-                String r=ruta+"/"+registrador.txtDocumento.getText()+".png";
-                System.out.println(r);
-                fotoPer(r);
+                if(id==1){
+                    String r=ruta+"/"+admin.txtDocumento.getText()+".png";
+                    admin.fotoPer(r);
+                }else if(id==2){
+                    String r=ruta+"/"+registrador.txtDocumento.getText()+".png";
+                    registrador.fotoPer(r);
+                }
+                               
                 //cierra ventana
                 dispose();
             }
@@ -159,6 +167,7 @@ public class Camara extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Camara.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

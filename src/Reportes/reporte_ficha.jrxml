@@ -22,7 +22,7 @@ from perequ PE
 inner join persona P on (PE.PEidPerFK = P.PERidPerPK)
 inner join equipos E on (PE.PEidEquFK = E.EQUidEquPK)
 inner join tipequ TE on (E.EQUidTipFK = TE.TEidTiEqPK)
-inner join marequ ME on (E.EQUidMarPK = ME.MEidMaEqPK)
+inner join marequ ME on (E.EQUidMarFK = ME.MEidMaEqPK)
 inner join ficha F on (P.PERidFicFK = F.FICidFicPK)
 where FICnumFic = $P{numficha};]]>
 	</queryString>
@@ -69,11 +69,11 @@ where FICnumFic = $P{numficha};]]>
 				<text><![CDATA[Reporte general por ficha:  No.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="351" y="0" width="100" height="23" uuid="f0afa518-b23e-404d-8b53-39690be86c4e"/>
+				<reportElement x="365" y="0" width="100" height="20" uuid="451d66ef-a0b6-4d85-b9f1-9e6e9c91d3a1"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Num_ficha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Ficha}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
