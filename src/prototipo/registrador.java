@@ -780,7 +780,7 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta.setText("Primer Nombre");
+        etiqueta.setText("* Primer Nombre");
         jPanel1.add(etiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, 30));
 
         separador1.setBackground(new java.awt.Color(252, 115, 35));
@@ -835,7 +835,7 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta2.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta2.setText("Primer Apellido");
+        etiqueta2.setText("* Primer Apellido");
         jPanel1.add(etiqueta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, 30));
 
         separador3.setBackground(new java.awt.Color(252, 115, 35));
@@ -891,7 +891,7 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta4.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta4.setText("N° Documento");
+        etiqueta4.setText("* N° Documento");
         jPanel1.add(etiqueta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, 30));
 
         separador5.setBackground(new java.awt.Color(252, 115, 35));
@@ -936,15 +936,18 @@ public class registrador extends javax.swing.JFrame {
         jPanel1.add(etiqueta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 620, -1, 30));
 
         txtEmail.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        txtEmail.setText("mail");
         txtEmail.setBorder(null);
         txtEmail.setOpaque(false);
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 650, 170, 30));
 
         txtDocumento.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        txtDocumento.setText("que es?");
         txtDocumento.setBorder(null);
         txtDocumento.setOpaque(false);
+        txtDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 170, 30));
 
         lblfoto.setOpaque(true);
@@ -963,12 +966,17 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta6.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta6.setText("N° Telefono");
+        etiqueta6.setText("* N° Telefono");
         jPanel1.add(etiqueta6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, -1, 30));
 
         txtTelefono.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         txtTelefono.setBorder(null);
         txtTelefono.setOpaque(false);
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 550, 170, 30));
 
         separador7.setBackground(new java.awt.Color(252, 115, 35));
@@ -997,6 +1005,11 @@ public class registrador extends javax.swing.JFrame {
         txtCelular.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         txtCelular.setBorder(null);
         txtCelular.setOpaque(false);
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, 170, 30));
 
         separador8.setBackground(new java.awt.Color(252, 115, 35));
@@ -1019,7 +1032,7 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta8.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta8.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta8.setText("Tipo de RH");
+        etiqueta8.setText("* Tipo de RH");
         jPanel1.add(etiqueta8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 710, -1, 30));
 
         txtDireccion.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
@@ -1072,12 +1085,12 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta9.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta9.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta9.setText("Tipo de Documento");
+        etiqueta9.setText("* Tipo de Documento");
         jPanel1.add(etiqueta9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, -1, 30));
 
         etiqueta10.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta10.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta10.setText("N° de Ficha");
+        etiqueta10.setText("* N° de Ficha");
         jPanel1.add(etiqueta10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 920, -1, -1));
 
         etiqueta11.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -1097,17 +1110,17 @@ public class registrador extends javax.swing.JFrame {
 
         etiqueta14.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta14.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta14.setText("Genero");
+        etiqueta14.setText("* Genero");
         jPanel1.add(etiqueta14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 710, -1, 30));
 
         etiqueta15.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta15.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta15.setText("Tipo de Usuario");
+        etiqueta15.setText("* Tipo de Usuario");
         jPanel1.add(etiqueta15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 830, -1, -1));
 
         etiqueta16.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta16.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta16.setText("Centro");
+        etiqueta16.setText("* Centro");
         jPanel1.add(etiqueta16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 920, -1, 20));
 
         btncancelar.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
@@ -1902,6 +1915,39 @@ public class registrador extends javax.swing.JFrame {
         oculta();
         JpCamCon.setVisible(true);
     }//GEN-LAST:event_cambiarpassMouseClicked
+
+    private void txtDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoKeyTyped
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car)){
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (Character.isSpaceChar(car)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDocumentoKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car)){
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (Character.isSpaceChar(car)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        char car = evt.getKeyChar();
+        if (Character.isLetter(car)){
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (Character.isSpaceChar(car)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
 
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
