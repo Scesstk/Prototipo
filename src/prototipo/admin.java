@@ -176,7 +176,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     public int hrid,idequipos,pers_equipos,equip_equipos,tipo,marca;
     public String hrbusq = "";
     private int cedula,cedulaequipos;
-    File ruta = new File("//192.168.1.17/fotos/");
+    File ruta2 = new File("//192.168.1.17/fotos");
+    File ruta = new File("http://192.168.1.17/api/fotos");
     DefaultTableModel modeloe;
 
     
@@ -429,7 +430,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         body3.setVisible(false);
         body4.setVisible(false);
         body5.setVisible(false);
-        body6.setVisible(false);
+        JpCamCon.setVisible(false);
         body7.setVisible(false);
     }
     
@@ -539,18 +540,108 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     
     public void obtenerdatosequipos(){
      
-     cedulaequipos = Integer.parseInt(equipostxtconsulta.getText());
+        cedulaequipos = Integer.parseInt(equipostxtconsulta.getText());
       
-     tipo = equipostipobox.getSelectedIndex();
+        tipo = equipostipobox.getSelectedIndex();
      
       
-     marca = equiposmarcabox.getSelectedIndex();
+        marca = equiposmarcabox.getSelectedIndex();
      
-     serial = equipostxtserial.getText();
-     modelo = equipostxtmodelo.getText();
-     desc = equipostxtdesc.getText();
+        serial = equipostxtserial.getText();
+        modelo = equipostxtmodelo.getText();
+        desc = equipostxtdesc.getText();
  
+    }
+    //variables cambio de contraseña
+    private int prueba, cedul, id;
+    private String contra, pass, pass1, passold;
+    String pas;
+    
+    //metodo MySQL cambio de contraseña
+    private void conecMySQL(){
+        con.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc='"+cedul+"'"), "PERnumDoc");
+        prueba=con.getSelectInt();
+        
+        con.setSelectStr(("SELECT ACCcon FROM acceso as a "
+                        + "JOIN persona as p on a.ACCidPerFK=p.PERidPerPK WHERE PERnumDoc = '"+cedul+"'"),
+                "ACCcon");
+        contra = con.getSelectStr();
+        
+        con.setSelectInt(("SELECT PERidPerPK FROM persona Where PERnumDoc = '"+cedul+"'"), "PERidPerPK");
+        id = con.getSelectInt();
+        
+        con.setSelectMd5(passold, passold);
+        passold = con.getMd5();
+        
+        con.setSelectMd5(pass1, pass1);
+        pass1 = con.getMd5();
+        
+        con.setSelectMd5(pass, pass);
+        pass = con.getMd5();
+        
+           
+        if(cedul==login.loginf.cc){
+            
+        
+            if(cedul==prueba){
+             
+                if(passold.equals(contra)){
+                
+                    if(pass1.equals(pass)){
+                    
+                        con.setUpdate("UPDATE acceso SET ACCcon = '"+pass+"'"+" WHERE ACCidPerFK = "+id);
+            
+                        Jpaint();
+                        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Su contraseña Fue cambiada Con Exito</b> </body> </html>";
+                        JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                        //dispose();
+                        txtid.setText(null);
+                        jPactual.setText(null);
+                        jPnueva.setText(null);
+                        jPcNueva.setText(null);
+                    }else{
+                        Jpaint();
+                        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Las contraseñas no son iguales</b> </body> </html>";
+                        JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de contraseña",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                    }
+                }else{
+                    Jpaint();
+                    String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Su contraseña no Fue cambiada</b> </body> </html>";
+                    JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de contraseña anterior",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                }
+            }else{
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Usuario no Valido</b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de Usuario",JOptionPane.WARNING_MESSAGE,joke);
+                    
+            }
+        }else{
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Usuario no Coincide con el usuario Logueado</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de Usuario",JOptionPane.WARNING_MESSAGE,joke);
+            System.out.println("Prueba pass " + cedul);
+            System.out.println("Prueba login " + login.loginf.cc);
+            
         }
+    }
+    
+    //metodo obtener contraseña
+    private void contrasena(){
+        char claveold[]=jPactual.getPassword();
+        char claven[]=jPnueva.getPassword();
+        char clavec[]=jPcNueva.getPassword();
+        
+        String claveol = new String(claveold);
+        passold = claveol;
+        String clavenew = new String(claven);
+        pass1 = clavenew;
+        String clavedef = new String(clavec);
+        cedul = Integer.parseInt(txtid.getText());
+        pass = clavedef;
+    }
                                       
     
     
@@ -698,10 +789,10 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         cbxDepartamento = new javax.swing.JComboBox<>();
         cbxCiudad = new javax.swing.JComboBox<>();
         btncancelarcentro = new javax.swing.JLabel();
-        body6 = new javax.swing.JPanel();
+        JpCamCon = new javax.swing.JPanel();
         etiqueta23 = new javax.swing.JLabel();
-        btnguardarcentro1 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        btnguarcampass = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
         separador14 = new javax.swing.JPanel();
         etiqueta24 = new javax.swing.JLabel();
         separador15 = new javax.swing.JPanel();
@@ -711,9 +802,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         separador16 = new javax.swing.JPanel();
         etiqueta27 = new javax.swing.JLabel();
         separador17 = new javax.swing.JPanel();
-        txtpass1 = new javax.swing.JPasswordField();
-        txtpass3 = new javax.swing.JPasswordField();
-        txtpass4 = new javax.swing.JPasswordField();
+        jPcNueva = new javax.swing.JPasswordField();
+        jPactual = new javax.swing.JPasswordField();
+        jPnueva = new javax.swing.JPasswordField();
         body7 = new javax.swing.JPanel();
         etiqueta29 = new javax.swing.JLabel();
         btnguardarcentro2 = new javax.swing.JLabel();
@@ -748,7 +839,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         Modificarequipos.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         Modificarequipos.setForeground(new java.awt.Color(89, 181, 72));
         Modificarequipos.setText("Modificar");
-        Modificarequipos.setOpaque(true);
         Modificarequipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarequiposActionPerformed(evt);
@@ -760,7 +850,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         Desactivarequipos.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         Desactivarequipos.setForeground(new java.awt.Color(89, 181, 72));
         Desactivarequipos.setText("Eliminar");
-        Desactivarequipos.setOpaque(true);
         Desactivarequipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DesactivarequiposActionPerformed(evt);
@@ -772,7 +861,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         hrinfo.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         hrinfo.setForeground(new java.awt.Color(89, 181, 72));
         hrinfo.setLabel("información");
-        hrinfo.setOpaque(true);
         hrinfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hrinfoActionPerformed(evt);
@@ -1289,6 +1377,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         body.setBackground(new java.awt.Color(244, 242, 242));
         body.setLayout(new java.awt.CardLayout());
+
+        bhome.setOpaque(false);
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(89, 181, 72));
@@ -2106,31 +2196,31 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
         getContentPane().add(body5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
-        body6.setBackground(new java.awt.Color(255, 255, 255));
-        body6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JpCamCon.setBackground(new java.awt.Color(255, 255, 255));
+        JpCamCon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etiqueta23.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         etiqueta23.setForeground(new java.awt.Color(89, 181, 72));
         etiqueta23.setText("Cambiar Contraseña");
-        body6.add(etiqueta23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
+        JpCamCon.add(etiqueta23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
 
-        btnguardarcentro1.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
-        btnguardarcentro1.setForeground(new java.awt.Color(89, 181, 72));
-        btnguardarcentro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnguardarcentro1.setText("Guardar");
-        btnguardarcentro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
-        btnguardarcentro1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnguardarcentro1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnguarcampass.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btnguarcampass.setForeground(new java.awt.Color(89, 181, 72));
+        btnguarcampass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnguarcampass.setText("Guardar");
+        btnguarcampass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btnguarcampass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguarcampass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnguardarcentro1MouseClicked(evt);
+                btnguarcampassMouseClicked(evt);
             }
         });
-        body6.add(btnguardarcentro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 110, -1));
+        JpCamCon.add(btnguarcampass, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 110, -1));
 
-        jTextField15.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField15.setBorder(null);
-        jTextField15.setOpaque(false);
-        body6.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 220, 30));
+        txtid.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        txtid.setBorder(null);
+        txtid.setOpaque(false);
+        JpCamCon.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 220, 30));
 
         separador14.setBackground(new java.awt.Color(252, 115, 35));
         separador14.setForeground(new java.awt.Color(252, 115, 35));
@@ -2148,12 +2238,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        body6.add(separador14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 220, -1));
+        JpCamCon.add(separador14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 220, -1));
 
         etiqueta24.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta24.setForeground(new java.awt.Color(89, 181, 72));
         etiqueta24.setText("Digite su contraseña actual:");
-        body6.add(etiqueta24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 30));
+        JpCamCon.add(etiqueta24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 30));
 
         separador15.setBackground(new java.awt.Color(252, 115, 35));
         separador15.setForeground(new java.awt.Color(252, 115, 35));
@@ -2171,12 +2261,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        body6.add(separador15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 220, -1));
+        JpCamCon.add(separador15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 220, -1));
 
         etiqueta25.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta25.setForeground(new java.awt.Color(89, 181, 72));
         etiqueta25.setText("Ingrese el usuario:");
-        body6.add(etiqueta25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 30));
+        JpCamCon.add(etiqueta25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 30));
 
         btncancelarpass.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         btncancelarpass.setForeground(new java.awt.Color(89, 181, 72));
@@ -2189,12 +2279,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                 btncancelarpassMouseClicked(evt);
             }
         });
-        body6.add(btncancelarpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 100, -1));
+        JpCamCon.add(btncancelarpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 100, -1));
 
         etiqueta26.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta26.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta26.setText("Digite su contraseña actual:");
-        body6.add(etiqueta26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 30));
+        etiqueta26.setText("Digite su contraseña nueva:");
+        JpCamCon.add(etiqueta26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 30));
 
         separador16.setBackground(new java.awt.Color(252, 115, 35));
         separador16.setForeground(new java.awt.Color(252, 115, 35));
@@ -2212,12 +2302,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        body6.add(separador16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 220, -1));
+        JpCamCon.add(separador16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 220, -1));
 
         etiqueta27.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         etiqueta27.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta27.setText("Digite su contraseña actual:");
-        body6.add(etiqueta27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 30));
+        etiqueta27.setText("Confirme su contraseña nueva:");
+        JpCamCon.add(etiqueta27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 30));
 
         separador17.setBackground(new java.awt.Color(252, 115, 35));
         separador17.setForeground(new java.awt.Color(252, 115, 35));
@@ -2235,24 +2325,24 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        body6.add(separador17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 220, -1));
+        JpCamCon.add(separador17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 220, -1));
 
-        txtpass1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass1.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass1.setBorder(null);
-        body6.add(txtpass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 220, 30));
+        jPcNueva.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPcNueva.setForeground(new java.awt.Color(153, 153, 153));
+        jPcNueva.setBorder(null);
+        JpCamCon.add(jPcNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 220, 30));
 
-        txtpass3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass3.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass3.setBorder(null);
-        body6.add(txtpass3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 220, 30));
+        jPactual.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPactual.setForeground(new java.awt.Color(153, 153, 153));
+        jPactual.setBorder(null);
+        JpCamCon.add(jPactual, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 220, 30));
 
-        txtpass4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass4.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass4.setBorder(null);
-        body6.add(txtpass4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 220, 30));
+        jPnueva.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPnueva.setForeground(new java.awt.Color(153, 153, 153));
+        jPnueva.setBorder(null);
+        JpCamCon.add(jPnueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 220, 30));
 
-        getContentPane().add(body6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+        getContentPane().add(JpCamCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
 
         body7.setBackground(new java.awt.Color(255, 255, 255));
         body7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2519,7 +2609,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private void btnpassacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpassacMouseClicked
         ///switch bettween Jpanels
         oculta();
-        body6.setVisible(true);
+        JpCamCon.setVisible(true);
     }//GEN-LAST:event_btnpassacMouseClicked
 
     private void btnregistroacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroacMouseClicked
@@ -2628,12 +2718,20 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
 
     private void cambiarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarpassMouseClicked
         oculta();
-        body6.setVisible(true);
+        JpCamCon.setVisible(true);
     }//GEN-LAST:event_cambiarpassMouseClicked
 
-    private void btnguardarcentro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguardarcentro1MouseClicked
+    private void btnguarcampassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguarcampassMouseClicked
+        int num = txtid.getText().length();
+        if(num==0){
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> El campo Usuario no puede estar vacío</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+        }else{
+            contrasena();
+            conecMySQL();
+        }
+    }//GEN-LAST:event_btnguarcampassMouseClicked
 
     private void btncancelarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarpassMouseClicked
         resetBoton();
@@ -3109,7 +3207,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         cbxRol.select(hrusrol);
         estadobox.select(acceso);
         cbxTipoDoc.select(hrTdoc);
-        String r=ruta+"/"+txtDocumento.getText()+".png";
+        String r=ruta2+"/"+txtDocumento.getText()+".png";
 
         }else{
 
@@ -3185,6 +3283,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JCheckBox CheckBoxEntrada;
     private javax.swing.JCheckBox CheckBoxSalida;
     private javax.swing.JMenuItem Desactivarequipos;
+    private javax.swing.JPanel JpCamCon;
     private javax.swing.JMenuItem Modificarequipos;
     private javax.swing.JPopupMenu Opciones;
     private javax.swing.JLabel barra;
@@ -3197,7 +3296,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JPanel body3;
     private javax.swing.JPanel body4;
     private javax.swing.JPanel body5;
-    private javax.swing.JPanel body6;
     private javax.swing.JPanel body7;
     private javax.swing.JLabel btncancelar;
     private javax.swing.JLabel btncancelarcentro;
@@ -3210,16 +3308,15 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btnequipoac;
     private javax.swing.JLabel btnequipos;
     private javax.swing.JLabel btnfichas;
+    private javax.swing.JLabel btnguarcampass;
     private javax.swing.JLabel btnguardar;
     private javax.swing.JLabel btnguardarcentro;
-    private javax.swing.JLabel btnguardarcentro1;
     private javax.swing.JLabel btnguardarcentro2;
     private javax.swing.JLabel btnguardarequipos;
     private javax.swing.JLabel btnguardarficha;
     private javax.swing.JLabel btnhome;
     private javax.swing.JLabel btnlimpiar;
     private javax.swing.JLabel btnlimpiar1;
-    private javax.swing.JLabel btnlogout;
     private javax.swing.JLabel btnlogout1;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JLabel btnmodificarequipos;
@@ -3302,12 +3399,14 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPactual;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPcNueva;
+    private javax.swing.JPasswordField jPnueva;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jtxtCod;
     private javax.swing.JTextField jtxtCodCentro;
     private javax.swing.JTextField jtxtNom;
@@ -3356,8 +3455,6 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JTextField txtNombre2;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtconsulta;
-    private javax.swing.JPasswordField txtpass1;
-    private javax.swing.JPasswordField txtpass3;
-    private javax.swing.JPasswordField txtpass4;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

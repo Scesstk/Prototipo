@@ -120,7 +120,7 @@ public class registrador extends javax.swing.JFrame {
     public String busq = "";
     private int cedula;
     private int docu;
-    File ruta = new File("//192.168.1.17/fotos/");
+    File ruta = new File("http://192.168.1.17/api/fotos");
     DefaultTableModel modeloe;
     
     private void Jpaint(){
@@ -154,7 +154,7 @@ public class registrador extends javax.swing.JFrame {
         jpHome.setVisible(false);
         jpFicha.setVisible(false);
         jpCentros.setVisible(false);
-        jpPass.setVisible(false);
+        JpCamCon.setVisible(false);
         body.setVisible(false);
         head.setVisible(false);
         hequipo.setVisible(false);
@@ -180,6 +180,97 @@ public class registrador extends javax.swing.JFrame {
         cbxFicha.select(0);
     }
     
+        //variables cambio de contraseña
+    private int prueba, cedul, idp;
+    private String contra, pass, pass1, passold;
+    String pas;
+    
+    //metodo MySQL cambio de contraseña
+    private void conecMySQL(){
+        con.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc='"+cedul+"'"), "PERnumDoc");
+        prueba=con.getSelectInt();
+        
+        con.setSelectStr(("SELECT ACCcon FROM acceso as a "
+                        + "JOIN persona as p on a.ACCidPerFK=p.PERidPerPK WHERE PERnumDoc = '"+cedul+"'"),
+                "ACCcon");
+        contra = con.getSelectStr();
+        
+        con.setSelectInt(("SELECT PERidPerPK FROM persona Where PERnumDoc = '"+cedul+"'"), "PERidPerPK");
+        idp = con.getSelectInt();
+        
+        con.setSelectMd5(passold, passold);
+        passold = con.getMd5();
+        
+        con.setSelectMd5(pass1, pass1);
+        pass1 = con.getMd5();
+        
+        con.setSelectMd5(pass, pass);
+        pass = con.getMd5();
+        
+           
+        if(cedul==login.loginf.cc){
+            
+        
+            if(cedul==prueba){
+             
+                if(passold.equals(contra)){
+                
+                    if(pass1.equals(pass)){
+                    
+                        con.setUpdate("UPDATE acceso SET ACCcon = '"+pass+"'"+" WHERE ACCidPerFK = "+id);
+            
+                        Jpaint();
+                        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Su contraseña Fue cambiada Con Exito</b> </body> </html>";
+                        JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                        //dispose();
+                        txtid.setText(null);
+                        jPactual.setText(null);
+                        jPnueva.setText(null);
+                        jPcNueva.setText(null);
+                    }else{
+                        Jpaint();
+                        String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Las contraseñas no son iguales</b> </body> </html>";
+                        JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de contraseña",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                    }
+                }else{
+                    Jpaint();
+                    String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Su contraseña no Fue cambiada</b> </body> </html>";
+                    JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de contraseña anterior",JOptionPane.WARNING_MESSAGE,joke);
+                        
+                }
+            }else{
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Usuario no Valido</b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de Usuario",JOptionPane.WARNING_MESSAGE,joke);
+                    
+            }
+        }else{
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Usuario no Coincide con el usuario Logueado</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error de Usuario",JOptionPane.WARNING_MESSAGE,joke);
+            System.out.println("Prueba pass " + cedul);
+            System.out.println("Prueba login " + login.loginf.cc);
+            
+        }
+    }
+    
+    //metodo obtener contraseña
+    private void contrasena(){
+        char claveold[]=jPactual.getPassword();
+        char claven[]=jPnueva.getPassword();
+        char clavec[]=jPcNueva.getPassword();
+        
+        String claveol = new String(claveold);
+        passold = claveol;
+        String clavenew = new String(claven);
+        pass1 = clavenew;
+        String clavedef = new String(clavec);
+        cedul = Integer.parseInt(txtid.getText());
+        pass = clavedef;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -194,6 +285,7 @@ public class registrador extends javax.swing.JFrame {
         etiquetanombre = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
         etiquetatrol = new javax.swing.JLabel();
+        cambiarpass = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         btnminimizar = new javax.swing.JLabel();
         btncerrar = new javax.swing.JLabel();
@@ -271,22 +363,6 @@ public class registrador extends javax.swing.JFrame {
         bequipo = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblListaEquipos = new javax.swing.JTable();
-        jpPass = new javax.swing.JPanel();
-        etiqueta23 = new javax.swing.JLabel();
-        btnguardarcentro1 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        separador14 = new javax.swing.JPanel();
-        etiqueta24 = new javax.swing.JLabel();
-        separador15 = new javax.swing.JPanel();
-        etiqueta25 = new javax.swing.JLabel();
-        btncancelarpass = new javax.swing.JLabel();
-        etiqueta26 = new javax.swing.JLabel();
-        separador16 = new javax.swing.JPanel();
-        etiqueta27 = new javax.swing.JLabel();
-        separador17 = new javax.swing.JPanel();
-        txtpass1 = new javax.swing.JPasswordField();
-        txtpass3 = new javax.swing.JPasswordField();
-        txtpass4 = new javax.swing.JPasswordField();
         jpCentros = new javax.swing.JPanel();
         etiqueta20 = new javax.swing.JLabel();
         btnguardarcentro = new javax.swing.JLabel();
@@ -312,6 +388,22 @@ public class registrador extends javax.swing.JFrame {
         barralateral = new javax.swing.JPanel();
         btnregistros = new javax.swing.JLabel();
         btnlogout = new javax.swing.JLabel();
+        JpCamCon = new javax.swing.JPanel();
+        etiqueta23 = new javax.swing.JLabel();
+        btnguarcampass = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
+        separador14 = new javax.swing.JPanel();
+        etiqueta24 = new javax.swing.JLabel();
+        separador15 = new javax.swing.JPanel();
+        etiqueta25 = new javax.swing.JLabel();
+        btncancelarpass = new javax.swing.JLabel();
+        etiqueta26 = new javax.swing.JLabel();
+        separador16 = new javax.swing.JPanel();
+        etiqueta27 = new javax.swing.JLabel();
+        separador17 = new javax.swing.JPanel();
+        jPcNueva = new javax.swing.JPasswordField();
+        jPactual = new javax.swing.JPasswordField();
+        jPnueva = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -404,6 +496,18 @@ public class registrador extends javax.swing.JFrame {
         etiquetatrol.setForeground(new java.awt.Color(89, 181, 72));
         etiquetatrol.setText("Rol:");
 
+        cambiarpass.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        cambiarpass.setForeground(new java.awt.Color(89, 181, 72));
+        cambiarpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena.png"))); // NOI18N
+        cambiarpass.setText("Cambiar Contraseña");
+        cambiarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cambiarpass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        cambiarpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarpassMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
         jpHomeLayout.setHorizontalGroup(
@@ -424,18 +528,22 @@ public class registrador extends javax.swing.JFrame {
                     .addGroup(jpHomeLayout.createSequentialGroup()
                         .addComponent(etiquetanombre)
                         .addGap(3, 3, 3)
-                        .addComponent(lblnombre))
+                        .addComponent(lblnombre)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpHomeLayout.createSequentialGroup()
                         .addComponent(etiquetatrol)
                         .addGap(7, 7, 7)
-                        .addComponent(lblrol)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblrol)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cambiarpass)))
+                .addContainerGap())
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpHomeLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,14 +552,14 @@ public class registrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiquetatrol)
-                            .addComponent(lblrol)))
-                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                            .addComponent(lblrol)
+                            .addComponent(cambiarpass))))
+                .addGap(36, 36, 36)
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnusuarios)
                     .addComponent(btnfichas)
                     .addComponent(btncentros))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
@@ -1067,154 +1175,6 @@ public class registrador extends javax.swing.JFrame {
 
         getContentPane().add(body, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 760, 250));
 
-        jpPass.setBackground(new java.awt.Color(255, 255, 255));
-        jpPass.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        etiqueta23.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        etiqueta23.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta23.setText("Cambiar Contraseña");
-        jpPass.add(etiqueta23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
-
-        btnguardarcentro1.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
-        btnguardarcentro1.setForeground(new java.awt.Color(89, 181, 72));
-        btnguardarcentro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnguardarcentro1.setText("Guardar");
-        btnguardarcentro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
-        btnguardarcentro1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnguardarcentro1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnguardarcentro1MouseClicked(evt);
-            }
-        });
-        jpPass.add(btnguardarcentro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 110, -1));
-
-        jTextField15.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jTextField15.setBorder(null);
-        jTextField15.setOpaque(false);
-        jpPass.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 220, 30));
-
-        separador14.setBackground(new java.awt.Color(252, 115, 35));
-        separador14.setForeground(new java.awt.Color(252, 115, 35));
-        separador14.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador14.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador14Layout = new javax.swing.GroupLayout(separador14);
-        separador14.setLayout(separador14Layout);
-        separador14Layout.setHorizontalGroup(
-            separador14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separador14Layout.setVerticalGroup(
-            separador14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jpPass.add(separador14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 220, -1));
-
-        etiqueta24.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta24.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta24.setText("Digite su contraseña actual:");
-        jpPass.add(etiqueta24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 30));
-
-        separador15.setBackground(new java.awt.Color(252, 115, 35));
-        separador15.setForeground(new java.awt.Color(252, 115, 35));
-        separador15.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador15.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador15Layout = new javax.swing.GroupLayout(separador15);
-        separador15.setLayout(separador15Layout);
-        separador15Layout.setHorizontalGroup(
-            separador15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separador15Layout.setVerticalGroup(
-            separador15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jpPass.add(separador15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 220, -1));
-
-        etiqueta25.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta25.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta25.setText("Ingrese el usuario:");
-        jpPass.add(etiqueta25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 30));
-
-        btncancelarpass.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
-        btncancelarpass.setForeground(new java.awt.Color(89, 181, 72));
-        btncancelarpass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btncancelarpass.setText("Cancelar");
-        btncancelarpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
-        btncancelarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btncancelarpass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btncancelarpassMouseClicked(evt);
-            }
-        });
-        jpPass.add(btncancelarpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 100, -1));
-
-        etiqueta26.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta26.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta26.setText("Digite su contraseña actual:");
-        jpPass.add(etiqueta26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 30));
-
-        separador16.setBackground(new java.awt.Color(252, 115, 35));
-        separador16.setForeground(new java.awt.Color(252, 115, 35));
-        separador16.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador16.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador16Layout = new javax.swing.GroupLayout(separador16);
-        separador16.setLayout(separador16Layout);
-        separador16Layout.setHorizontalGroup(
-            separador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separador16Layout.setVerticalGroup(
-            separador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jpPass.add(separador16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 220, -1));
-
-        etiqueta27.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        etiqueta27.setForeground(new java.awt.Color(89, 181, 72));
-        etiqueta27.setText("Digite su contraseña actual:");
-        jpPass.add(etiqueta27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 30));
-
-        separador17.setBackground(new java.awt.Color(252, 115, 35));
-        separador17.setForeground(new java.awt.Color(252, 115, 35));
-        separador17.setPreferredSize(new java.awt.Dimension(172, 2));
-        separador17.setRequestFocusEnabled(false);
-
-        javax.swing.GroupLayout separador17Layout = new javax.swing.GroupLayout(separador17);
-        separador17.setLayout(separador17Layout);
-        separador17Layout.setHorizontalGroup(
-            separador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        separador17Layout.setVerticalGroup(
-            separador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jpPass.add(separador17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 220, -1));
-
-        txtpass1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass1.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass1.setBorder(null);
-        jpPass.add(txtpass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 220, 30));
-
-        txtpass3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass3.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass3.setBorder(null);
-        jpPass.add(txtpass3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 220, 30));
-
-        txtpass4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtpass4.setForeground(new java.awt.Color(153, 153, 153));
-        txtpass4.setBorder(null);
-        jpPass.add(txtpass4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 220, 30));
-
-        getContentPane().add(jpPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 38, 760, 420));
-
         jpCentros.setBackground(new java.awt.Color(255, 255, 255));
         jpCentros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1460,6 +1420,154 @@ public class registrador extends javax.swing.JFrame {
 
         getContentPane().add(barralateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 460));
 
+        JpCamCon.setBackground(new java.awt.Color(255, 255, 255));
+        JpCamCon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        etiqueta23.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        etiqueta23.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta23.setText("Cambiar Contraseña");
+        JpCamCon.add(etiqueta23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
+
+        btnguarcampass.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btnguarcampass.setForeground(new java.awt.Color(89, 181, 72));
+        btnguarcampass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnguarcampass.setText("Guardar");
+        btnguarcampass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btnguarcampass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguarcampass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnguarcampassMouseClicked(evt);
+            }
+        });
+        JpCamCon.add(btnguarcampass, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 110, -1));
+
+        txtid.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        txtid.setBorder(null);
+        txtid.setOpaque(false);
+        JpCamCon.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 220, 30));
+
+        separador14.setBackground(new java.awt.Color(252, 115, 35));
+        separador14.setForeground(new java.awt.Color(252, 115, 35));
+        separador14.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador14.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador14Layout = new javax.swing.GroupLayout(separador14);
+        separador14.setLayout(separador14Layout);
+        separador14Layout.setHorizontalGroup(
+            separador14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        separador14Layout.setVerticalGroup(
+            separador14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        JpCamCon.add(separador14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 220, -1));
+
+        etiqueta24.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        etiqueta24.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta24.setText("Digite su contraseña actual:");
+        JpCamCon.add(etiqueta24, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 30));
+
+        separador15.setBackground(new java.awt.Color(252, 115, 35));
+        separador15.setForeground(new java.awt.Color(252, 115, 35));
+        separador15.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador15.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador15Layout = new javax.swing.GroupLayout(separador15);
+        separador15.setLayout(separador15Layout);
+        separador15Layout.setHorizontalGroup(
+            separador15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        separador15Layout.setVerticalGroup(
+            separador15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        JpCamCon.add(separador15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 220, -1));
+
+        etiqueta25.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        etiqueta25.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta25.setText("Ingrese el usuario:");
+        JpCamCon.add(etiqueta25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 30));
+
+        btncancelarpass.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btncancelarpass.setForeground(new java.awt.Color(89, 181, 72));
+        btncancelarpass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btncancelarpass.setText("Cancelar");
+        btncancelarpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btncancelarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncancelarpass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncancelarpassMouseClicked(evt);
+            }
+        });
+        JpCamCon.add(btncancelarpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 100, -1));
+
+        etiqueta26.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        etiqueta26.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta26.setText("Digite su contraseña nueva:");
+        JpCamCon.add(etiqueta26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 30));
+
+        separador16.setBackground(new java.awt.Color(252, 115, 35));
+        separador16.setForeground(new java.awt.Color(252, 115, 35));
+        separador16.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador16.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador16Layout = new javax.swing.GroupLayout(separador16);
+        separador16.setLayout(separador16Layout);
+        separador16Layout.setHorizontalGroup(
+            separador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        separador16Layout.setVerticalGroup(
+            separador16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        JpCamCon.add(separador16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 220, -1));
+
+        etiqueta27.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        etiqueta27.setForeground(new java.awt.Color(89, 181, 72));
+        etiqueta27.setText("Confirme su contraseña nueva:");
+        JpCamCon.add(etiqueta27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 30));
+
+        separador17.setBackground(new java.awt.Color(252, 115, 35));
+        separador17.setForeground(new java.awt.Color(252, 115, 35));
+        separador17.setPreferredSize(new java.awt.Dimension(172, 2));
+        separador17.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout separador17Layout = new javax.swing.GroupLayout(separador17);
+        separador17.setLayout(separador17Layout);
+        separador17Layout.setHorizontalGroup(
+            separador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        separador17Layout.setVerticalGroup(
+            separador17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+
+        JpCamCon.add(separador17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 220, -1));
+
+        jPcNueva.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPcNueva.setForeground(new java.awt.Color(153, 153, 153));
+        jPcNueva.setBorder(null);
+        JpCamCon.add(jPcNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 220, 30));
+
+        jPactual.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPactual.setForeground(new java.awt.Color(153, 153, 153));
+        jPactual.setBorder(null);
+        JpCamCon.add(jPactual, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 220, 30));
+
+        jPnueva.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jPnueva.setForeground(new java.awt.Color(153, 153, 153));
+        jPnueva.setBorder(null);
+        JpCamCon.add(jPnueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 220, 30));
+
+        getContentPane().add(JpCamCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1675,18 +1783,6 @@ public class registrador extends javax.swing.JFrame {
         jpHome.setVisible(true);
     }//GEN-LAST:event_btncancelarfichaMouseClicked
 
-    private void btnguardarcentro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnguardarcentro1MouseClicked
-
-    private void btncancelarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarpassMouseClicked
-        
-        setLblColor(btnregistros);
-        //cambio entre Jpanels
-        oculta();
-        jpPass.setVisible(true);
-    }//GEN-LAST:event_btncancelarpassMouseClicked
-
     private void btnusuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnusuariosMouseClicked
         cbxFicha.removeAll();
         cbxFicha.addItem("Seleccione");
@@ -1782,6 +1878,31 @@ public class registrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
+    private void btnguarcampassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguarcampassMouseClicked
+        int num = txtid.getText().length();
+        if(num==0){
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> El campo Usuario no puede estar vacío</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+        }else{
+            contrasena();
+            conecMySQL();
+        }
+    }//GEN-LAST:event_btnguarcampassMouseClicked
+
+    private void btncancelarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarpassMouseClicked
+        
+        //cambio entre Jpanels
+        oculta();
+        jpHome.setVisible(true);
+        
+    }//GEN-LAST:event_btncancelarpassMouseClicked
+
+    private void cambiarpassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarpassMouseClicked
+        oculta();
+        JpCamCon.setVisible(true);
+    }//GEN-LAST:event_cambiarpassMouseClicked
+
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
     {
@@ -1832,6 +1953,7 @@ public class registrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JpCamCon;
     private javax.swing.JLabel barra;
     private javax.swing.JPanel barralateral;
     private javax.swing.JPanel bequipo;
@@ -1843,14 +1965,15 @@ public class registrador extends javax.swing.JFrame {
     private javax.swing.JLabel btncentros;
     private javax.swing.JLabel btncerrar;
     private javax.swing.JLabel btnfichas;
+    private javax.swing.JLabel btnguarcampass;
     private javax.swing.JLabel btnguardar;
     private javax.swing.JLabel btnguardarcentro;
-    private javax.swing.JLabel btnguardarcentro1;
     private javax.swing.JLabel btnguardarficha;
     private javax.swing.JLabel btnlogout;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JLabel btnregistros;
     private javax.swing.JLabel btnusuarios;
+    private javax.swing.JLabel cambiarpass;
     public static java.awt.Choice cbxCentro;
     public static javax.swing.JComboBox<String> cbxCiudad;
     public static javax.swing.JComboBox<String> cbxDepartamento;
@@ -1904,17 +2027,18 @@ public class registrador extends javax.swing.JFrame {
     private javax.swing.JLabel iconbuscar1;
     public static javax.swing.JLabel imagen;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JPasswordField jPactual;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPcNueva;
+    private javax.swing.JPasswordField jPnueva;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JPanel jpCentros;
     private javax.swing.JPanel jpFicha;
     private javax.swing.JPanel jpHome;
-    private javax.swing.JPanel jpPass;
     private javax.swing.JTextField jtxtCod;
     private javax.swing.JTextField jtxtCodCentro;
     private javax.swing.JTextField jtxtNom;
@@ -1957,8 +2081,6 @@ public class registrador extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre2;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtconsulta1;
-    private javax.swing.JPasswordField txtpass1;
-    private javax.swing.JPasswordField txtpass3;
-    private javax.swing.JPasswordField txtpass4;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }
