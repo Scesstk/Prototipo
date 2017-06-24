@@ -74,6 +74,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         bhome.setVisible(true);
         body.setVisible(true);
         head.setVisible(true);
+        btnmodificarequipos.setVisible(false);
+        btncancelarequipos.setVisible(false);
         
         this.setLocationRelativeTo(null);
         Border border = LineBorder.createGrayLineBorder();
@@ -741,6 +743,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         separador7 = new javax.swing.JPanel();
         etiqueta7 = new javax.swing.JLabel();
         txtCelular = new javax.swing.JTextField();
+        btnmodificarpersona = new javax.swing.JLabel();
         separador8 = new javax.swing.JPanel();
         etiqueta8 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
@@ -1777,6 +1780,19 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             }
         });
         jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, 170, 30));
+
+        btnmodificarpersona.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        btnmodificarpersona.setForeground(new java.awt.Color(89, 181, 72));
+        btnmodificarpersona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnmodificarpersona.setText("Modificar");
+        btnmodificarpersona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(89, 181, 72)));
+        btnmodificarpersona.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnmodificarpersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnmodificarpersonaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnmodificarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 1040, 130, -1));
 
         separador8.setBackground(new java.awt.Color(252, 115, 35));
         separador8.setForeground(new java.awt.Color(252, 115, 35));
@@ -3309,6 +3325,46 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         }
     }//GEN-LAST:event_txtCelularKeyTyped
 
+    private void btnmodificarpersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmodificarpersonaMouseClicked
+       int hrid,docu = 0;
+        con.setSelectInt("Select PERidPerPK from persona where PERnumDoc ='"+txtDocumento.getText()+"'","PERidPerPK");
+        hrid = con.getSelectInt();
+        con.setSelectInt("Select PERnumDoc from persona where PERnumDoc ='"+txtDocumento.getText()+"'","PERnumDoc");
+        docu = con.getSelectInt();
+
+
+        if(docu>0){
+
+            con.setUpdate("update persona set PERidDocFK='"+cbxTipoDoc.getSelectedIndex()+"',"
+                + "PERnumDoc='"+txtDocumento.getText()+"',"
+                + "PERnom1='"+txtNombre1.getText()+"',"
+                + "PERnom2='"+txtNombre2.getText()+"',"
+                + "PERape1='"+txtApellido1.getText()+"',"
+                + "PERape2='"+txtApellido2.getText()+"',"
+                + "PERidGenFK='"+cbxGenero.getSelectedIndex()+"',"
+                + "PERdir='"+txtDireccion.getText()+"',"
+                + "PERtelFij='"+txtTelefono.getText()+"',"
+                + "PERcel='"+txtCelular.getText()+"',"
+                + "PERcor='"+txtEmail.getText()+"',"
+                + "PERidRhFK='"+cbxRh.getSelectedIndex()+"',"
+                + "PERidTiPeFK='"+cbxTipUser.getSelectedIndex()+"',"
+                + "PERidRolFK='"+cbxRol.getSelectedIndex()+"',"
+                + "PERidCenFK='"+cbxCentro.getSelectedIndex()+"',"
+                + "PERidCenFK='"+estadobox.getSelectedIndex()+"',"
+                + "PERidFicFK='"+cbxFicha.getSelectedIndex()+"'"
+                + "where PERidPerPK='"+hrid+"'");
+
+            Jpaint();
+            String jokio = "<html><body> <b style =\"font-size: 20; color: white;\">Modificado Existosamente </b></body> </html>";
+            JOptionPane.showMessageDialog(null,jokio, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
+
+        }else{
+
+        }
+
+            resetPersona();
+    }//GEN-LAST:event_btnmodificarpersonaMouseClicked
+
     // ------------switch between colors for Active/Inactive color
     public void setLblColor(JLabel lbl)
     {
@@ -3398,6 +3454,7 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     private javax.swing.JLabel btnlogout1;
     private javax.swing.JLabel btnminimizar;
     private javax.swing.JLabel btnmodificarequipos;
+    private javax.swing.JLabel btnmodificarpersona;
     private javax.swing.JLabel btnpassac;
     private javax.swing.JLabel btnpersonas;
     private javax.swing.JLabel btnregistroac;

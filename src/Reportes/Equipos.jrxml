@@ -17,7 +17,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[select concat_ws(' ',PERnom1,PERnom2,PERape1,PERape2) as Nombres, 
-EQUidMarFK as Equipo,
+TEclaEqu as Equipo,
 MEdeMaEq as Marca, 
 EQUser as Serial
 from perequ PE
@@ -28,7 +28,7 @@ inner join marequ ME on (E.EQUidMarFK = ME.MEidMaEqPK)
 where PERnumDoc =$P{Doc};]]>
 	</queryString>
 	<field name="Nombres" class="java.lang.String"/>
-	<field name="Equipo" class="java.lang.Long"/>
+	<field name="Equipo" class="java.lang.String"/>
 	<field name="Marca" class="java.lang.String"/>
 	<field name="Serial" class="java.lang.String"/>
 	<background>
