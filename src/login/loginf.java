@@ -48,12 +48,14 @@ public class loginf extends javax.swing.JFrame {
     
     Pconnection con =new Pconnection();
 
-    public int prueba, cedula, opor=0, conti=0, contp=0, cont=0;
+    public int prueba, cedula, opor=0, conti=0, contp=0, cont=0, cont1=0, cont2=0, cont3=0, cont4=0;
     public static String rol="";
     public String pass,activo,contra;
     public static String nombre="";
     public static int cc;
     String jo = "<html><body> <b style =\"font-size: 20; color: white;\"> ";
+    
+    //Pinta mensajes JOptionPane
     private void Jpaint(){
         UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
         UIManager.put("Button.background", Color.orange);
@@ -61,13 +63,15 @@ public class loginf extends javax.swing.JFrame {
     }
     Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
 
+    //extrae contraseña para trabajarla en base de datos
     private void contrasena(){
         char clave[]=txtpass.getPassword();
         String clavedef = new String(clave);
         cedula = Integer.parseInt(txtid.getText());
         pass = clavedef;
     }
-  
+    
+    //Vista de mensajes
     public void adv(){
     adv1.setVisible(false);
     adv2.setVisible(false);
@@ -76,6 +80,7 @@ public class loginf extends javax.swing.JFrame {
     adv5.setVisible(false);
     }
     
+    //MEtodo oportunidad de digitar usuario y clave
     public void oportunidad(){
         switch (opor){
             case 1:
@@ -156,6 +161,7 @@ public class loginf extends javax.swing.JFrame {
         
     }
     
+    //Metodo valida Acceso
     public void accede(){
         int pr=0;
         try{
@@ -203,6 +209,8 @@ public class loginf extends javax.swing.JFrame {
     
     //Ruta de imagenes
     File ruta = new File("//"+Server+"/fotos");
+    
+    //Comprueba rol de acceso
     private void acceso() throws IOException{
         if(pass.equals(contra)){
             
@@ -259,6 +267,26 @@ public class loginf extends javax.swing.JFrame {
         }
     }
     
+    //Guarda conf Base de Datos
+    private void guardaBD(){
+        try {
+            //Guardar Datos Configuracion
+            pk.setServer(txtServer.getText());
+            pk.setDb(txtBD.getText());
+            pk.setUser(txtuserBD.getText());
+            pk.setPass(txtpassBD.getText());
+            pk.store();
+        } catch (IOException ex) {
+            Logger.getLogger(loginf.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //Intercambio de Paneles
+        jPConfBD.setVisible(false);
+        login.setVisible(true);
+        
+    }
+    
+    //Icono Scess
     public Image getIconImage(){
        Image retvalue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo3.png"));
        return retvalue;
@@ -554,6 +582,11 @@ public class loginf extends javax.swing.JFrame {
                 txtServerFocusLost(evt);
             }
         });
+        txtServer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtServerMouseClicked(evt);
+            }
+        });
         txtServer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtServerKeyPressed(evt);
@@ -605,6 +638,11 @@ public class loginf extends javax.swing.JFrame {
                 txtBDFocusLost(evt);
             }
         });
+        txtBD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBDMouseClicked(evt);
+            }
+        });
         txtBD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBDKeyPressed(evt);
@@ -654,6 +692,11 @@ public class loginf extends javax.swing.JFrame {
         txtuserBD.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtuserBDFocusLost(evt);
+            }
+        });
+        txtuserBD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtuserBDMouseClicked(evt);
             }
         });
         txtuserBD.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -831,11 +874,17 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelMouseClicked
 
     private void txtuserBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserBDMouseMoved
-        // TODO add your handling code here:
+        if (cont3<=0){
+            txtuserBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtuserBDMouseMoved
 
     private void txtuserBDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtuserBDFocusLost
-        // TODO add your handling code here:
+        if (cont4<=0){
+            txtpassBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtuserBDFocusLost
 
     private void txtuserBDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserBDKeyPressed
@@ -851,11 +900,17 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtuserBDKeyTyped
 
     private void txtpassBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassBDMouseMoved
-        // TODO add your handling code here:
+        if (cont4<=0){
+            txtpassBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtpassBDMouseMoved
 
     private void txtpassBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassBDMouseClicked
-        // TODO add your handling code here:
+        if (cont4<=0){
+            txtpassBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtpassBDMouseClicked
 
     private void txtpassBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassBDActionPerformed
@@ -867,21 +922,21 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassBDKeyReleased
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        //Guardar Datos Configuracion
-        
-        
-        //Intercambio de Paneles
-        jPConfBD.setVisible(false);
-        login.setVisible(true);
-        //barra.setVisible(true);
+        guardaBD();
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void txtBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBDMouseMoved
-        // TODO add your handling code here:
+        if (cont2<=0){
+            txtBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtBDMouseMoved
 
     private void txtBDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBDFocusLost
-        // TODO add your handling code here:
+        if (cont3<=0){
+            txtuserBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtBDFocusLost
 
     private void txtBDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBDKeyPressed
@@ -897,15 +952,21 @@ public class loginf extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBDKeyTyped
 
     private void txtServerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtServerMouseMoved
-        // TODO add your handling code here:
+        if (cont1<=0){
+            txtServer.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtServerMouseMoved
 
     private void txtServerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtServerFocusLost
-        // TODO add your handling code here:
+        if (cont2<=0){
+            txtBD.setText("");
+            cont++;
+        }
     }//GEN-LAST:event_txtServerFocusLost
 
     private void txtServerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServerKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtServerKeyPressed
 
     private void txtServerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServerKeyReleased
@@ -924,6 +985,27 @@ public class loginf extends javax.swing.JFrame {
         //barra.setVisible(true);
         btnConf.setVisible(false);
     }//GEN-LAST:event_btnConfMouseClicked
+
+    private void txtuserBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserBDMouseClicked
+        if (cont3<=0){
+            txtuserBD.setText("");
+            cont++;
+        }
+    }//GEN-LAST:event_txtuserBDMouseClicked
+
+    private void txtBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBDMouseClicked
+        if (cont2<=0){
+            txtBD.setText("");
+            cont++;
+        }
+    }//GEN-LAST:event_txtBDMouseClicked
+
+    private void txtServerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtServerMouseClicked
+        if (cont1<=0){
+            txtServer.setText("");
+            cont++;
+        }
+    }//GEN-LAST:event_txtServerMouseClicked
 
     /**
      * @param args the command line arguments

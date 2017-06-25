@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ConnectBD;
 
 /**
@@ -10,9 +5,11 @@ package ConnectBD;
  * @author FGALLARDO
  */
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.io.OutputStream;
 import java.util.Properties;
 
 
@@ -24,120 +21,157 @@ public class Propiedades {
           
     String result = "";
     InputStream inputStream;
+    OutputStream outputStream;
+    Properties prop = new Properties();
+    String propFileName = "Config/config.properties";
+    String outFileName = "resources/Config/config.properties";
+            
+ 
     
     public String getServer() throws IOException {
- 
-		try {
-			Properties prop = new Properties();
-			String propFileName = "Config/config.properties";
- 
-			inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
- 
-			if (inputStream != null) {
-				prop.load(inputStream);
-			} else {
-				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-			}
- 			result = prop.getProperty("server");
-			System.out.println(result);
-		} catch (Exception e) {
-			System.out.println("Exception: " + e);
-		} finally {
-			inputStream.close();
-		}
-		return result;
-	}
+        try {
+            
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            
+            if (inputStream != null) {
+                prop.load(inputStream);
+            } else {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            result = prop.getProperty("server");
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
+	return result;
+    }
     
     public String setServer(String Server) throws IOException{
-        
+        try {
+            
+            outputStream = new FileOutputStream(outFileName);
+ 
+            prop.setProperty("server", Server);
+
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
         return null;
     }
     
     public String getDb() throws IOException {
  
-		try {
-			Properties prop = new Properties();
-			String propFileName = "Config/config.properties";
+	try {
+            
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
-			inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
- 
-			if (inputStream != null) {
-				prop.load(inputStream);
-			} else {
-				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-			}
- 			// get the property value and print it out
-			String user = prop.getProperty("user");
-			String password = prop.getProperty("password");
- 
-			result = prop.getProperty("db");
-			System.out.println(result);
-		} catch (Exception e) {
-			System.out.println("Exception: " + e);
-		} finally {
-			inputStream.close();
-		}
-		return result;
+            if (inputStream != null) {
+                prop.load(inputStream);
+            } else {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            result = prop.getProperty("db");
+
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
+	return result;
     }
     
     public String setDb(String Db) throws IOException{
+        try {
         
+            outputStream = new FileOutputStream(outFileName);
+ 
+            prop.setProperty("db", Db);
+           
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
         return null;
     }
     
     public String getUser() throws IOException {
  
-		try {
-			Properties prop = new Properties();
-			String propFileName = "Config/config.properties";
+	try {
+            
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
-			inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
- 
-			if (inputStream != null) {
-				prop.load(inputStream);
-			} else {
-				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-			}
-			result = prop.getProperty("user");
-			System.out.println(result);
-		} catch (Exception e) {
-			System.out.println("Exception: " + e);
-		} finally {
-			inputStream.close();
-		}
-		return result;
+            if (inputStream != null) {
+		prop.load(inputStream);
+            } else {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            result = prop.getProperty("user");
+
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
+	return result;
     }
     
     public String setUser(String User) throws IOException{
+        try {
         
+            outputStream = new FileOutputStream(outFileName);
+ 
+            prop.setProperty("user", User);
+            
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
         return null;
     }
     
     public String getPass() throws IOException {
  
-		try {
-			Properties prop = new Properties();
-			String propFileName = "Config/config.properties";
+	try {
+            
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
-			inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
- 
-			if (inputStream != null) {
-				prop.load(inputStream);
-			} else {
-				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-			}
- 			result = prop.getProperty("password");
-			System.out.println(result);
-		} catch (Exception e) {
-			System.out.println("Exception: " + e);
-		} finally {
-			inputStream.close();
-		}
-		return result;
+            if (inputStream != null) {
+		prop.load(inputStream);
+            } else {
+		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+            }
+            result = prop.getProperty("password");
+
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
+        return result;
     }
     
     public String setPass(String Password) throws IOException{
-        
+        try {
+            
+            outputStream = new FileOutputStream(outFileName);
+ 
+            prop.setProperty("password", Password);
+            
+            } catch (Exception e) {
+		System.out.println("Exception: " + e);
+            } finally {
+		inputStream.close();
+            }
+        return null;
+    }
+    
+    public String store()throws IOException{
+        prop.store(outputStream, null);
         return null;
     }
     

@@ -3,7 +3,7 @@ package Reportes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+
 
 public class Conexion {
     
@@ -12,7 +12,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/scess","root",""); 
-            //JOptionPane.showMessageDialog(null,"conectado");
+            
             }catch(SQLException ex){
                 System.out.println("Error de MySql");
             }catch(ClassNotFoundException err){
