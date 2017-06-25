@@ -6,19 +6,17 @@
 package prototipo;
 
 import ConnectBD.Pconnection;
-import RegistroPersona.RegistroPersona;
+
 import EquiposVehiculos.MisEquiposVehiculos;
 import EquiposVehiculos.SelEquipoVehiculo;
 import HerramientasAdmin.BuscarRol;
 import RegistroE_S.MEntrada;
 import RegistroE_S.MREntradaSalida;
-import RegistroPersona.Buscar;
-import RegistroPersona.Cambiarpass;
-import static RegistroPersona.RegistroPersona.actfoto;
 import Reportes.IntReportes;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -216,12 +214,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        RegistroPersona obj = new RegistroPersona();
-        Escritorio.add(obj);
-        File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
-        String r=ruta+"/i.png";
-        actfoto(r);
-        obj.show();
+        
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -230,15 +223,18 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        MREntradaSalida obj = new MREntradaSalida();
+        MREntradaSalida obj = null;
+        try {
+            obj = new MREntradaSalida();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Escritorio.add(obj);
         obj.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        Buscar obj = new Buscar();
-        Escritorio.add(obj);
-        obj.show();
+        
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -248,7 +244,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        BuscarRol obj = new BuscarRol();
+        BuscarRol obj = null;
+        try {
+            obj = new BuscarRol();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Escritorio.add(obj);
         obj.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -264,9 +265,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Cambiarpass obj = new Cambiarpass();
-        Escritorio.add(obj);
-        obj.show();
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**

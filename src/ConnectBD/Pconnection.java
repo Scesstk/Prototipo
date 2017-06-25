@@ -5,7 +5,8 @@
  */
 package ConnectBD;
 
-import RegistroPersona.RegistroCentro;
+import java.awt.Color;
+import java.io.IOException;
 import prototipo.registrador;
 import prototipo.admin;
 import java.sql.Blob;
@@ -14,8 +15,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -23,8 +27,12 @@ import javax.swing.JOptionPane;
  */
 public class Pconnection {
     
+    Propiedades pk = new Propiedades();
+    String Server = pk.getServer();
+    String DB = pk.getDb();
+    String User = pk.getUser();
+    String Pass = pk.getPass();
     
-        
     private Connection conexion=null;
     private String select="";
     private String camp="";
@@ -36,17 +44,25 @@ public class Pconnection {
     private String insert="";
     private String combo="";
     private String combox="";
-    private String servidor="localhost";
-    private String database="scess";
-    private String usuario="root";
-    private String password="";
+    private String servidor=Server;
+    private String database=DB;
+    private String usuario=User;
+    private String password=Pass;
     private String cbx = "";
     private String delete = "";
 
     private String campb="";
     private Blob selBlob =null;
     
-    public Pconnection(){
+    private void Jpaint(){
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+    }
+    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
+    
+    
+    public Pconnection() throws IOException{
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
@@ -60,11 +76,15 @@ public class Pconnection {
  
         }
         catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n",
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null,"Consulta erronea: \n"+ 
-                        ex.getMessage(),"ERROR de ejecucion MySql",JOptionPane.WARNING_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Consulta erronea: \n "+ ex.getMessage() +"</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);    
+           /* JOptionPane.showMessageDialog(null,"Consulta erronea: \n"+ 
+                        ex.getMessage(),"ERROR de ejecucion MySql",JOptionPane.WARNING_MESSAGE);*/
         }
         
     }
@@ -85,8 +105,9 @@ public class Pconnection {
         }
        // System.out.println("prueba select "+sel);
         }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         
         return conexion;
@@ -105,7 +126,9 @@ public class Pconnection {
             
             System.out.println("prueba md5 "+delete);
         }catch(SQLException ex){
-            System.out.println(ex);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         return conexion;
         
@@ -122,9 +145,10 @@ public class Pconnection {
             sele = res.getString(camp);
         }
        // System.out.println("prueba select "+sele);
-        }        catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+        }catch(SQLException ex){
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         return conexion;
     }
@@ -133,28 +157,6 @@ public class Pconnection {
         return sele;
     } 
     
-    /**public ArrayList<Persona> getLstPersona() throws SQLException, Exception{
-            this.getConexion();
-            ArrayList<Persona> lst = new ArrayList<>();
-            ResultSet rs = this.("SELECT * FROM Persona");
-
-            if (rs != null) {
-                while(rs.next()){
-                    Cliente cli = new Cliente();
-                    cli.setId(rs.getInt("id"));
-                    cli.setPrimer_nombre(rs.getString("primer_nombre"));
-                    cli.setSegundo_nombre(rs.getString("segundo_nombre"));
-                    cli.setPrimer_apellido(rs.getString("primer_apellido"));
-                    cli.setSegundo_apellido(rs.getString("segundo_apellido"));
-                    cli.setCelular(rs.getString("celular"));
-                    cli.setEmail(rs.getString("email"));
-                    cli.setDireccion(rs.getString("direccion"));
-                    lst.add(cli);
-                }
-            }
-            this.cerrarConexion();
-            return lst;
-        }**/
     public Connection setUpdate(String Update){
         this.update=Update;
         try{
@@ -162,9 +164,10 @@ public class Pconnection {
         stado.executeUpdate(update);
 
         //System.out.println("prueba Update "+update);
-        }        catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+        }catch(SQLException ex){
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         return conexion;
     }
@@ -175,10 +178,11 @@ public class Pconnection {
         Statement stado = conexion.createStatement();
         stado.execute(insert);
 
-        System.out.println("prueba Insert "+insert);
-        }        catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+        //System.out.println("prueba Insert "+insert);
+        }catch(SQLException ex){
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         return conexion;
     }
@@ -194,8 +198,9 @@ public class Pconnection {
         }
       //  System.out.println("prueba md5 "+campmd5);
         }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
              
         return conexion;
@@ -204,29 +209,6 @@ public class Pconnection {
     public String getMd5(){
         return campmd5;
     }
-    /*
-    public Connection setLlenCombox(String Select, String Camp){
-        this.combo=Select;
-        try{
-            Statement es = conexion.createStatement();
-            ResultSet rs = es.executeQuery(combo);
-            cbx = null;
-            
-            while(rs.next()){
-                cbx = rs.getString(Camp);
-            }
-        }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
-        return conexion;
-    }
-    
-    public String getLlenCombox(){
-        return cbx;
-    }*/
     
     public Connection setLlenaCombo(String Select, String CampoN, int id){
         this.combo=Select;
@@ -270,8 +252,9 @@ public class Pconnection {
         }
         
         }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql</b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         
         return conexion;
@@ -281,9 +264,7 @@ public class Pconnection {
         return combox;
     }
     
-    
-    
-        public Connection setSelectBlob(String Select, String campoBlob){
+    public Connection setSelectBlob(String Select, String campoBlob){
         this.select = Select;
         this.campb = campoBlob;
         
@@ -295,37 +276,26 @@ public class Pconnection {
         }
        // System.out.println("prueba select "+sel);
         }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Error de Conexion MySql \n"+ex,
-                        "Error MySql",JOptionPane.ERROR_MESSAGE);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql </b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         
         return conexion;
     }
     
-
-    
     public Blob getSelectBlob(){
         return selBlob;
     }
 
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
- 
     public Connection cerrarConexion(){
         try {
             conexion.close();
             // System.out.println("Cerrando conexion a  . . . . . Ok");
         } catch (SQLException ex) {
-            System.out.println(ex);
+            Jpaint();
+            String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error de Conexion MySql </b> </body> </html>";
+            JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S - Error MySQL",JOptionPane.WARNING_MESSAGE,joke);
         }
         conexion=null;
         return conexion;

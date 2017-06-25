@@ -1,6 +1,7 @@
 
 package prototipo;
 
+import ConnectBD.*;
 import static RegistroE_S.MEntrada.tablaequipos;
 import RegistroE_S.MREntradaSalida;
 import java.awt.Color;
@@ -20,6 +21,9 @@ import mensajes.EntradaNovedad;
 import mensajes.EntradaNovedadEq;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -43,10 +47,10 @@ public class operador extends javax.swing.JFrame {
                 Thread.interrupted();
             }
         }
-   }
+    }
 
         Getset medio=new Getset();
-        ConnectBD.Pconnection objc= new ConnectBD.Pconnection();
+        Pconnection objc= new Pconnection();
         String marcaeq;
         String modeloeq;
         String serialeq;
@@ -56,8 +60,12 @@ public class operador extends javax.swing.JFrame {
         int doc;
         int idp;
     
-ConnectBD.Pconnection con= new ConnectBD.Pconnection();
-    public operador() {
+        Propiedades pk = new Propiedades();
+        String Server = pk.getServer();
+    
+        
+    Pconnection con= new Pconnection();
+    public operador() throws IOException {
         initComponents();
         
         NombreBD nmb = new NombreBD();
@@ -872,7 +880,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                               "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
+                            mensajes.EntradaNovedadEq obj = null;
+                           try {
+                               obj = new mensajes.EntradaNovedadEq();
+                           } catch (IOException ex) {
+                               Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+                           }
                             Principal.Escritorio.add(obj);
                             Dimension desktopSize = Principal.Escritorio.getSize();
                             Dimension FrameSize = obj.getSize();
@@ -908,7 +921,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaE = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();
+                mensajes.EntradaNovedad obj = null;
+                try {
+                    obj = new mensajes.EntradaNovedad();
+                } catch (IOException ex) {
+                    Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Principal.Escritorio.add(obj);
                 Dimension desktopSize = Principal.Escritorio.getSize();
                 Dimension FrameSize = obj.getSize();
@@ -953,7 +971,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                               "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
+                            mensajes.EntradaNovedadEq obj = null;
+                           try {
+                               obj = new mensajes.EntradaNovedadEq();
+                           } catch (IOException ex) {
+                               Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+                           }
                             Principal.Escritorio.add(obj);
                             Dimension desktopSize = Principal.Escritorio.getSize();
                             Dimension FrameSize = obj.getSize();
@@ -987,7 +1010,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaS = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();
+                mensajes.EntradaNovedad obj = null;
+                try {
+                    obj = new mensajes.EntradaNovedad();
+                } catch (IOException ex) {
+                    Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Principal.Escritorio.add(obj);
                 Dimension desktopSize = Principal.Escritorio.getSize();
                 Dimension FrameSize = obj.getSize();
@@ -1014,7 +1042,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         if (codigo==JOptionPane.YES_OPTION){
             dispose();
             con.cerrarConexion();
-            loginf log = new loginf();
+            loginf log = null;
+            try {
+                log = new loginf();
+            } catch (IOException ex) {
+                Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             log.setVisible(true);
         }
     }//GEN-LAST:event_btnlogoutMouseClicked
@@ -1063,7 +1096,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new operador().setVisible(true);
+                try {
+                    new operador().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

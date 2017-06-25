@@ -5,6 +5,7 @@
  */
 package RegistroE_S;
 
+import ConnectBD.Pconnection;
 import static RegistroE_S.MEntrada.jLFotor;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -33,7 +34,7 @@ public class MREntradaSalida extends javax.swing.JInternalFrame {
     ImageIcon icono = null;
     
     
-    public MREntradaSalida() {
+    public MREntradaSalida() throws IOException {
         initComponents();
         
     }
@@ -139,8 +140,13 @@ public class MREntradaSalida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtidKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ConnectBD.Pconnection objc= new ConnectBD.Pconnection();
-        //Getset medio= new Getset();
+        Pconnection objc = null;
+        try {
+            objc = new Pconnection();
+            //Getset medio= new Getset();
+        } catch (IOException ex) {
+            Logger.getLogger(MREntradaSalida.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         int id;
         
@@ -217,6 +223,8 @@ public class MREntradaSalida extends javax.swing.JInternalFrame {
                 txtid.setText(null);
                 dispose();
             } catch (SQLException ex) {
+                Logger.getLogger(MREntradaSalida.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(MREntradaSalida.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{

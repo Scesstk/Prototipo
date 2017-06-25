@@ -1,7 +1,9 @@
 
 package EquiposVehiculos;
 
+import ConnectBD.Pconnection;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,8 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class CrudEquipo extends javax.swing.JInternalFrame {
 
    
-    ConnectBD.Pconnection con= new ConnectBD.Pconnection();
-    public CrudEquipo() {
+    Pconnection con= new Pconnection();
+    public CrudEquipo() throws IOException {
         initComponents();
         btnmodificar.setVisible(false);
         cancelarm.setVisible(false);

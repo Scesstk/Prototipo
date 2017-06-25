@@ -5,6 +5,9 @@
  */
 package EquiposVehiculos;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import prototipo.Principal;
 
 /**
@@ -134,7 +137,12 @@ public class SelEquipoVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CrudEquipo obj=new CrudEquipo();
+        CrudEquipo obj = null;
+        try {
+            obj = new CrudEquipo();
+        } catch (IOException ex) {
+            Logger.getLogger(SelEquipoVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Principal.Escritorio.add(obj);
         obj.show();
         dispose();

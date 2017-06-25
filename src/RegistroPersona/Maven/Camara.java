@@ -35,7 +35,7 @@ public class Camara extends javax.swing.JFrame {
     private WebcamPanel panel = null;
     public int id=0;
     
-    public Camara() {
+    public Camara() throws IOException{
         initComponents();
         
         //Se crea un objeto de la clase webcam
@@ -143,7 +143,7 @@ public class Camara extends javax.swing.JFrame {
                 dispose();
             }
         } catch (IOException ex) {
-            Logger.getLogger(jFrameCamera.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Camara.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -178,7 +178,11 @@ public class Camara extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Camara().setVisible(true);
+                try {
+                    new Camara().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Camara.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

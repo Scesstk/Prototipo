@@ -1,21 +1,20 @@
 
 package prototipo;
 
-import ConnectBD.Pconnection;
+import ConnectBD.*;
 import RegistroPersona.Maven.Camara;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,11 +22,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 import login.loginf;
-import static login.loginf.nombre;
 
 public class registrador extends javax.swing.JFrame {
 
@@ -43,7 +40,7 @@ public class registrador extends javax.swing.JFrame {
    }
     
     Pconnection con= new Pconnection();
-    public registrador() {
+    public registrador() throws IOException{
         initComponents();
         
         NombreBD nmb = new NombreBD();
@@ -120,7 +117,12 @@ public class registrador extends javax.swing.JFrame {
     public String busq = "";
     private int cedula;
     private int docu;
-    File ruta = new File("http://192.168.1.17/api/fotos");
+
+    Propiedades pk = new Propiedades();
+    String Server = pk.getServer();
+
+
+    File ruta = new File("http://"+Server+"/api/fotos");
     DefaultTableModel modeloe;
     
     private void Jpaint(){
@@ -1704,8 +1706,9 @@ public class registrador extends javax.swing.JFrame {
                 }catch(SQLException e){
                     System.out.println(e.getMessage());
 
-                } /*      catch (FileNotFoundException ex) {
-                        Logger.getLogger(RegistroPersona.class.getName()).log(Level.SEVERE, null, ex);*/
+                } catch (IOException ex) {
+                    Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+                } 
             }
         }
         
@@ -1721,7 +1724,9 @@ public class registrador extends javax.swing.JFrame {
                 }catch(SQLException e){
                     System.out.println(e.getMessage());
 
-                }
+                } catch (IOException ex) {
+            Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
                     
                 
@@ -1870,7 +1875,12 @@ public class registrador extends javax.swing.JFrame {
         if (codigo==JOptionPane.YES_OPTION){
             dispose();
             con.cerrarConexion();
-            loginf log = new loginf();
+            loginf log = null;
+            try {
+                log = new loginf();
+            } catch (IOException ex) {
+                Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             log.setVisible(true);
 	}
     }//GEN-LAST:event_btnlogoutMouseClicked
@@ -1993,7 +2003,11 @@ public class registrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new registrador().setVisible(true);
+                try {
+                    new registrador().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

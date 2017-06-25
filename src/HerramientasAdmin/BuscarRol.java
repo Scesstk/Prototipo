@@ -5,14 +5,15 @@
  */
 package HerramientasAdmin;
 
+import ConnectBD.Pconnection;
 import RegistroE_S.MEntrada;
-import RegistroPersona.*;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 import static prototipo.Principal.Escritorio;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,14 +24,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import prototipo.Principal;
-import RegistroPersona.RegistroPersona;
-import static RegistroPersona.RegistroPersona.txtDocumento;
 
 
 public class BuscarRol extends javax.swing.JInternalFrame {
     
-    ConnectBD.Pconnection con= new ConnectBD.Pconnection();
-    public BuscarRol() {
+    Pconnection con= new Pconnection();
+    public BuscarRol() throws IOException {
         initComponents();
         
         //btnmodificar.setVisible(false);
@@ -278,8 +277,8 @@ public class BuscarRol extends javax.swing.JInternalFrame {
         con.setSelectInt(("SELECT Num_documento FROM persona WHERE Num_documento='"+busq+"'"),"Num_documento");
                 
              id=con.getSelectInt();
-            
-             
+        //Al eliminar REgistro persona se comenta este codigo    
+        /*     
         
         if (id==cedula){
             
@@ -389,7 +388,7 @@ public class BuscarRol extends javax.swing.JInternalFrame {
             obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
             obj.show();
             txtconsulta.setText(null);
-        }
+        }*/
     }//GEN-LAST:event_infActionPerformed
 
     private void txtconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsultaActionPerformed

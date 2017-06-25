@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package mensajes;
+import ConnectBD.Pconnection;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 /**
  *
@@ -11,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class EntradaNovedadEq extends javax.swing.JInternalFrame {
 
-    ConnectBD.Pconnection objc= new ConnectBD.Pconnection();
+    Pconnection objc= new Pconnection();
     
     public static int Enidp;
     public static int tipES;
@@ -19,7 +21,7 @@ public class EntradaNovedadEq extends javax.swing.JInternalFrame {
     /**
      * Creates new form EntradaNovedad
      */
-    public EntradaNovedadEq() {
+    public EntradaNovedadEq() throws IOException {
         initComponents();
         lue.setVisible(false);
         lus.setVisible(false);

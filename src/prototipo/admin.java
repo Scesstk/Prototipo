@@ -1,7 +1,7 @@
 
 package prototipo;
 
-import ConnectBD.Pconnection;
+import ConnectBD.*;
 import Reportes.reporte_equipo;
 import RegistroPersona.Maven.Camara;
 import Reportes.Conexion;
@@ -19,10 +19,13 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -58,8 +61,8 @@ private String consulta;
         }
    }
     
-ConnectBD.Pconnection con= new ConnectBD.Pconnection();
-    public admin() {
+    Pconnection con= new Pconnection();
+    public admin() throws IOException {
         initComponents();
         
         NombreBD nmb = new NombreBD();
@@ -178,8 +181,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
     public int hrid,idequipos,pers_equipos,equip_equipos,tipo,marca;
     public String hrbusq = "";
     private int cedula,cedulaequipos;
-    File ruta2 = new File("//192.168.1.17/fotos");
-    File ruta = new File("http://192.168.1.17/api/fotos");
+    
+    Propiedades pk = new Propiedades();
+    String Server = pk.getServer();
+    
+    File ruta2 = new File("//"+Server+"/fotos");
+    File ruta = new File("http://"+Server+"/api/fotos");
     DefaultTableModel modeloe;
 
     
@@ -3145,6 +3152,8 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
                 }catch(SQLException e){
                     System.out.println(e.getMessage());
 
+                } catch (IOException ex) {
+                    Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
                 } /*      catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistroPersona.class.getName()).log(Level.SEVERE, null, ex);*/
                 }
@@ -3163,7 +3172,9 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
             }catch(SQLException e){
                 System.out.println(e.getMessage());
 
-            }
+            } catch (IOException ex) {
+        Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
             resetPersona();
     }//GEN-LAST:event_btnguardarMouseClicked
@@ -3287,7 +3298,12 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         if (codigo==JOptionPane.YES_OPTION){
             dispose();
             con.cerrarConexion();
-            loginf log = new loginf();
+            loginf log = null;
+            try {
+                log = new loginf();
+            } catch (IOException ex) {
+                Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
             log.setVisible(true);
         }
     }//GEN-LAST:event_btnlogout1MouseClicked
@@ -3408,7 +3424,11 @@ ConnectBD.Pconnection con= new ConnectBD.Pconnection();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin().setVisible(true);
+                try {
+                    new admin().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

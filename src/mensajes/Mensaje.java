@@ -8,6 +8,9 @@ package mensajes;
 import RegistroE_S.MEntrada;
 import RegistroE_S.MREntradaSalida;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import prototipo.Principal;
 import static prototipo.Principal.Escritorio;
 
@@ -88,7 +91,12 @@ public class Mensaje extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        MREntradaSalida obj = new MREntradaSalida();
+        MREntradaSalida obj = null;
+        try {
+            obj = new MREntradaSalida();
+        } catch (IOException ex) {
+            Logger.getLogger(Mensaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Escritorio.add(obj);
         Dimension desktopSize = Principal.Escritorio.getSize();
             Dimension FrameSize = obj.getSize();

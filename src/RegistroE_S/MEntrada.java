@@ -5,12 +5,16 @@
  */
 package RegistroE_S;
 
+import ConnectBD.Pconnection;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -26,7 +30,7 @@ import static prototipo.Principal.Escritorio;
  */
 public class MEntrada extends javax.swing.JInternalFrame {
     Getset medio=new Getset();
-    ConnectBD.Pconnection objc= new ConnectBD.Pconnection();
+    Pconnection objc= new Pconnection();
     String marcaeq;
     String modeloeq;
     String serialeq;
@@ -36,7 +40,7 @@ public class MEntrada extends javax.swing.JInternalFrame {
     int doc;
     int idp;
     
-    public MEntrada() {
+    public MEntrada() throws IOException {
         initComponents();
         jButton1.setEnabled(false);
     }
@@ -474,7 +478,12 @@ public class MEntrada extends javax.swing.JInternalFrame {
                               "ORDER BY ESQidEnSaPK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
+                            mensajes.EntradaNovedadEq obj = null;
+                           try {
+                               obj = new mensajes.EntradaNovedadEq();
+                           } catch (IOException ex) {
+                               Logger.getLogger(MEntrada.class.getName()).log(Level.SEVERE, null, ex);
+                           }
                             Principal.Escritorio.add(obj);
                             Dimension desktopSize = Principal.Escritorio.getSize();
                             Dimension FrameSize = obj.getSize();
@@ -510,7 +519,12 @@ public class MEntrada extends javax.swing.JInternalFrame {
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaE = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();
+                mensajes.EntradaNovedad obj = null;
+                try {
+                    obj = new mensajes.EntradaNovedad();
+                } catch (IOException ex) {
+                    Logger.getLogger(MEntrada.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Principal.Escritorio.add(obj);
                 Dimension desktopSize = Principal.Escritorio.getSize();
                 Dimension FrameSize = obj.getSize();
@@ -554,7 +568,12 @@ public class MEntrada extends javax.swing.JInternalFrame {
                               "ORDER BY ESQidEnSaPK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj= new mensajes.EntradaNovedadEq();
+                            mensajes.EntradaNovedadEq obj = null;
+                           try {
+                               obj = new mensajes.EntradaNovedadEq();
+                           } catch (IOException ex) {
+                               Logger.getLogger(MEntrada.class.getName()).log(Level.SEVERE, null, ex);
+                           }
                             Principal.Escritorio.add(obj);
                             Dimension desktopSize = Principal.Escritorio.getSize();
                             Dimension FrameSize = obj.getSize();
@@ -588,7 +607,12 @@ public class MEntrada extends javax.swing.JInternalFrame {
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaS = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj= new mensajes.EntradaNovedad();
+                mensajes.EntradaNovedad obj = null;
+                try {
+                    obj = new mensajes.EntradaNovedad();
+                } catch (IOException ex) {
+                    Logger.getLogger(MEntrada.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Principal.Escritorio.add(obj);
                 Dimension desktopSize = Principal.Escritorio.getSize();
                 Dimension FrameSize = obj.getSize();
@@ -612,7 +636,12 @@ public class MEntrada extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtcargoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MREntradaSalida obj = new MREntradaSalida();
+        MREntradaSalida obj = null;
+        try {
+            obj = new MREntradaSalida();
+        } catch (IOException ex) {
+            Logger.getLogger(MEntrada.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Escritorio.add(obj);
         Dimension desktopSize = Principal.Escritorio.getSize();
             Dimension FrameSize = obj.getSize();
