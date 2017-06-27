@@ -876,14 +876,14 @@ public class loginf extends javax.swing.JFrame {
     private void txtuserBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserBDMouseMoved
         if (cont3<=0){
             txtuserBD.setText("");
-            cont++;
+            cont3++;
         }
     }//GEN-LAST:event_txtuserBDMouseMoved
 
     private void txtuserBDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtuserBDFocusLost
         if (cont4<=0){
             txtpassBD.setText("");
-            cont++;
+            cont4++;
         }
     }//GEN-LAST:event_txtuserBDFocusLost
 
@@ -902,14 +902,14 @@ public class loginf extends javax.swing.JFrame {
     private void txtpassBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassBDMouseMoved
         if (cont4<=0){
             txtpassBD.setText("");
-            cont++;
+            cont4++;
         }
     }//GEN-LAST:event_txtpassBDMouseMoved
 
     private void txtpassBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassBDMouseClicked
         if (cont4<=0){
             txtpassBD.setText("");
-            cont++;
+            cont4++;
         }
     }//GEN-LAST:event_txtpassBDMouseClicked
 
@@ -928,14 +928,14 @@ public class loginf extends javax.swing.JFrame {
     private void txtBDMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBDMouseMoved
         if (cont2<=0){
             txtBD.setText("");
-            cont++;
+            cont2++;
         }
     }//GEN-LAST:event_txtBDMouseMoved
 
     private void txtBDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBDFocusLost
         if (cont3<=0){
             txtuserBD.setText("");
-            cont++;
+            cont3++;
         }
     }//GEN-LAST:event_txtBDFocusLost
 
@@ -954,14 +954,14 @@ public class loginf extends javax.swing.JFrame {
     private void txtServerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtServerMouseMoved
         if (cont1<=0){
             txtServer.setText("");
-            cont++;
+            cont1++;
         }
     }//GEN-LAST:event_txtServerMouseMoved
 
     private void txtServerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtServerFocusLost
         if (cont2<=0){
             txtBD.setText("");
-            cont++;
+            cont2++;
         }
     }//GEN-LAST:event_txtServerFocusLost
 
@@ -989,21 +989,21 @@ public class loginf extends javax.swing.JFrame {
     private void txtuserBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtuserBDMouseClicked
         if (cont3<=0){
             txtuserBD.setText("");
-            cont++;
+            cont3++;
         }
     }//GEN-LAST:event_txtuserBDMouseClicked
 
     private void txtBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBDMouseClicked
         if (cont2<=0){
             txtBD.setText("");
-            cont++;
+            cont2++;
         }
     }//GEN-LAST:event_txtBDMouseClicked
 
     private void txtServerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtServerMouseClicked
         if (cont1<=0){
             txtServer.setText("");
-            cont++;
+            cont1++;
         }
     }//GEN-LAST:event_txtServerMouseClicked
 

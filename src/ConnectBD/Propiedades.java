@@ -6,6 +6,7 @@ package ConnectBD;
  */
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +35,7 @@ public class Propiedades {
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
             
             if (inputStream != null) {
-                prop.load(inputStream);
+                prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
@@ -69,7 +70,7 @@ public class Propiedades {
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
-                prop.load(inputStream);
+                prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
@@ -105,7 +106,7 @@ public class Propiedades {
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
-		prop.load(inputStream);
+		prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
@@ -141,7 +142,7 @@ public class Propiedades {
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
-		prop.load(inputStream);
+		prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
