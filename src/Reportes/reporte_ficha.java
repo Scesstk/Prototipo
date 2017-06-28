@@ -1,6 +1,7 @@
 
 package Reportes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class reporte_ficha {
     
     IntReportes repor = new IntReportes();
     
-     public void reporteFicha (int campficha){
+     public void reporteFicha (int campficha) throws IOException{
          
         JasperReport jr;
         try {

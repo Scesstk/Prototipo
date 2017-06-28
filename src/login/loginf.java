@@ -12,7 +12,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import prototipo.Principal;
+//import prototipo.Principal;
 import ConnectBD.*;
 import java.awt.Color;
 import java.awt.KeyboardFocusManager;
@@ -26,7 +26,7 @@ import javax.swing.Icon;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import prototipo.admin;
-import prototipo.operador;
+import RegistroE_S.operador;
 import prototipo.registrador;
 
 
@@ -344,7 +344,7 @@ public class loginf extends javax.swing.JFrame {
         btnConf.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnConf.setForeground(new java.awt.Color(255, 255, 255));
         btnConf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/periodico (1).png"))); // NOI18N
+        btnConf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/settings.png"))); // NOI18N
         btnConf.setToolTipText("");
         btnConf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnConf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -565,7 +565,7 @@ public class loginf extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPConfBD.add(separador5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, 2));
+        jPConfBD.add(separador5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 103, -1, 2));
 
         txtServer.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtServer.setForeground(new java.awt.Color(153, 153, 153));
@@ -621,7 +621,7 @@ public class loginf extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPConfBD.add(separador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, 2));
+        jPConfBD.add(separador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, -1, 2));
 
         txtBD.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtBD.setForeground(new java.awt.Color(153, 153, 153));
@@ -677,7 +677,7 @@ public class loginf extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPConfBD.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, 2));
+        jPConfBD.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 223, -1, 2));
 
         txtuserBD.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtuserBD.setForeground(new java.awt.Color(153, 153, 153));
@@ -715,7 +715,7 @@ public class loginf extends javax.swing.JFrame {
         lblPass.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         lblPass.setForeground(new java.awt.Color(252, 115, 35));
         lblPass.setText("Password BD");
-        jPConfBD.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        jPConfBD.add(lblPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         separador3.setBackground(new java.awt.Color(252, 115, 35));
         separador3.setForeground(new java.awt.Color(252, 115, 35));
@@ -733,7 +733,7 @@ public class loginf extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPConfBD.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, 2));
+        jPConfBD.add(separador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, 2));
 
         txtpassBD.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtpassBD.setForeground(new java.awt.Color(153, 153, 153));
@@ -760,7 +760,7 @@ public class loginf extends javax.swing.JFrame {
                 txtpassBDKeyReleased(evt);
             }
         });
-        jPConfBD.add(txtpassBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 173, 20));
+        jPConfBD.add(txtpassBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 173, 20));
 
         btnCancel.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(89, 181, 72));

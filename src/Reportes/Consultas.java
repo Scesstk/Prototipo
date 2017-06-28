@@ -1,5 +1,6 @@
 package Reportes;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,10 @@ public class Consultas {
 private Connection con;
 private ResultSet rs;//contenedor
 private String consulta;
+
+    public Consultas() throws IOException{
+    
+    }
 
     public Consultas(Connection c, String consulta_sql) {
         this.con = c;

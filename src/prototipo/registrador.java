@@ -69,27 +69,28 @@ public class registrador extends javax.swing.JFrame {
         //item de rhbox
         cbxRh.addItem("Seleccione");
         cbxRh.addItem("A+");
-        cbxRh.addItem("A-");
-        cbxRh.addItem("AB+");
-        cbxRh.addItem("AB-");
         cbxRh.addItem("B+");
-        cbxRh.addItem("B-");
+        cbxRh.addItem("AB+");
         cbxRh.addItem("O+");
+        cbxRh.addItem("A-");
+        cbxRh.addItem("B-");
+        cbxRh.addItem("AB-");
         cbxRh.addItem("O-");
         cbxRh.select(0);
         
         //item de tipodocumentobox
         cbxTipoDoc.add("Seleccione");
-        cbxTipoDoc.add("T.I.");
-        cbxTipoDoc.add("C.C.");
-        cbxTipoDoc.add("C.E.");
+        cbxTipoDoc.add("RC");
+        cbxTipoDoc.add("TI");
+        cbxTipoDoc.add("CC");
+        cbxTipoDoc.add("CE");
         cbxTipoDoc.select(0);
         //item de rolbox
         cbxRol.addItem("Seleccione");
-        cbxRol.addItem("Administrador");
-        cbxRol.addItem("Operador");
-        cbxRol.addItem("Registrador");
-        cbxRol.addItem("Ninguno");
+        cbxRol.addItem("ADMINISTRADOR");
+        cbxRol.addItem("OPERADOR");
+        cbxRol.addItem("REGISTRADOR");
+        cbxRol.addItem("NINGUNO");
         cbxRol.select(0);
         
         //item de fichabox
@@ -102,12 +103,11 @@ public class registrador extends javax.swing.JFrame {
         cbxTipUser.addItem("Aprendiz");
         cbxTipUser.addItem("Contratista");
         cbxTipUser.addItem("Administrativo");
-        cbxTipUser.addItem("Visitante");
         cbxTipUser.select(0);
         //item de generobox
         cbxGenero.addItem("Seleccione");
-        cbxGenero.addItem("Femenino");
-        cbxGenero.addItem("Masculino");
+        cbxGenero.addItem("FEMENINO");
+        cbxGenero.addItem("MASCULINO");
         cbxGenero.select(0);
     }
     
@@ -500,9 +500,10 @@ public class registrador extends javax.swing.JFrame {
 
         cambiarpass.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         cambiarpass.setForeground(new java.awt.Color(89, 181, 72));
-        cambiarpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena.png"))); // NOI18N
+        cambiarpass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena (1).png"))); // NOI18N
         cambiarpass.setText("Cambiar Contraseña");
         cambiarpass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cambiarpass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cambiarpass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         cambiarpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -515,14 +516,6 @@ public class registrador extends javax.swing.JFrame {
         jpHomeLayout.setHorizontalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(btncentros)
-                .addGap(80, 80, 80)
-                .addComponent(btnusuarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(btnfichas)
-                .addGap(101, 101, 101))
-            .addGroup(jpHomeLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -530,38 +523,50 @@ public class registrador extends javax.swing.JFrame {
                     .addGroup(jpHomeLayout.createSequentialGroup()
                         .addComponent(etiquetanombre)
                         .addGap(3, 3, 3)
-                        .addComponent(lblnombre)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lblnombre))
                     .addGroup(jpHomeLayout.createSequentialGroup()
                         .addComponent(etiquetatrol)
                         .addGap(7, 7, 7)
-                        .addComponent(lblrol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cambiarpass)))
-                .addContainerGap())
+                        .addComponent(lblrol))
+                    .addGroup(jpHomeLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnfichas)
+                            .addComponent(btncentros))
+                        .addGap(140, 140, 140)
+                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpHomeLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnusuarios))
+                            .addComponent(cambiarpass))))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHomeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(341, 341, 341))
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetanombre)
+                    .addComponent(lblnombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetatrol)
+                    .addComponent(lblrol))
+                .addGap(18, 18, 18)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpHomeLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetanombre)
-                            .addComponent(lblnombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetatrol)
-                            .addComponent(lblrol)
-                            .addComponent(cambiarpass))))
-                .addGap(36, 36, 36)
-                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnusuarios)
-                    .addComponent(btnfichas)
-                    .addComponent(btncentros))
-                .addContainerGap(149, Short.MAX_VALUE))
+                        .addComponent(btncentros)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnfichas))
+                    .addGroup(jpHomeLayout.createSequentialGroup()
+                        .addComponent(btnusuarios)
+                        .addGap(3, 3, 3)
+                        .addComponent(cambiarpass, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 760, 420));
@@ -1888,6 +1893,7 @@ public class registrador extends javax.swing.JFrame {
     private void lbsubirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbsubirMouseClicked
         try{
             Camara window = new Camara();
+            window.id=2;
             window.show();
             window.setLocationRelativeTo(null);
         }catch (Exception e){

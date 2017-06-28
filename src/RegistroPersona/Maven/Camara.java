@@ -5,6 +5,7 @@
  */
 package RegistroPersona.Maven;
 
+import ConnectBD.Propiedades;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import java.awt.Color;
@@ -34,6 +35,35 @@ public class Camara extends javax.swing.JFrame {
     private Webcam webcam = null;
     private WebcamPanel panel = null;
     public int id=0;
+    
+    Propiedades pk = new Propiedades();
+    String Server = pk.getServer();
+    File ruta = new File("//"+Server+"/fotos");
+    
+    private void Guarda() throws IOException{
+        BufferedImage image = webcam.getImage();
+        
+        if(id==1){
+            ImageIO.write(image, "PNG", new File(ruta+"/"+admin.txtDocumento.getText()+".png"));
+        }else if(id==2){
+            ImageIO.write(image, "PNG", new File(ruta+"/"+registrador.txtDocumento.getText()+".png"));
+        }
+                
+        //cerrar camara
+        webcam.close();
+        //actualiza foto
+                
+        if(id==1){
+            String r=ruta+"/"+admin.txtDocumento.getText()+".png";
+            admin.fotoPer(r);
+        }else if(id==2){
+            String r=ruta+"/"+registrador.txtDocumento.getText()+".png";
+            registrador.fotoPer(r);
+        }
+                               
+                //cierra ventana
+        dispose();
+    }
     
     public Camara() throws IOException{
         initComponents();
@@ -111,39 +141,30 @@ public class Camara extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        try {
-            BufferedImage image = webcam.getImage();
-            
-            if(registrador.txtDocumento.getText().equals("")){
+        
+        if(id==1){
+            if(admin.txtDocumento.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "El campo Documento no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
             }else{
-                //nombre y formato de la imagen de salida
-                //File ruta = new File(System.getenv("APPDATA")+"/SCESS/Images");
-                File ruta = new File("//192.168.1.17/fotos");
-                //ruta.mkdir();
-                if(id==1){
-                    ImageIO.write(image, "PNG", new File(ruta+"/"+admin.txtDocumento.getText()+".png"));
-                }else if(id==2){
-                    ImageIO.write(image, "PNG", new File(ruta+"/"+registrador.txtDocumento.getText()+".png"));
+            
+                try {
+                Guarda();
+                } catch (IOException ex) {
+                Logger.getLogger(Camara.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                //cerrar camara
-                webcam.close();
-                //actualiza foto
-                
-                if(id==1){
-                    String r=ruta+"/"+admin.txtDocumento.getText()+".png";
-                    admin.fotoPer(r);
-                }else if(id==2){
-                    String r=ruta+"/"+registrador.txtDocumento.getText()+".png";
-                    registrador.fotoPer(r);
-                }
-                               
-                //cierra ventana
-                dispose();
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Camara.class.getName()).log(Level.SEVERE, null, ex);
+        }else if(id==2){
+            if(registrador.txtDocumento.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "El campo Documento no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            }else{
+            
+                try {
+                    Guarda();
+                } catch (IOException ex) {
+                    Logger.getLogger(Camara.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 

@@ -16,6 +16,7 @@ public class Nousuario extends javax.swing.JInternalFrame {
      */
     public Nousuario() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
     }
 

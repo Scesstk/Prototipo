@@ -3,6 +3,7 @@ package Reportes;
 
 import Reportes.Conexion;
 import Reportes.IntReportes;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class reporte_equipo{
   
     
             
-    public void reporteDocumento (String campodocumento){
+    public void reporteDocumento (String campodocumento) throws IOException{
         JasperReport jr = null;
         try {
             Map parametro = new HashMap();

@@ -2,15 +2,9 @@
 package prototipo;
 
 import ConnectBD.*;
-import Reportes.reporte_equipo;
+
 import RegistroPersona.Maven.Camara;
-import Reportes.Conexion;
-import Reportes.Consultas;
-import Reportes.IntReportes;
-import Reportes.reporte_docfecha;
-import Reportes.reporte_fecha;
-import Reportes.reporte_ficha;
-import Reportes.reporte_fichaFecha;
+import Reportes.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
@@ -19,6 +13,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -111,10 +106,10 @@ private String consulta;
         
         //item de tipodocumentobox
         cbxTipoDoc.add("Seleccione");
-        cbxTipoDoc.add("CC");
-        cbxTipoDoc.add("CE");
         cbxTipoDoc.add("RC");
         cbxTipoDoc.add("TI");
+        cbxTipoDoc.add("CC");
+        cbxTipoDoc.add("CE");
         cbxTipoDoc.select(0);
         //item de rolbox
         cbxRol.addItem("Seleccione");
@@ -135,7 +130,6 @@ private String consulta;
         cbxTipUser.addItem("Aprendiz");
         cbxTipUser.addItem("Contratista");
         cbxTipUser.addItem("Administrativo");
-        cbxTipUser.addItem("Visitante");
         cbxTipUser.select(0);
         //item de generobox
         cbxGenero.addItem("Seleccione");
@@ -181,6 +175,7 @@ private String consulta;
     public int hrid,idequipos,pers_equipos,equip_equipos,tipo,marca;
     public String hrbusq = "";
     private int cedula,cedulaequipos;
+    private int docu;
     
     Propiedades pk = new Propiedades();
     String Server = pk.getServer();
@@ -226,7 +221,7 @@ private String consulta;
     }
     
      //Valida campos y realiza los reportes por documento
-     public void validarCampos(){
+     public void validarCampos() throws IOException{
         
          
         consulta = "select PERnumDoc from persona where PERnumDoc = '"+campoDocumento.getText()+"';";
@@ -335,7 +330,7 @@ private String consulta;
 }
      //Valida campos y genera el reporte por ficha
      
-     public void validarFicha (){
+     public void validarFicha () throws IOException{
          
         consulta = "select FICnumFic from ficha where FICnumFic = '"+campoFicha.getText()+"' ;";
         
@@ -1799,7 +1794,7 @@ private String consulta;
                 btnmodificarpersonaMouseClicked(evt);
             }
         });
-        jPanel1.add(btnmodificarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 1040, 130, -1));
+        jPanel1.add(btnmodificarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 1070, 130, -1));
 
         separador8.setBackground(new java.awt.Color(252, 115, 35));
         separador8.setForeground(new java.awt.Color(252, 115, 35));
@@ -2649,6 +2644,9 @@ private String consulta;
         con.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen", 1);
         cbxCentro.addItem(con.getLlenaCombo());
         //cbxCentro.remove(3);
+        //intercambio de botones
+        btnguardar.setVisible(true);
+        btnmodificarpersona.setVisible(false);
         
         estadobox.setEnabled(false);
         
@@ -2676,6 +2674,9 @@ private String consulta;
         con.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen", 1);
         cbxCentro.addItem(con.getLlenaCombo());
         //cbxCentro.remove(3);
+        //intercambio de botones
+        btnguardar.setVisible(true);
+        btnmodificarpersona.setVisible(false);
         
         estadobox.setEnabled(false);
         
@@ -2812,12 +2813,12 @@ private String consulta;
     }//GEN-LAST:event_btncancelarpassMouseClicked
 
     private void btnequiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnequiposMouseClicked
-        //switch bettween Jpanels
-       oculta();
-       
+       //switch bettween Jpanels
+        oculta();
+        hequipo.setVisible(true);
+        bequipo.setVisible(true);
         body.setVisible(true);
         head.setVisible(true);
-       
     }//GEN-LAST:event_btnequiposMouseClicked
 
     private void equipostxtconsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_equipostxtconsultaMouseClicked
@@ -2965,10 +2966,18 @@ private String consulta;
 
     private void btnguardarcentro2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarcentro2MouseClicked
         if (radioFicha.getModel()== grupoRadio.getSelection()){
-            validarFicha();
-           // validarFechas();
+            try {
+                validarFicha();
+                // validarFechas();
+            } catch (IOException ex) {
+                Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-            validarCampos();
+            try {
+                validarCampos();
+            } catch (IOException ex) {
+                Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
        
     }//GEN-LAST:event_btnguardarcentro2MouseClicked
@@ -2982,6 +2991,7 @@ private String consulta;
         hhome.setVisible(true);
         bhome.setVisible(true);
         body.setVisible(true);
+        head.setVisible(true);
         
     }//GEN-LAST:event_btncancelarreportesMouseClicked
 
@@ -3044,58 +3054,37 @@ private String consulta;
     }//GEN-LAST:event_btncancelarMouseClicked
 
     private void btnguardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseClicked
-
-        int hrid,docu = 0,id=0;
-        con.setSelectInt("Select PERidPerPK from persona where PERnumDoc ='"+txtDocumento.getText()+"'","PERidPerPK");
-        hrid = con.getSelectInt();
+        
+        docu = 0;
+        int id=0;
         con.setSelectInt("Select PERnumDoc from persona where PERnumDoc ='"+txtDocumento.getText()+"'","PERnumDoc");
         docu = con.getSelectInt();
-
+        
         con.setSelectInt("Select PERidPerPK from persona","PERidPerPK");
         id=con.getSelectInt();
-
-        //FileInputStream fi = null;
+        
+        FileInputStream fi = null;
 
         id++;
-
+        
         if(docu>0){
-
-            con.setUpdate("update persona set PERidDocFK='"+cbxTipoDoc.getSelectedIndex()+"',"
-                + "PERnumDoc='"+txtDocumento.getText()+"',"
-                + "PERnom1='"+txtNombre1.getText()+"',"
-                + "PERnom2='"+txtNombre2.getText()+"',"
-                + "PERape1='"+txtApellido1.getText()+"',"
-                + "PERape2='"+txtApellido2.getText()+"',"
-                + "PERidGenFK='"+cbxGenero.getSelectedIndex()+"',"
-                + "PERdir='"+txtDireccion.getText()+"',"
-                + "PERtelFij='"+txtTelefono.getText()+"',"
-                + "PERcel='"+txtCelular.getText()+"',"
-                + "PERcor='"+txtEmail.getText()+"',"
-                + "PERidRhFK='"+cbxRh.getSelectedIndex()+"',"
-                + "PERidTiPeFK='"+cbxTipUser.getSelectedIndex()+"',"
-                + "PERidRolFK='"+cbxRol.getSelectedIndex()+"',"
-                + "PERidCenFK='"+cbxCentro.getSelectedIndex()+"',"
-                + "PERidCenFK='"+estadobox.getSelectedIndex()+"',"
-                + "PERidFicFK='"+cbxFicha.getSelectedIndex()+"'"
-                + "where PERidPerPK='"+hrid+"'");
-
             Jpaint();
-            String jokio = "<html><body> <b style =\"font-size: 20; color: white;\">Modificado Existosamente </b></body> </html>";
+            String jokio = "<html><body> <b style =\"font-size: 20; color: white;\">ya se encuentra registrado </b></body> </html>";
             JOptionPane.showMessageDialog(null,jokio, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
-
+            
         }else{
-
+            
             if((cbxTipoDoc.getSelectedIndex()==0)||(txtDocumento.getText().equals(""))||
                 (txtNombre1.getText().equals(""))||(txtApellido1.getText().equals(""))||
                 (cbxGenero.getSelectedIndex()==0)||
                 (txtTelefono.getText().equals(""))||(cbxRh.getSelectedIndex()==0)||
                 (cbxTipUser.getSelectedIndex()==0)||
                 ((cbxCentro.getSelectedIndex())==0)||((cbxFicha.getSelectedIndex())==0)){
-
+                
                 Jpaint();
                 String jokte = "<html><body> <b style =\"font-size: 20; color: white;\"> Hay Campos marcados con (*) vacios que son obligatorios </b></body> </html>";
                 JOptionPane.showMessageDialog(null,jokte, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
-
+                    
             }else{
                 if(txtNombre2.getText().equals("")){
                     txtNombre2.setText(" ");
@@ -3113,6 +3102,7 @@ private String consulta;
                     txtEmail.setText(" ");
                 }
 
+                
                 String insert = "INSERT INTO persona (PERidPerPK, PERidDocFK, PERnumDoc, PERnom1, PERnom2, PERape1, PERape2, PERidGenFK, PERdir, PERtelFij, PERcel, PERcor, PERidRhFK, PERidTiPeFK, PERidRolFK, PERidCenFK, PERidFicFK, PERfoto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement ps = null;
 
@@ -3121,7 +3111,7 @@ private String consulta;
                     Pconnection grabar = new Pconnection();
                     String r=ruta+"/"+txtDocumento.getText()+".png";
                     File file = new File(r);
-                    //fi = new FileInputStream(file);
+                //fi = new FileInputStream(file);
 
                     ps = grabar.getConexion().prepareStatement(insert);
                     ps.setInt(1,id);
@@ -3141,10 +3131,10 @@ private String consulta;
                     ps.setInt(15,cbxRol.getSelectedIndex());
                     ps.setInt(16,(cbxCentro.getSelectedIndex()));
                     ps.setInt(17,(cbxFicha.getSelectedIndex()));
-                    //ps.setBinaryStream(18,fi,(int)file.length());
+                //ps.setBinaryStream(18,fi,(int)file.length());
                     ps.setString(18,r);
-                    ps.executeUpdate();
-
+                    ps.executeUpdate(); 
+   
                     Jpaint();
                     String jokd = "<html><body> <b style =\"font-size: 20; color: white;\"> Registro almacenado con Exito.! </b></body> </html>";
                     JOptionPane.showMessageDialog(null,jokd, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,joke);
@@ -3153,33 +3143,50 @@ private String consulta;
                     System.out.println(e.getMessage());
 
                 } catch (IOException ex) {
-                    Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
-                } /*      catch (FileNotFoundException ex) {
-                    Logger.getLogger(RegistroPersona.class.getName()).log(Level.SEVERE, null, ex);*/
-                }
+                    Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+                } 
             }
+        }
+        
+        String insert2 = "INSERT INTO entsal (ESidPerFK, ESidTiEnSaFK) VALUES (?,?)";
+        PreparedStatement ps = null;
 
-            String insert2 = "INSERT INTO entsal (ESidPerFK, ESidTiEnSaFK) VALUES (?,?)";
-            PreparedStatement ps = null;
+                try {
+                    Pconnection grabar = new Pconnection();
+                    ps = grabar.getConexion().prepareStatement(insert2);
+                    ps.setInt(1,id);
+                    ps.setInt(2,3);
+                    ps.executeUpdate();
+                }catch(SQLException e){
+                    System.out.println(e.getMessage());
 
-            try {
-                Pconnection grabar = new Pconnection();
-                ps = grabar.getConexion().prepareStatement(insert2);
-                ps.setInt(1,id);
-                ps.setInt(2,3);
-                ps.executeUpdate();
-                ps.close();
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
+                } catch (IOException ex) {
+            Logger.getLogger(registrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-            } catch (IOException ex) {
-        Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-            resetPersona();
+                    
+                
+        
+        resetPersona();
     }//GEN-LAST:event_btnguardarMouseClicked
 
     private void hrinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hrinfoActionPerformed
+        cbxFicha.removeAll();
+        cbxFicha.addItem("Seleccione");
+        con.setLlenaCombo("Select FICnumFic from ficha", "FICnumFic", 1);
+        cbxFicha.addItem(con.getLlenaCombo());
+        //cbxFicha.remove(3);
+        
+        cbxCentro.removeAll();
+        cbxCentro.addItem("Seleccione");
+        con.setLlenaCombo("Select CENnomCen from centros ", "CENnomCen", 1);
+        cbxCentro.addItem(con.getLlenaCombo());
+        
+        //Oculta boton Guardar
+        btnguardar.setVisible(false);
+        btnmodificarpersona.setVisible(true);
+        
+
         int hrid,hrId_tipo_persona,acceso=0;
         String hrTdoc,hrcentro,hrgener,hrusrol,hrtipo_persona,tphr,hrnum_documento, hrnombre_1,hrnombre_2, hrape_1,hrape_2,hrId_ficha ,hrcorreo,hrcelular,hrTelfono,hrdireccion, accesos;
 

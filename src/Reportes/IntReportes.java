@@ -1,6 +1,7 @@
 
 package Reportes;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -65,7 +66,7 @@ private String consulta,prueba;
     }
         
    
-    public void validarCampos(){
+    public void validarCampos() throws IOException{
         
         consulta = "select PERnumDoc from persona where PERnumDoc = '"+campoDocumento.getText()+"';";
         
@@ -172,7 +173,7 @@ private String consulta,prueba;
 }
     
     
-    public void validarFicha (){
+    public void validarFicha () throws IOException{
          
         consulta = "select Num_ficha from ficha where Num_ficha = '"+campoFicha.getText()+"' ;";
         
@@ -491,10 +492,18 @@ private String consulta,prueba;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         if (radioFicha.getModel()== grupoRadio.getSelection()){
-            validarFicha();
-           // validarFechas();
+            try {
+                validarFicha();
+                // validarFechas();
+            } catch (IOException ex) {
+                Logger.getLogger(IntReportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-            validarCampos();
+            try {
+                validarCampos();
+            } catch (IOException ex) {
+                Logger.getLogger(IntReportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         

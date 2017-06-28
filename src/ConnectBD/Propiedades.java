@@ -26,24 +26,24 @@ public class Propiedades {
     Properties prop = new Properties();
     String propFileName = "Config/config.properties";
     String outFileName = "resources/Config/config.properties";
-            
+    
  
     
     public String getServer() throws IOException {
         try {
-            
-            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-            
+            prop.load(new FileReader("resources/Config/config.properties"));
+            //inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            /*
             if (inputStream != null) {
                 prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-            }
+            }*/
             result = prop.getProperty("server");
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
             } finally {
-		inputStream.close();
+		//inputStream.close();
             }
 	return result;
     }
@@ -57,29 +57,28 @@ public class Propiedades {
 
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
-            } finally {
-		inputStream.close();
-            }
+            } 
         return null;
     }
     
     public String getDb() throws IOException {
  
 	try {
-            
+            prop.load(new FileReader("resources/Config/config.properties"));
+            /*
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
                 prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-            }
+            }*/
             result = prop.getProperty("db");
 
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
             } finally {
-		inputStream.close();
+		//inputStream.close();
             }
 	return result;
     }
@@ -93,29 +92,28 @@ public class Propiedades {
            
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
-            } finally {
-		inputStream.close();
-            }
+            } 
         return null;
     }
     
     public String getUser() throws IOException {
  
 	try {
-            
+            prop.load(new FileReader("resources/Config/config.properties"));
+            /*
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
 		prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-            }
+            }*/
             result = prop.getProperty("user");
 
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
             } finally {
-		inputStream.close();
+		//inputStream.close();
             }
 	return result;
     }
@@ -129,29 +127,28 @@ public class Propiedades {
             
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
-            } finally {
-		inputStream.close();
-            }
+            } 
         return null;
     }
     
     public String getPass() throws IOException {
  
 	try {
-            
+            prop.load(new FileReader("resources/Config/config.properties"));
+            /*
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
  
             if (inputStream != null) {
 		prop.load(new FileReader("resources/Config/config.properties"));
             } else {
 		throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
-            }
+            }*/
             result = prop.getProperty("password");
 
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
             } finally {
-		inputStream.close();
+		//inputStream.close();
             }
         return result;
     }
@@ -165,8 +162,6 @@ public class Propiedades {
             
             } catch (Exception e) {
 		System.out.println("Exception: " + e);
-            } finally {
-		inputStream.close();
             }
         return null;
     }

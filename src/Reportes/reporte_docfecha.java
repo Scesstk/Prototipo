@@ -1,5 +1,6 @@
 package Reportes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class reporte_docfecha {
     String fechah;
 
      
-     public void reporteDocFecha(Date f1, Date f2, int entrada, int salida, String doc){
+     public void reporteDocFecha(Date f1, Date f2, int entrada, int salida, String doc) throws IOException{
          
         
          fechad = formato.format(f1);

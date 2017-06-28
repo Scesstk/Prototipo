@@ -1,9 +1,7 @@
 
-package prototipo;
+package RegistroE_S;
 
 import ConnectBD.*;
-import static RegistroE_S.MEntrada.tablaequipos;
-import RegistroE_S.MREntradaSalida;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -17,13 +15,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import mensajes.EntradaNovedad;
-import mensajes.EntradaNovedadEq;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -31,10 +31,8 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 import login.loginf;
-import prototipo.Getset;
-import prototipo.Principal;
-import prototipo.Principal;
-import static prototipo.Principal.Escritorio;
+import mensajes.MensajeNov;
+
 
 public class operador extends javax.swing.JFrame {
     
@@ -47,7 +45,17 @@ public class operador extends javax.swing.JFrame {
                 Thread.interrupted();
             }
         }
-    }
+   }
+    
+   public void Reiniciar(){
+        textid.setText("");
+        hhome.setVisible(false);
+        formentrada.setVisible(true);
+        entradaysalida.setVisible(false);
+   }
+    Propiedades pk = new Propiedades();
+    String Server = pk.getServer();
+    File ruta = new File("//"+Server+"/fotos");
 
         Getset medio=new Getset();
         Pconnection objc= new Pconnection();
@@ -60,12 +68,18 @@ public class operador extends javax.swing.JFrame {
         int doc;
         int idp;
     
-        Propiedades pk = new Propiedades();
-        String Server = pk.getServer();
+    String jo = "<html><body> <b style =\"font-size: 20; color: white;\"> ";
+    private void Jpaint(){
+        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
+        UIManager.put("Button.background", Color.orange);
+        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
+    }
+    Icon error = new ImageIcon(getClass().getResource("/Imagenes/advertencia122x122.png"));
+    Icon ok = new ImageIcon(getClass().getResource("/Imagenes/check-in122x122px.png"));
+    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
     
-        
     Pconnection con= new Pconnection();
-    public operador() throws IOException {
+    public operador() throws IOException{
         initComponents();
         
         NombreBD nmb = new NombreBD();
@@ -87,6 +101,15 @@ public class operador extends javax.swing.JFrame {
       
     }
     
+    public static void fotoPer(String rt){
+        ImageIcon foto = new ImageIcon(rt);
+        ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(jLFotor.getWidth(), jLFotor.getHeight(), Image.SCALE_DEFAULT));
+        jLFotor.setIcon(ico);
+                       
+    }
+    
+    
+    
     public static void actfoto(String rt){
         ImageIcon foto = new ImageIcon(rt);
         ImageIcon ico = new ImageIcon(foto.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
@@ -95,18 +118,11 @@ public class operador extends javax.swing.JFrame {
     }
     
     public int x=0,y=0;
-    public String id_documento, nombre_1, ape_1, id_ficha, txt, busquedasrt;
+    public String id_documento, nombre_1, ape_1, id_ficha, txt, busquedasrt, nombre,Ficha,centro,cargo,rh;
     public int id;
     public String busq = "";
     private int cedula;
     DefaultTableModel modeloe;
-    
-    private void Jpaint(){
-        UIManager.put("OptionPane.background", new ColorUIResource(89,200,72));
-        UIManager.put("Button.background", Color.orange);
-        UIManager.put("Panel.background", new ColorUIResource(89,200,72));
-    }
-    Icon joke = new ImageIcon(getClass().getResource("/Imagenes/logo.jpg"));
 
     public Image getIconImage(){
        Image retvalue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logo3.png"));
@@ -114,15 +130,66 @@ public class operador extends javax.swing.JFrame {
     }
     
     //obtener el id de la persona
-    private void Datos(){
+    public void Datos(){
       
         
-        String cedula;
-        cedula=txtdoc.getText();
-        objc.setSelectInt(("SELECT PERidPerPK FROM persona WHERE PERnumDoc='"+cedula+"'"),"PERidPerPK"); 
-        idp=objc.getSelectInt();
-        System.out.println("datos...ok... "+idp);    
+        
+        //cedula=Integer.parseInt(txtdoc.getText());
+        objc.setSelectInt(("SELECT PERnumDoc FROM persona WHERE PERnumDoc='"+cedula+"'"),"PERnumDoc"); 
+        int temced=objc.getSelectInt();
+        System.out.println("cedula...bd... "+temced); 
+        
+        
+        if(temced==cedula){
+            
+
+                objc.setSelectInt(("SELECT PERidPerPK FROM persona WHERE PERnumDoc='"+cedula+"'"),"PERidPerPK"); 
+                idp=objc.getSelectInt();
+                System.out.println("datos...ok... "+idp); 
+            
+                objc.setSelectStr(("SELECT concat(`PERnom1`,' ', `PERnom2`,' ', `PERape1`,' ', `PERape2`) AS Nombre FROM persona WHERE PERnumDoc='"+cedula+"'"),"Nombre");
+                nombre = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT FICdesFic \n" +
+                        "FROM ficha as f JOIN persona as p on f.FICidFicPK=p.PERidFicFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"FICdesFic");
+                Ficha = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT CENnomCen \n" +
+                        "FROM centros as c JOIN persona as p on c.CENidCenPK=p.PERidCenFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"CENnomCen");
+                centro = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT TPdeTiPe \n" +
+                        "FROM tipper as t JOIN persona as p on t.TPidTiPePK=p.PERidTiPeFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"TPdeTiPe");
+                cargo = objc.getSelectStr();
+                
+                objc.setSelectStr(("SELECT RHdesRh \n" +
+                        "FROM rh as r JOIN persona as p on r.RHidRhPK=p.PERidRhFK\n" +
+                        "WHERE PERnumDoc='"+cedula+"'"),"RHdesRh");
+                rh = objc.getSelectStr();
+                
+                
+                                
+                txtdoc.setText(String.valueOf(cedula));
+                txtnom.setText(nombre);
+                txtficha.setText(Ficha);
+                txtcentro.setText(centro);
+                txtcargo.setText(cargo);
+                txtrh.setText(rh);
+                
+                hhome.setVisible(false);
+                formentrada.setVisible(false);
+                entradaysalida.setVisible(true);
+        }else{
+           Jpaint();
+           String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Error: <br> EL Usuario NO se encuentra Registrado </b> </body> </html>";
+           JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,error);
+            textid.setText("");
+            System.out.println("No se encuentra usuario");
         }
+    }
     //obtener id de equipos asociados al id persona
     public  void Idequipos(){
         medio.listacat.clear();
@@ -157,12 +224,12 @@ public class operador extends javax.swing.JFrame {
             objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+obj.getId()+"'\n"+
-                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQtiEnSaEq");
             int TE = objc.getSelectInt();
             
             if(TE!=1){
                 objc.setSelectStr(("SELECT MEdeMaEq \n" +
-                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidMarFK\n" +
+                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidEquPK\n" +
                                   "WHERE EQUidEquPK='"+obj.getId()+"'"),"MEdeMaEq");
                 marcaeq = objc.getSelectStr();
 
@@ -207,12 +274,12 @@ public class operador extends javax.swing.JFrame {
             objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+obj.getId()+"'\n"+
-                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQtiEnSaEq");
             int TE = objc.getSelectInt();
             
             if(TE==1){
                 objc.setSelectStr(("SELECT MEdeMaEq \n" +
-                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidMarFK\n" +
+                                  "FROM marequ as m JOIN equipos as e on m.MEidMaEqPK=e.EQUidEquPK\n" +
                                   "WHERE EQUidEquPK='"+obj.getId()+"'"),"MEdeMaEq");
                 marcaeq = objc.getSelectStr();
 
@@ -221,7 +288,7 @@ public class operador extends javax.swing.JFrame {
 
                 objc.setSelectStr(("SELECT EQUser FROM equipos WHERE EQUidEquPK='"+obj.getId()+"'"),"EQUser");
                 serialeq = objc.getSelectStr();
-                
+
                 cont=cont+1;
 
                    String marca=marcaeq;
@@ -241,7 +308,8 @@ public class operador extends javax.swing.JFrame {
         System.out.println("tabla salida...ok... ");  
 
     } 
-     public void limpiartabla(){
+    
+    public void limpiartabla(){
         
         DefaultTableModel modelod = (DefaultTableModel) tablaequipos.getModel();
         modelod = (DefaultTableModel) tablaequipos.getModel();
@@ -249,7 +317,6 @@ public class operador extends javax.swing.JFrame {
             for(int i=0; i<a; i++)
                 modelod.removeRow(0);
             tablaequipos.setModel(modelod);
-            
             
     }
 
@@ -260,6 +327,9 @@ public class operador extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         barralateral = new javax.swing.JPanel();
         btnhome = new javax.swing.JLabel();
         btnlogout = new javax.swing.JLabel();
@@ -289,13 +359,13 @@ public class operador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtdoc = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtnom2 = new javax.swing.JTextField();
-        txtnom3 = new javax.swing.JTextField();
+        txtrh = new javax.swing.JTextField();
+        txtficha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtnom4 = new javax.swing.JTextField();
+        txtcargo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtnom5 = new javax.swing.JTextField();
+        txtcentro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaequipos = new javax.swing.JTable();
         btncancelar = new javax.swing.JLabel();
@@ -312,6 +382,15 @@ public class operador extends javax.swing.JFrame {
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        jMenuItem1.setBackground(new java.awt.Color(51, 255, 51));
+        jMenuItem1.setText("Incluir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -528,7 +607,9 @@ public class operador extends javax.swing.JFrame {
 
         formentrada.add(separador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 270, -1));
 
-        textid.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        textid.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        textid.setForeground(new java.awt.Color(252, 115, 35));
+        textid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textid.setBorder(null);
         textid.setOpaque(false);
         textid.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -557,6 +638,7 @@ public class operador extends javax.swing.JFrame {
         entradaysalida.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rbe.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rbe);
         rbe.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         rbe.setForeground(new java.awt.Color(89, 181, 72));
         rbe.setText("Entrada");
@@ -568,6 +650,7 @@ public class operador extends javax.swing.JFrame {
         entradaysalida.add(rbe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 50));
 
         rbs.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rbs);
         rbs.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         rbs.setForeground(new java.awt.Color(89, 181, 72));
         rbs.setText("Salida");
@@ -615,27 +698,27 @@ public class operador extends javax.swing.JFrame {
         jLabel3.setText("RH:");
         entradaysalida.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 30, 20));
 
-        txtnom2.setEditable(false);
-        txtnom2.setBackground(new java.awt.Color(255, 255, 255));
-        txtnom2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        txtnom2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtnom2.addActionListener(new java.awt.event.ActionListener() {
+        txtrh.setEditable(false);
+        txtrh.setBackground(new java.awt.Color(255, 255, 255));
+        txtrh.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        txtrh.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtrh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnom2ActionPerformed(evt);
+                txtrhActionPerformed(evt);
             }
         });
-        entradaysalida.add(txtnom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 90, 30));
+        entradaysalida.add(txtrh, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 90, 30));
 
-        txtnom3.setEditable(false);
-        txtnom3.setBackground(new java.awt.Color(255, 255, 255));
-        txtnom3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        txtnom3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtnom3.addActionListener(new java.awt.event.ActionListener() {
+        txtficha.setEditable(false);
+        txtficha.setBackground(new java.awt.Color(255, 255, 255));
+        txtficha.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        txtficha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtficha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnom3ActionPerformed(evt);
+                txtfichaActionPerformed(evt);
             }
         });
-        entradaysalida.add(txtnom3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, 30));
+        entradaysalida.add(txtficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, 30));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(89, 181, 72));
@@ -647,32 +730,32 @@ public class operador extends javax.swing.JFrame {
         jLabel5.setText("Cargo:");
         entradaysalida.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 70, 20));
 
-        txtnom4.setEditable(false);
-        txtnom4.setBackground(new java.awt.Color(255, 255, 255));
-        txtnom4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        txtnom4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtnom4.addActionListener(new java.awt.event.ActionListener() {
+        txtcargo.setEditable(false);
+        txtcargo.setBackground(new java.awt.Color(255, 255, 255));
+        txtcargo.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        txtcargo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtcargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnom4ActionPerformed(evt);
+                txtcargoActionPerformed(evt);
             }
         });
-        entradaysalida.add(txtnom4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, 30));
+        entradaysalida.add(txtcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, 30));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(89, 181, 72));
         jLabel6.setText("Centro:");
         entradaysalida.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 70, 20));
 
-        txtnom5.setEditable(false);
-        txtnom5.setBackground(new java.awt.Color(255, 255, 255));
-        txtnom5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        txtnom5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtnom5.addActionListener(new java.awt.event.ActionListener() {
+        txtcentro.setEditable(false);
+        txtcentro.setBackground(new java.awt.Color(255, 255, 255));
+        txtcentro.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        txtcentro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtcentro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnom5ActionPerformed(evt);
+                txtcentroActionPerformed(evt);
             }
         });
-        entradaysalida.add(txtnom5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 300, 30));
+        entradaysalida.add(txtcentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 300, 30));
 
         tablaequipos.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         tablaequipos.setForeground(new java.awt.Color(89, 181, 72));
@@ -687,6 +770,7 @@ public class operador extends javax.swing.JFrame {
 
             }
         ));
+        tablaequipos.setComponentPopupMenu(jPopupMenu1);
         tablaequipos.setGridColor(new java.awt.Color(89, 181, 72));
         tablaequipos.setSelectionBackground(new java.awt.Color(89, 181, 72));
         jScrollPane1.setViewportView(tablaequipos);
@@ -732,13 +816,14 @@ public class operador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncerrarMouseClicked
-        
         Jpaint();
         String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Salir del Programa?</b></body> </html>";
         int codigo=JOptionPane.showConfirmDialog(null,jok, "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
         if (codigo==JOptionPane.YES_OPTION){
             System.exit(0);
             con.cerrarConexion();
+	}else if(codigo==JOptionPane.NO_OPTION){
+			
 	}
     }//GEN-LAST:event_btncerrarMouseClicked
 
@@ -774,22 +859,24 @@ public class operador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnhomeMouseClicked
 
     private void btnguardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnguardarMouseClicked
-            hhome.setVisible(false);
-            formentrada.setVisible(false);
-            entradaysalida.setVisible(true);
+            
+            cedula=Integer.parseInt(textid.getText());
+            System.out.println(cedula);
+            String r=ruta+"/"+textid.getText()+".png";
+            System.out.println(r);
+            fotoPer(r);
+            Datos();
+            
             
     }//GEN-LAST:event_btnguardarMouseClicked
 
     private void textidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textidKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            
-            hhome.setVisible(false);
-            formentrada.setVisible(false);
-            entradaysalida.setVisible(true);
-            
-        
-  
-                }
+            cedula=Integer.parseInt(textid.getText());
+            String r=ruta+"/"+textid.getText()+".png";
+            System.out.println(cedula);
+            Datos();
+        }
     }//GEN-LAST:event_textidKeyReleased
 
     private void rbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbeActionPerformed
@@ -818,25 +905,26 @@ public class operador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdocActionPerformed
 
-    private void txtnom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnom2ActionPerformed
+    private void txtrhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrhActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnom2ActionPerformed
+    }//GEN-LAST:event_txtrhActionPerformed
 
-    private void txtnom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnom3ActionPerformed
+    private void txtfichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfichaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnom3ActionPerformed
+    }//GEN-LAST:event_txtfichaActionPerformed
 
-    private void txtnom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnom4ActionPerformed
+    private void txtcargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcargoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnom4ActionPerformed
+    }//GEN-LAST:event_txtcargoActionPerformed
 
-    private void txtnom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnom5ActionPerformed
+    private void txtcentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcentroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnom5ActionPerformed
+    }//GEN-LAST:event_txtcentroActionPerformed
 
     private void btncancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncancelarMouseClicked
         
         //switch bettween Jpanels
+        textid.setText("");
         hhome.setVisible(false);
         formentrada.setVisible(true);
         entradaysalida.setVisible(false);
@@ -854,7 +942,7 @@ public class operador extends javax.swing.JFrame {
         //si es Entrada
         if(rbe.isSelected()){
             btningresar.setEnabled(true);
-            if(UE != 1){
+            if(UE == 2 || UE == 3){
                 
                int CE=tablaequipos.getRowCount();
                
@@ -865,53 +953,45 @@ public class operador extends javax.swing.JFrame {
                        objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+ideq+"'\n"+
-                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQtiEnSaEq");
                         int UEQ = objc.getSelectInt();
                         System.out.println("ultima entrada Equipo--"+UEQ);
                         
-                        if(UEQ != 1){
+                        if(UEQ == 2 || UEQ == 3 || UEQ == 0){
                         
                             objc.setInsert("INSERT INTO entsalequ(`ESQidEquFK`, `ESQtiEnSaEq`, `ESQidPerFK`)\n"+ 
                                       "VALUES ("+ideq+",1,"+idp+")");
-                        }else{
+                        /*}else{
                             objc.setSelectStr(("SELECT ESQfeEnEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+ideq+"'\n"+
                               "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj = null;
-                           try {
-                               obj = new mensajes.EntradaNovedadEq();
-                           } catch (IOException ex) {
-                               Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
-                           }
-                            Principal.Escritorio.add(obj);
-                            Dimension desktopSize = Principal.Escritorio.getSize();
-                            Dimension FrameSize = obj.getSize();
-                            obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+                            mensajes.MensajeNov obj= new mensajes.MensajeNov();
+                            
+                            MensajeNov.txtUE.setText(FechaEq);
+                            MensajeNov.lus.setVisible(true);
+                            MensajeNov.tipES=1;
+                            MensajeNov.Enidp=idp;
+                            MensajeNov.idequi=ideq;
 
-                            EntradaNovedadEq.txtUE.setText(FechaEq);
-                            EntradaNovedadEq.lus.setVisible(true);
-                            EntradaNovedadEq.tipES=1;
-                            EntradaNovedadEq.Enidp=idp;
-                            EntradaNovedadEq.idequi=ideq;
-
-                            obj.show();
+                            obj.setVisible(true);*/
                         }
                    }
                }
                 objc.setInsert("INSERT INTO entsal(`ESidPerFK`, `ESidTiEnSaFK`) VALUES ("+idp+",1)");
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Registro Exitoso: <br> EL Registro de Entrada fue exitoso, el usuario puede pasar </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,ok);
                 
+                textid.setText("");
+                hhome.setVisible(false);
+                formentrada.setVisible(true);
+                entradaysalida.setVisible(false);
                 
+                System.out.println("registro usuario entrada ok");
                 
-                mensajes.Mensaje obj= new mensajes.Mensaje();
-                Principal.Escritorio.add(obj);
-                Dimension desktopSize = Principal.Escritorio.getSize();
-                Dimension FrameSize = obj.getSize();
-                obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-                obj.show();
-                dispose();
             }else if(UE==1){
                 
                 
@@ -921,30 +1001,27 @@ public class operador extends javax.swing.JFrame {
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaE = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj = null;
+                mensajes.MensajeNov obj = null;
                 try {
-                    obj = new mensajes.EntradaNovedad();
+                    obj = new mensajes.MensajeNov();
                 } catch (IOException ex) {
                     Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Principal.Escritorio.add(obj);
-                Dimension desktopSize = Principal.Escritorio.getSize();
-                Dimension FrameSize = obj.getSize();
-                obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
                 
-                EntradaNovedad.txtUE.setText(FechaE);
-                EntradaNovedad.lus.setVisible(true);
-                EntradaNovedad.tipES=1;
-                EntradaNovedad.Enidp=idp;
+                System.out.println("A) ultima entrada: "+FechaE);
+                MensajeNov.txtUE.setText(FechaE);
+                MensajeNov.lus.setVisible(true);
+                MensajeNov.tipES=1;
+                MensajeNov.Enidp=idp;
                 
-                obj.show();
-                
+                obj.setVisible(true);
+                dispose();
             }
         }
         //si es Salida
         if(rbs.isSelected()){
             btningresar.setEnabled(true);
-            if(UE != 2){
+            if(UE == 1 || UE == 3){
                 
                 int CE=tablaequipos.getRowCount();
                
@@ -955,53 +1032,36 @@ public class operador extends javax.swing.JFrame {
                        objc.setSelectInt(("SELECT ESQtiEnSaEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+ideq+"'\n"+
-                              "ORDER BY ESQidEquFK DESC LIMIT 1"),"ESQtiEnSaEq");
-                       
-                       int UEQ = objc.getSelectInt();
+                              "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQtiEnSaEq");
+                        int UEQ = objc.getSelectInt();
                         System.out.println("ultima entrada Equipo--"+UEQ);
                         
-                        if(UEQ != 2){
+                        if(UEQ == 1 || UEQ == 3){
                         
-                            objc.setInsert("INSERT INTO entsalequ(`ESQidEquFK`, `ESQtiEnSaEq`, `ESQidPerFK`)\n"+ 
-                                      "VALUES ("+ideq+",2,"+idp+")");
-                        }else if(UEQ==2){
+                            objc.setInsert("INSERT INTO entsalequ(`ESQidEquFK`, `ESQtiEnSaEq`, `ESQidPerFK`)\n"+"VALUES ("+ideq+",2,"+idp+")");
+                            
+                        }else if(UEQ==2 || UEQ==3 || UEQ == 0){
                             objc.setSelectStr(("SELECT ESQfeEnEq\n" +
                               "FROM entsalequ\n" +
                               "WHERE ESQidEquFK='"+ideq+"'\n"+
                               "ORDER BY ESQidEnSaFK DESC LIMIT 1"),"ESQfeEnEq");
                             String FechaEq = objc.getSelectStr();
 
-                            mensajes.EntradaNovedadEq obj = null;
-                           try {
-                               obj = new mensajes.EntradaNovedadEq();
-                           } catch (IOException ex) {
-                               Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
-                           }
-                            Principal.Escritorio.add(obj);
-                            Dimension desktopSize = Principal.Escritorio.getSize();
-                            Dimension FrameSize = obj.getSize();
-                            obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-
-                            EntradaNovedadEq.txtUS.setText(FechaEq);
-                            EntradaNovedadEq.lue.setVisible(true);
-                            EntradaNovedadEq.tipES=2;
-                            EntradaNovedadEq.Enidp=idp;
-                            EntradaNovedadEq.idequi=ideq;
-
-                            obj.show();
                         }
                    }
                }
                 objc.setInsert("INSERT INTO entsal(`ESidPerFK`, `ESidTiEnSaFK`) VALUES ("+idp+",2)");
                 
-                mensajes.MensajeSalida obj= new mensajes.MensajeSalida();
-                Principal.Escritorio.add(obj);
-                Dimension desktopSize = Principal.Escritorio.getSize();
-                Dimension FrameSize = obj.getSize();
-                obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-
-                obj.show();
-                dispose();
+                Jpaint();
+                String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> Registro Exitoso: <br> EL Registro de Salida fue exitoso, el usuario puede pasar </b> </body> </html>";
+                JOptionPane.showMessageDialog(null,jok, "S.C.E.S.S",JOptionPane.WARNING_MESSAGE,ok);
+                
+                textid.setText("");
+                hhome.setVisible(false);
+                formentrada.setVisible(true);
+                entradaysalida.setVisible(false);
+                System.out.println("registro usuario salida ok");
+                
             }else if(UE==2){
                 
                 objc.setSelectStr(("SELECT ESfecHor\n" +
@@ -1010,34 +1070,51 @@ public class operador extends javax.swing.JFrame {
                               "ORDER BY ESidEntSalPK DESC LIMIT 1"),"ESfecHor");
                 String FechaS = objc.getSelectStr();
             
-                mensajes.EntradaNovedad obj = null;
+                mensajes.MensajeNov obj = null;
                 try {
-                    obj = new mensajes.EntradaNovedad();
+                    obj = new mensajes.MensajeNov();
                 } catch (IOException ex) {
                     Logger.getLogger(operador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Principal.Escritorio.add(obj);
-                Dimension desktopSize = Principal.Escritorio.getSize();
-                Dimension FrameSize = obj.getSize();
-                obj.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
                 
-                EntradaNovedad.txtUS.setText(FechaS);
-                EntradaNovedad.lue.setVisible(true);
-                EntradaNovedad.tipES=2;
-                EntradaNovedad.Enidp=idp;
+                System.out.println("B) ultima salida: "+FechaS);
+                MensajeNov.txtUS.setText(FechaS);
+                MensajeNov.lue.setVisible(true);
+                MensajeNov.tipES=2;
+                MensajeNov.Enidp=idp;
                 
-                obj.show();
-                
+                obj.setVisible(true);
+                dispose();
             }
         }else{
             //JOptionPane.showMessageDialog(null,"Por favor seleccione Entrada o Salida");
         }
     }//GEN-LAST:event_btningresarMouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int posicion;
+        posicion=tablaequipos.getSelectedRow();
+        String A,B;
+        if(posicion>=0){
+            A=tablaequipos.getValueAt(posicion,1).toString();
+            if(tablaequipos.getValueAt(posicion,5).equals(" ")){
+                tablaequipos.setValueAt("Portado", posicion, 5);
+            }else if(tablaequipos.getValueAt(posicion,5).equals("Portado")){
+                tablaequipos.setValueAt(" ", posicion, 5);
+            }
+            //System.out.println(A);
+
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void btnlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlogoutMouseClicked
 
         Jpaint();
         String jok = "<html><body> <b style =\"font-size: 20; color: white;\"> ¿Desea Cerrar Sesión?</b> </body> </html>";
+
         int codigo=JOptionPane.showConfirmDialog(null, jok, "Cerrar Sesion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,joke);
         if (codigo==JOptionPane.YES_OPTION){
             dispose();
@@ -1117,6 +1194,7 @@ public class operador extends javax.swing.JFrame {
     private javax.swing.JLabel btningresar;
     private javax.swing.JLabel btnlogout;
     private javax.swing.JLabel btnminimizar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel entradaysalida;
     private javax.swing.JLabel etiquetanombre;
     private javax.swing.JLabel etiquetanombre1;
@@ -1133,6 +1211,8 @@ public class operador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrol;
@@ -1140,13 +1220,13 @@ public class operador extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbs;
     private javax.swing.JPanel separador1;
     public static javax.swing.JTable tablaequipos;
-    private javax.swing.JTextField textid;
+    public static javax.swing.JTextField textid;
     private javax.swing.JLabel titulo;
+    public static javax.swing.JTextField txtcargo;
+    public static javax.swing.JTextField txtcentro;
     public static javax.swing.JTextField txtdoc;
+    public static javax.swing.JTextField txtficha;
     public static javax.swing.JTextField txtnom;
-    public static javax.swing.JTextField txtnom2;
-    public static javax.swing.JTextField txtnom3;
-    public static javax.swing.JTextField txtnom4;
-    public static javax.swing.JTextField txtnom5;
+    public static javax.swing.JTextField txtrh;
     // End of variables declaration//GEN-END:variables
 }
